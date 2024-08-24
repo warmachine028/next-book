@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 	description: 'A social media app for the Next Fans'
 }
 
-export const RootLayout = ({
+const RootLayout = ({
 	children
 }: Readonly<{
 	children: React.ReactNode
