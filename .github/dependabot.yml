@@ -5,10 +5,11 @@ updates:
     schedule:
       interval: daily
       time: "21:00"
-  # - package-ecosystem: npm #! enable for javascript & typescript
-  #   directory: "/"
-  #   schedule:
-  #     interval: weekly
+  - package-ecosystem: npm #! enable for javascript & typescript
+    directory: "client"
+    schedule:
+      interval: daily
+      time: "21:00"
   # - package-ecosystem: pip #! enable for python 
   #   directory: "/"
   #   schedule:
