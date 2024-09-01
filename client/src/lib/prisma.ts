@@ -1,4 +1,5 @@
 import { PrismaNeon } from '@prisma/adapter-neon'
+//? https://github.com/prisma/prisma/discussions/23533#discussioncomment-8838160
 import { Pool } from '@neondatabase/serverless'
 import { PrismaClient } from '@prisma/client'
 import { withAccelerate } from '@prisma/extension-accelerate'
