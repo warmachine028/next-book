@@ -6,7 +6,7 @@
 
 generator client {
     provider        = "prisma-client-js"
-    previewFeatures = ["fullTextSearch"]
+    previewFeatures = ["fullTextSearch", "driverAdapters"]
 }
 
 datasource db {
@@ -27,6 +27,7 @@ model User {
     sessions     Session[]
     createdAt    DateTime  @default(now())
     updatedAt    DateTime  @updatedAt
+
     @@map("users")
 }
 
@@ -35,5 +36,6 @@ model Session {
     userId    String
     expiresAt DateTime
     user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
     @@map("sessions")
 }
