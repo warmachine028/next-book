@@ -1,8 +1,9 @@
 {
-
     "dependencies": {
         "@hookform/resolvers": "^3.9.0",
         "@lucia-auth/adapter-prisma": "^4.0.1",
+        "@neondatabase/serverless": "^0.9.4",
+        "@prisma/adapter-neon": "^5.19.0",
         "@prisma/client": "^5.19.0",
         "@prisma/extension-accelerate": "^1.1.0",
         "@radix-ui/react-label": "^2.1.0",
@@ -26,7 +27,6 @@
         "lucide-react": "^0.436.0",
         "next": "15.0.0-rc.0",
         "next-themes": "^0.3.0",
-        "prisma": "^5.19.0",
         "react": "19.0.0-rc-f994737d14-20240522",
         "react-cropper": "^2.3.3",
         "react-dom": "19.0.0-rc-f994737d14-20240522",
@@ -52,6 +52,7 @@
         "prettier": "^3.3.3",
         "prettier-plugin-packagejson": "^2.5.2",
         "prettier-plugin-tailwindcss": "^0.6.6",
+        "prisma": "^5.19.0",
         "tailwindcss": "^3.4.1",
         "typescript": "^5"
     },
@@ -62,7 +63,8 @@
         "build": "next build",
         "dev": "next dev --turbo",
         "lint": "next lint",
-        "start": "next start"
+        "start": "next start",
+        "postinstall": "prisma generate"
     },
     "version": "0.1.0"
 }
