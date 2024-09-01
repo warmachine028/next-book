@@ -1,12 +1,15 @@
+import { PrismaNeon } from '@prisma/adapter-neon'
+import { Pool } from '@neondatabase/serverless'
 import { PrismaClient } from '@prisma/client'
 import { withAccelerate } from '@prisma/extension-accelerate'
 
-const prismaClientSingleton = () => new PrismaClient().$extends(withAccelerate())
+const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
+const adapter = new PrismaNeon(neon)
+const prismaClientSingleton = () => new PrismaClient({ adapter }).$extends(withAccelerate())
 
 declare global {
 	var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>
 }
-
 const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
 
 export default prisma
