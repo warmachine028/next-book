@@ -1,31 +1,35 @@
 'use client'
 
-import { signupSchema, SignUpValues } from '@/lib/validation'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { useState, useTransition } from 'react'
-import { signUp } from './actions'
-import { PasswordInput } from '@/components/PasswordInput'
 import { LoadingButton } from '@/components/LoadingButton'
+import { PasswordInput } from '@/components/PasswordInput'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { signUpSchema, SignUpValues } from '@/lib/validation'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useState, useTransition } from 'react'
+import { useForm } from 'react-hook-form'
+import { signUp } from './actions'
+import { Button } from '@/components/ui/button'
 
 const SignUpForm = () => {
 	const [error, setError] = useState<string>()
 	const [isPending, startTransition] = useTransition()
 
 	const form = useForm<SignUpValues>({
-		resolver: zodResolver(signupSchema),
-		defaultValues: { email: '', userName: '', password: '' }
+		resolver: zodResolver(signUpSchema),
+		defaultValues: { userName: '', email: '', password: '' }
 	})
 
 	const onSubmit = async (values: SignUpValues) => {
 		setError(undefined)
 		startTransition(async () => {
 			const { error } = await signUp(values)
-			setError(error)
+			if (error) {
+				setError(error)
+			}
 		})
 	}
+
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
@@ -39,6 +43,7 @@ const SignUpForm = () => {
 							<FormControl>
 								<Input autoComplete="username" placeholder="eg: pritamKunduC24" {...field} />
 							</FormControl>
+							<FormDescription>This is your permanent public display name.</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
@@ -57,6 +62,7 @@ const SignUpForm = () => {
 									{...field}
 								/>
 							</FormControl>
+							<FormDescription>You can change your email later.</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}

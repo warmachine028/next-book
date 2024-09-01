@@ -1,12 +1,10 @@
-import { Metadata } from 'next'
 import hero from '@/assets/signup-image.jpg'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import SignUpForm from './SignUpForm'
 
-export const metadata: Metadata = {
-	title: 'Sign Up'
-}
+export const metadata: Metadata = { title: 'Sign Up' }
 
 const Page = () => {
 	return (
@@ -29,7 +27,7 @@ const Page = () => {
 						</h6>
 					</div>
 				</div>
-				<Image src={hero} priority={true} alt="sign-up" className="hidden w-1/2 object-cover md:block" />
+				<Image src={hero} priority alt="sign-up" className="hidden w-1/2 object-cover md:block" />
 			</div>
 		</main>
 	)

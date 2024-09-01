@@ -1,14 +1,19 @@
 import { cn } from '@/lib/utils'
+import { Eye, EyeOff } from 'lucide-react'
 import React, { useState } from 'react'
 import { Input, InputProps } from '@/components/ui/input'
-import { Eye, EyeOff } from 'lucide-react'
-
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(({ className, type, ...props }, ref) => {
 	const [showPassword, setShowPassword] = useState(false)
 	return (
 		<div className="relative">
-			<Input type={showPassword ? 'text' : 'password'} className={cn('pe-10', className)} ref={ref} {...props} />
+			<Input
+				type={showPassword ? 'text' : 'password'}
+				className={cn('pe-10', className)}
+				ref={ref}
+				{...props}
+				suppressHydrationWarning
+			/>
 			<button
 				type="button"
 				title={showPassword ? 'Hide password' : 'Show password'}

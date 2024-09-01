@@ -58,11 +58,10 @@ export const validateRequest = cache(
 			if (!result.session) {
 				const sessionCookie = lucia.createBlankSessionCookie()
 				const { name, value, attributes } = sessionCookie
-
 				cookies().set(name, value, attributes)
 			}
 		} catch (error) {
-			console.log(error)
+			console.error(error)
 		}
 		return result
 	}

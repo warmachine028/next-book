@@ -1,6 +1,6 @@
 'use client'
 
-import { loginSchema, LogInValues } from '@/lib/validation'
+import { logInSchema, LogInValues } from '@/lib/validation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -15,7 +15,7 @@ const LogInForm = () => {
 	const [isPending, startTransition] = useTransition()
 
 	const form = useForm<LogInValues>({
-		resolver: zodResolver(loginSchema),
+		resolver: zodResolver(logInSchema),
 		defaultValues: { userName: '', password: '' }
 	})
 	const onSubmit = async (values: LogInValues) => {

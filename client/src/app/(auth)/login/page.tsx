@@ -4,9 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import LogInForm from './LogInForm'
 
-export const metadata: Metadata = {
-	title: 'Log In'
-}
+export const metadata: Metadata = { title: 'Log In' }
 
 const Page = () => {
 	return (

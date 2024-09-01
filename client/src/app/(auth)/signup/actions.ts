@@ -2,7 +2,7 @@
 
 import { lucia } from '@/auth'
 import prisma from '@/lib/prisma'
-import { signupSchema, SignUpValues } from '@/lib/validation'
+import { signUpSchema, SignUpValues } from '@/lib/validation'
 import { hash } from '@node-rs/argon2'
 import { generateIdFromEntropySize } from 'lucia'
 import { isRedirectError } from 'next/dist/client/components/redirect'
@@ -11,16 +11,8 @@ import { redirect } from 'next/navigation'
 
 export const signUp = async (credentials: SignUpValues): Promise<{ error: string }> => {
 	try {
-		const { userName, email, password } = signupSchema.parse(credentials)
-		const passwordHash = await hash(password, {
-			memoryCost: 19456,
-			timeCost: 2,
-			outputLen: 32,
-			parallelism: 1
-		})
-		const userId = generateIdFromEntropySize(10)
-
-		const exixtingUserName = await prisma.user.findFirst({
+		const { userName, email, password } = signUpSchema.parse(credentials)
+		const exixtingUser = await prisma.user.findFirst({
 			where: {
 				userName: {
 					equals: userName,
@@ -28,9 +20,11 @@ export const signUp = async (credentials: SignUpValues): Promise<{ error: string
 				}
 			}
 		})
-		if (exixtingUserName) {
+
+		if (exixtingUser) {
 			return { error: 'Username already taken' }
 		}
+
 		const exixtingEmail = await prisma.user.findFirst({
 			where: {
 				email: {
@@ -42,6 +36,14 @@ export const signUp = async (credentials: SignUpValues): Promise<{ error: string
 		if (exixtingEmail) {
 			return { error: 'Email already in use' }
 		}
+		const userId = generateIdFromEntropySize(10)
+
+		const passwordHash = await hash(password, {
+			memoryCost: 19456,
+			timeCost: 2,
+			outputLen: 32,
+			parallelism: 1
+		})
 		await prisma.user.create({
 			data: {
 				id: userId,
@@ -60,6 +62,6 @@ export const signUp = async (credentials: SignUpValues): Promise<{ error: string
 			throw error
 		}
 		console.error(error)
-		return { error: 'Something went wrong. Please try again later homes.' }
+		return { error: 'Something went wrong. Please try again later' }
 	}
 }
