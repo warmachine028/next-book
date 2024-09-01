@@ -2,14 +2,14 @@
 
 import { lucia } from '@/auth'
 import prisma from '@/lib/prisma'
-import { signupSchema, SignupValues } from '@/lib/validation'
+import { signupSchema, SignUpValues } from '@/lib/validation'
 import { hash } from '@node-rs/argon2'
 import { generateIdFromEntropySize } from 'lucia'
 import { isRedirectError } from 'next/dist/client/components/redirect'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-export const signUp = async (credentials: SignupValues): Promise<{ error: string }> => {
+export const signUp = async (credentials: SignUpValues): Promise<{ error: string }> => {
 	try {
 		const { userName, email, password } = signupSchema.parse(credentials)
 		const passwordHash = await hash(password, {
