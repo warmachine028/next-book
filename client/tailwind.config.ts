@@ -1,8 +1,14 @@
 import type { Config } from 'tailwindcss'
 
-const config = {
+export default {
 	darkMode: ['class'],
-	content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
+	content: [
+		// This is the same as the `purge` option in the future
+		'./pages/**/*.{ts,tsx}',
+		'./components/**/*.{ts,tsx}',
+		'./app/**/*.{ts,tsx}',
+		'./src/**/*.{ts,tsx}'
+	],
 	prefix: '',
 	theme: {
 		container: {
@@ -13,6 +19,12 @@ const config = {
 			}
 		},
 		extend: {
+			screens: {
+				xxs: '320px',
+				xs: '475px',
+				'2xl': '1400px',
+				'3xl': '1600px'
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -32,8 +44,6 @@ const config = {
 					DEFAULT: 'hsl(var(--warning))',
 					foreground: 'hsl(var(--warning-foreground))'
 				},
-				// warning: 'hsl(var(--warning))',
-				// 'warning-foreground': 'hsl(var(--warning-foreground))',
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
@@ -78,5 +88,3 @@ const config = {
 	},
 	plugins: [require('tailwindcss-animate')]
 } satisfies Config
-
-export default config
