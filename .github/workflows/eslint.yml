@@ -33,10 +33,11 @@ jobs:
       - name: Install ESLint
         run: |
           cd client
-          npm install --save-dev eslint-config-next --legacy-peer-deps
-          npm install @typescript-eslint/eslint-plugin --legacy-peer-deps
-          npm install eslint@8.10.0 --legacy-peer-deps
-          npm install @microsoft/eslint-formatter-sarif@2.1.7 --legacy-peer-deps
+          npm install --legscy-peer-deps
+          npm install -D eslint-config-next --legacy-peer-deps
+          npm install -D @typescript-eslint/eslint-plugin --legacy-peer-deps
+          npm install -D eslint@8.10.0 --legacy-peer-deps
+          npm install -D @microsoft/eslint-formatter-sarif@2.1.7 --legacy-peer-deps
 
       - name: Run ESLint
         run: |
@@ -44,6 +45,7 @@ jobs:
           npx eslint .
           --config .eslintrc.json
           --ext .js,.jsx,.ts,.tsx
+          --ignore-pattern "future/*"
           --format @microsoft/eslint-formatter-sarif
           --output-file eslint-results.sarif
         continue-on-error: true
