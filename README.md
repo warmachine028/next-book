@@ -1,14 +1,13 @@
     updated on: 03rd September 2024, Tuesday
 
 <div align=center>
-    <a href="https://github.com/warmachine028/next-book">
-        <img width="80" src="client/src/app/favicon.ico" alt="next-book">
-    </a>
+    <picture>
+      <source media="(prefers-color-scheme: light)" srcset="client/public/next.svg">
+      <source media="(prefers-color-scheme: dark)" srcset="client/public/next-dark.svg" width="200">
+      <img src="client/public/next-light.svg" width="200">
+    </picture>
     <br/>
-    <a href="https://github.com/warmachine028/next-book">
-        <img width="200" src="client/public/next.svg" alt="next-book">
-    </a>
-    <p style="font-family: roboto, calibri; font-size:12pt; font-style:italic"></p>
+    <p style="font-family: roboto, calibri; font-size:12pt; font-style:italic">A sleek next JS web app</p>
     <a src="https://github.com/warmachine028/next-book/forks">
         <img alt="GitHub forks" src="https://img.shields.io/github/forks/warmachine028/next-book">
     </a>
