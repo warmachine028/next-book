@@ -19,6 +19,7 @@ const sugessions = [
 const SearchBar = () => {
 	const router = useRouter()
 	const [placeholder, setPlaceholder] = useState(`${sugessions[2]}`)
+	const [query, setQuery] = useState('')
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -30,20 +31,31 @@ const SearchBar = () => {
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		const form = event.currentTarget
-		const query = (form.query as HTMLInputElement).value.trim()
-		if (!query) {
+		const searchQuery = query.trim() || undefined
+
+		if (!searchQuery) {
 			return
 		}
-		router.push(`/search?q=${encodeURIComponent(query)}`)
+		router.push(`/search?q=${encodeURIComponent(searchQuery)}`)
 	}
 
 	return (
-		<form onSubmit={handleSubmit} action="/search">
+		<form onSubmit={handleSubmit} action="/search" className="cursor-pointer">
 			<div className="relative">
-				<Input name="query" placeholder={`Search for ${placeholder}`} className="pe-10 sm:w-64" />
+				<Input
+					name="query"
+					placeholder={`Search for ${placeholder}`}
+					value={query}
+					className="pe-10 sm:w-64"
+					onChange={(event) => setQuery(event.target.value)}
+				/>
 
-				<SearchIcon className="text-muted-foreground absolute right-3 top-1/2 size-5 -translate-y-1/2 transform" />
+				<button
+					className="text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 transform"
+					type="submit"
+				>
+					<SearchIcon className="size-5" />
+				</button>
 			</div>
 		</form>
 	)

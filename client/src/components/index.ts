@@ -1,4 +1,5 @@
 export { default as Navbar } from './Navbar'
+export { default as Menubar } from './Menubar'
 export { default as Avatar } from './Avatar'
 export { default as UserButton } from './UserButton'
 export { default as SearchBar } from './SearchBar'
