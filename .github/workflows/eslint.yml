@@ -42,7 +42,8 @@ jobs:
       - name: Run ESLint
         run: |
           cd client
-          npx eslint .
+          npm lint
+          # npx eslint .
           --config .eslintrc.json
           --ext .js,.jsx,.ts,.tsx
           --ignore-pattern "future/*"
