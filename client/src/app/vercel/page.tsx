@@ -1,4 +1,4 @@
-import { ThemeSwitch } from '@/components/ThemeSwitch'
+import { ThemeSwitch } from '@/components'
 import Image from 'next/image'
 import Link from 'next/link'
 

@@ -3,12 +3,11 @@
 import { logInSchema, LogInValues } from '@/lib/validation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useState, useTransition } from 'react'
 import { logIn } from './actions'
-import { PasswordInput } from '@/components/PasswordInput'
-import { LoadingButton } from '@/components/LoadingButton'
+import { PasswordInput, LoadingButton } from '@/components'
 
 const LogInForm = () => {
 	const [error, setError] = useState<string>()
@@ -39,6 +38,7 @@ const LogInForm = () => {
 								<Input autoComplete="username" placeholder="eg: pritamKunduC24" {...field} />
 							</FormControl>
 							<FormMessage />
+							<FormDescription />
 						</FormItem>
 					)}
 				/>
@@ -57,6 +57,7 @@ const LogInForm = () => {
 								/>
 							</FormControl>
 							<FormMessage />
+							<FormDescription />
 						</FormItem>
 					)}
 				/>

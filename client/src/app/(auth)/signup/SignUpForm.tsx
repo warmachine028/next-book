@@ -1,15 +1,13 @@
 'use client'
 
-import { LoadingButton } from '@/components/LoadingButton'
-import { PasswordInput } from '@/components/PasswordInput'
+import { signUpSchema, SignUpValues } from '@/lib/validation'
+import { useForm, useFormState } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { signUpSchema, SignUpValues } from '@/lib/validation'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useState, useTransition } from 'react'
-import { useForm } from 'react-hook-form'
 import { signUp } from './actions'
-import { Button } from '@/components/ui/button'
+import { LoadingButton, PasswordInput } from '@/components'
 
 const SignUpForm = () => {
 	const [error, setError] = useState<string>()
@@ -43,8 +41,11 @@ const SignUpForm = () => {
 							<FormControl>
 								<Input autoComplete="username" placeholder="eg: pritamKunduC24" {...field} />
 							</FormControl>
-							<FormDescription>This is your permanent public display name.</FormDescription>
-							<FormMessage />
+							{useFormState().errors.userName ? (
+								<FormMessage />
+							) : (
+								<FormDescription>This is your permanent public display name.</FormDescription>
+							)}
 						</FormItem>
 					)}
 				/>
@@ -62,8 +63,11 @@ const SignUpForm = () => {
 									{...field}
 								/>
 							</FormControl>
-							<FormDescription>You can change your email later.</FormDescription>
-							<FormMessage />
+							{useFormState().errors.email ? (
+								<FormMessage />
+							) : (
+								<FormDescription>You can change your email later.</FormDescription>
+							)}
 						</FormItem>
 					)}
 				/>
@@ -81,7 +85,11 @@ const SignUpForm = () => {
 									{...field}
 								/>
 							</FormControl>
-							<FormMessage />
+							{useFormState().errors.password ? (
+								<FormMessage />
+							) : (
+								<FormDescription>Choose a strong 8 character Password.</FormDescription>
+							)}
 						</FormItem>
 					)}
 				/>

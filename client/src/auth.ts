@@ -10,15 +10,8 @@ interface DatabaseUserAttributes {
 	id: string
 	userName: string
 	displayName: string
-	avatarUrl: String | null
+	avatarUrl: string | null
 	googleId: string | null
-}
-
-declare module 'lucia' {
-	interface Register {
-		Lucia: typeof lucia
-		DatabaseUserAttributes: DatabaseUserAttributes
-	}
 }
 
 export const lucia = new Lucia(adapter, {
@@ -66,3 +59,10 @@ export const validateRequest = cache(
 		return result
 	}
 )
+
+declare module 'lucia' {
+	interface Register {
+		Lucia: typeof lucia
+		DatabaseUserAttributes: DatabaseUserAttributes
+	}
+}

@@ -1,13 +1,13 @@
-import * as React from 'react'
+import { forwardRef } from 'react'
 import { cn } from '@/lib/utils'
-import { Button, ButtonProps } from '@/components/ui/button'
+import { Button, type ButtonProps } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
 
 export interface LoadingButtonProps extends ButtonProps {
 	loading: boolean
 }
 
-const LoadingButton = React.forwardRef<HTMLButtonElement, LoadingButtonProps>(
+const LoadingButton = forwardRef<HTMLButtonElement, LoadingButtonProps>(
 	({ loading, disabled, className, variant, size, ...props }, ref) => {
 		return (
 			<Button
@@ -24,4 +24,4 @@ const LoadingButton = React.forwardRef<HTMLButtonElement, LoadingButtonProps>(
 )
 LoadingButton.displayName = 'LoadingButton'
 
-export { LoadingButton }
+export default LoadingButton 
