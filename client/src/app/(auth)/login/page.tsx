@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import hero from '@/assets/login-image.jpg'
 import Image from 'next/image'
 import Link from 'next/link'
-import LogInForm from './LogInForm'
+import { LogInForm } from '@/components'
 
 export const metadata: Metadata = { title: 'Log In' }
 
