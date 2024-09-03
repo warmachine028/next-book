@@ -32,6 +32,7 @@ jobs:
 
       - name: Install ESLint
         run: |
+          cd client
           npm install --save-dev eslint-config-next --legacy-peer-deps
           npm install @typescript-eslint/eslint-plugin --legacy-peer-deps
           npm install eslint@8.10.0 --legacy-peer-deps
@@ -39,8 +40,9 @@ jobs:
 
       - name: Run ESLint
         run: |
+          cd client
           npx eslint .
-          --config client/.eslintrc.json
+          --config .eslintrc.json
           --ext .js,.jsx,.ts,.tsx
           --format @microsoft/eslint-formatter-sarif
           --output-file eslint-results.sarif
