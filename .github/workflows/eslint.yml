@@ -42,7 +42,7 @@ jobs:
       - name: Run ESLint
         run: |
           cd client
-          npm lint
+          npm run lint
           # npx eslint .
           --config .eslintrc.json
           --ext .js,.jsx,.ts,.tsx
