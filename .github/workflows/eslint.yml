@@ -42,7 +42,7 @@ jobs:
         run: |
           cd client
           npx eslint .
-          --config .eslintrc.json
+          --config eslint.config.js
           --ext .js,.jsx,.ts,.tsx
           --ignore-pattern "future/*"
           --format @microsoft/eslint-formatter-sarif
