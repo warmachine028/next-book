@@ -22,6 +22,8 @@ export const metadata: Metadata = {
 	description: 'A full-stack social media web app built on NextJS 15 for the Next Fans'
 }
 
+// TODO: shadcn-ui/toast
+// TODO: fix issue https://github.com/warmachine028/next-book/issues/26
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 	return (
 		//? FIX: https://github.com/shadcn-ui/ui/issues/1906#issuecomment-1807426212
