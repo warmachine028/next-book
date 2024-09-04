@@ -39,7 +39,13 @@ const SignUpForm = () => {
 						<FormItem>
 							<FormLabel>Username</FormLabel>
 							<FormControl>
-								<Input autoComplete="username" placeholder="eg: pritamKunduC24" {...field} />
+								<Input
+									pattern="^[a-zA-Z0-9_-]+$"
+									autoComplete="username"
+									placeholder="eg: pritamKunduC24"
+									title="Enter your username"
+									{...field}
+								/>
 							</FormControl>
 							{useFormState().errors.userName ? (
 								<FormMessage />
@@ -57,6 +63,7 @@ const SignUpForm = () => {
 							<FormLabel>Email</FormLabel>
 							<FormControl>
 								<Input
+									title="Enter your email"
 									autoComplete="email"
 									placeholder="eg: pritam.kundu@email.com"
 									type="email"
@@ -79,6 +86,8 @@ const SignUpForm = () => {
 							<FormLabel>Password</FormLabel>
 							<FormControl>
 								<PasswordInput
+									title="Enter your password"
+									minLength={8}
 									autoComplete="new-password"
 									placeholder="eg: 1@$abShadC23"
 									type="password"
