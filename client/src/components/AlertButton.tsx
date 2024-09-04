@@ -10,7 +10,7 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger
 } from '@/components/ui/alert-dialog'
-import { forwardRef, MouseEvent } from 'react'
+import { forwardRef } from 'react'
 import { cn } from '@/lib/utils'
 import { Button, type ButtonProps } from '@/components/ui/button'
 
@@ -37,7 +37,7 @@ const AlertButton = forwardRef<HTMLButtonElement, ButtonProps>(
 						<AlertDialogDescription>Hello from next book!</AlertDialogDescription>
 					</AlertDialogHeader>
 					<AlertDialogFooter>
-						<AlertDialogAction className='px-7'>OK</AlertDialogAction>
+						<AlertDialogAction className="px-7">OK</AlertDialogAction>
 					</AlertDialogFooter>
 				</AlertDialogContent>
 			</AlertDialog>
