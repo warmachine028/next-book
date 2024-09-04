@@ -27,9 +27,7 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		".next/types/**/*.ts",
-		"future/eslint.config.mjs",
-		"next.config.ts"
+		"next.config.mts"
 	],
 	"exclude": ["node_modules", "future"]
 }
