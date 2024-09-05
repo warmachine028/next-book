@@ -103,7 +103,7 @@ const SignUpForm = () => {
 					)}
 				/>
 				<LoadingButton type="submit" className="w-full" loading={isPending}>
-					Create account
+					Create Account
 				</LoadingButton>
 			</form>
 		</Form>

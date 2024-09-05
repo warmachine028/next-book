@@ -6,7 +6,7 @@ const AuthLayout = async ({ children }: Readonly<{ children: React.ReactNode }>)
 	if (user) {
 		redirect('/')
 	}
-	return <main className="flex h-screen items-center justify-center p-5 container">{children}</main>
+	return <main className="container flex h-screen items-center justify-center p-5">{children}</main>
 }
 
 export default AuthLayout

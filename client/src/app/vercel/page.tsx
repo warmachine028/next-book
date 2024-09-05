@@ -1,9 +1,11 @@
 import { AlertButton } from '@/components'
+import { GitHubLogoIcon } from '@radix-ui/react-icons'
+import { Home } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FormEvent } from 'react'
 
 const Vercel = () => {
+
 	return (
 		<main className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
 			<div className="row-start-2 flex flex-col gap-8 sm:items-start">
@@ -17,17 +19,16 @@ const Vercel = () => {
 						priority
 					/>
 				</div>
-				<ol className="list-inside list-decimal text-center font-mono text-sm sm:text-left">
+				<ol className="list-inside list-decimal text-left font-mono text-sm">
 					<li className="mb-2">
 						Get started by editing{' '}
 						<code className="rounded bg-black/[.05] px-1 py-0.5 font-semibold">src/app/page.tsx</code>
 					</li>
 					<li>Save and see your changes instantly.</li>
 				</ol>
-
-				<div className="flex flex-col items-center gap-4 sm:flex-row">
+				<div className="grid w-full grid-cols-2 flex-col gap-4 sm:flex-row sm:items-center">
 					<Link
-						className="bg-foreground text-background flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent px-4 text-sm font-medium transition-colors hover:opacity-70 sm:h-12 sm:px-5 sm:text-base"
+						className="bg-foreground text-background col-span-2 flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent px-4 text-sm font-medium transition-colors hover:opacity-70 sm:col-span-1 sm:h-12 sm:px-5 sm:text-base"
 						href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -42,16 +43,34 @@ const Vercel = () => {
 						/>
 						Deploy now
 					</Link>
+
 					<Link
-						className="border-primary hover:bg-primary hover:text-foreground flex h-10 items-center justify-center rounded-full border border-solid px-4 text-sm font-medium transition-colors hover:border-transparent sm:h-12 sm:min-w-44 sm:px-5 sm:text-base"
+						className="border-primary hover:bg-primary hover:text-foreground col-span-2 flex h-10 items-center justify-center rounded-full border border-solid px-4 text-sm font-medium transition-colors hover:border-transparent sm:col-span-1 sm:h-12 sm:min-w-44 sm:px-5 sm:text-base"
 						href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
 						Read our docs
 					</Link>
+					<AlertButton className="clas text-foreground col-span-2">Open alert</AlertButton>
+					<Link
+						className="border-primary hover:bg-primary hover:text-foreground flex h-10 items-center justify-center gap-2 rounded-full border border-solid px-4 text-sm font-medium transition-colors hover:border-transparent sm:h-12 sm:min-w-44 sm:px-5 sm:text-base"
+						href="/"
+						rel="noopener noreferrer"
+					>
+						Go to Home
+						<Home size={16} />
+					</Link>
+					<Link
+						className="bg-foreground text-background flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent px-4 text-sm font-medium transition-colors hover:opacity-70 sm:h-12 sm:px-5 sm:text-base"
+						href="https://github.com/warmachine028/next-book"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<GitHubLogoIcon className="size-5" />
+						Repository
+					</Link>
 				</div>
-				<AlertButton>Open alert</AlertButton>
 			</div>
 			<footer className="row-start-3 flex flex-wrap items-center justify-center gap-6">
 				<Link

@@ -1,6 +1,7 @@
 'use client'
 
 import { useSession } from '@/hooks'
+import fallbackIcon from '@/assets/avatar-placeholder.png'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -13,28 +14,29 @@ import {
 	DropdownMenuSubTrigger,
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import Avatar from './Avatar'
 import Link from 'next/link'
 import { Check, LogOutIcon, Monitor, Moon, Sun, UserIcon } from 'lucide-react'
 import { logOut } from '@/app/(auth)/actions'
 import { cn } from '@/lib/utils'
 import { useTheme } from 'next-themes'
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 export interface UserButtonProps {
 	className?: string
 }
 
 const UserButton = ({ className }: UserButtonProps) => {
-	const {
-		user: { userName, avatarUrl }
-	} = useSession()
+	const { user } = useSession()
+	const { userName, displayName } = user
 	const { theme, setTheme } = useTheme()
-
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<button className={cn('flex-none rounded-full', className)}>
-					<Avatar url={avatarUrl} size={40} />
+					<Avatar>
+						<AvatarImage src={user.avatarUrl || fallbackIcon.src} alt={userName} />
+						<AvatarFallback>{displayName[0].toUpperCase()}</AvatarFallback>
+					</Avatar>
 				</button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent>

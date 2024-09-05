@@ -62,7 +62,7 @@ const LogInForm = () => {
 					)}
 				/>
 				<LoadingButton type="submit" className="w-full" loading={isPending}>
-					Log In
+					Login Now
 				</LoadingButton>
 			</form>
 		</Form>

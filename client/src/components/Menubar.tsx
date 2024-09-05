@@ -1,9 +1,7 @@
 import Link from 'next/link'
-import UserButton from './UserButton'
-import SearchBar from './SearchBar'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { Bell, Home, Mail } from 'lucide-react'
+import { Bell, Bookmark, Home, Mail } from 'lucide-react'
 
 interface MenubarProps {
 	className?: string
@@ -11,7 +9,7 @@ interface MenubarProps {
 
 const Menubar = ({ className }: MenubarProps) => {
 	return (
-		<div className={cn('', className)}>
+		<aside className={cn('ring-primary text-primary ring-1', className)}>
 			<Button className="flex items-center justify-start gap-3" variant="ghost" title="Home" asChild>
 				<Link href="/">
 					<Home />
@@ -32,11 +30,11 @@ const Menubar = ({ className }: MenubarProps) => {
 			</Button>
 			<Button className="flex items-center justify-start gap-3" variant="ghost" title="Bookmarks" asChild>
 				<Link href="/bookmarks">
-					<Home />
+					<Bookmark />
 					<span className="hidden lg:inline">Bookmarks</span>
 				</Link>
 			</Button>
-		</div>
+		</aside>
 	)
 }
 
