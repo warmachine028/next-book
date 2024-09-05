@@ -3,7 +3,6 @@ import eslintConfigPrettier from 'eslint-config-prettier'
 import eslintConfigNext from 'eslint-config-next'
 import reactCompiler from 'eslint-plugin-react-compiler'
 import js from '@eslint/js'
-// import type { Linter } from 'eslint'
 
 export default [
 	js.configs.recommended,
