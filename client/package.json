@@ -35,7 +35,7 @@
         "next-themes": "^0.3.0",
         "react": "^19.0.0-rc-d1afcb43-20240903",
         "react-cropper": "^2.3.3",
-        "react-dom": "^19.0.0-rc-e56f4ae3-20240830",
+        "react-dom": "^19.0.0-rc-d1afcb43-20240903",
         "react-hook-form": "^7.53.0",
         "react-image-file-resizer": "^0.4.8",
         "react-intersection-observer": "^9.13.1",
