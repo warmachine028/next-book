@@ -3,13 +3,9 @@
         "ignoreMatches": [
             "@tanstack/react-query",
             "@tanstack/react-query-devtools",
-            "@tiptap/extension-placeholder",
             "@tiptap/pm",
-            "@tiptap/react",
-            "@tiptap/starter-kit",
             "@uploadthing/react",
             "arctic",
-            "date-fns",
             "ky",
             "react-cropper",
             "react-image-file-resizer",

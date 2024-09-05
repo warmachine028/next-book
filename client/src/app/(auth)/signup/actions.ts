@@ -1,7 +1,7 @@
 'use server'
 
 import { lucia } from '@/auth'
-import prisma from '@/lib/prisma'
+import { prisma } from '@/lib'
 import { signUpSchema, SignUpValues } from '@/lib/validation'
 import { hash } from '@node-rs/argon2'
 import { generateIdFromEntropySize } from 'lucia'
