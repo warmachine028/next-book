@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useState, useTransition } from 'react'
-import { signUp } from '@/app/(auth)/signup/actions'
+import { signUp } from './actions'
 import { LoadingButton, PasswordInput } from '@/components'
 
 const SignUpForm = () => {

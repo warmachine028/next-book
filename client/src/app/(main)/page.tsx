@@ -6,7 +6,8 @@ import { PostDataInclude } from '@/types'
 const Home = async () => {
 	const posts = await prisma.post.findMany({
 		include: PostDataInclude,
-		orderBy: { createdAt: 'desc' }
+		orderBy: { createdAt: 'desc' },
+		// cacheStrategy: { ttl: 60 },
 	})
 	return (
 		<div className="flex w-full">

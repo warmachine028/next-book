@@ -3,10 +3,13 @@ import { PrismaNeon } from '@prisma/adapter-neon'
 import { Pool } from '@neondatabase/serverless'
 import { PrismaClient } from '@prisma/client'
 import { withAccelerate } from '@prisma/extension-accelerate'
+import { withPulse } from '@prisma/extension-pulse'
 
-const neon = new Pool({ connectionString: process.env.POSTGRES_PRISMA_URL })
+const neon = new Pool({ connectionString: process.env.DATABASE_PRISMA_URL }) // or process.env.POSTGRES_PRISMS_URL
 const adapter = new PrismaNeon(neon)
-const prismaClientSingleton = () => new PrismaClient({ adapter }).$extends(withAccelerate())
+const prismaClientSingleton = () => new PrismaClient({ adapter }).$extends(withAccelerate()).$extends(withPulse({
+	apiKey: process.env.PULSE_API_KEY as string,
+}))
 
 declare global {
 	var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>
