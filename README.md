@@ -1,6 +1,6 @@
     updated on: 09th September 2024, Monday
 
-<div align=center>
+<div align="center">
     <picture>
         <source media="(prefers-color-scheme: light)" srcset="client/public/next.svg" width="200">
         <source media="(prefers-color-scheme: dark)" srcset="client/public/next-dark.svg" width="200">
@@ -31,7 +31,7 @@
 
 ## Introduction
 
-- Next Book is a full-stack social media web app built with cutting-edge technologies from the future, set in 2024. 
+- Next Book is a full-stack social media web app built with cutting-edge technologies from the future, set in 2024.
 - It leverages NextJS 15 and React 19, catering to the Next Fans.
 - The app utilizes the Shadcn UI Library with Radix components, enhanced by Tailwind CSS.
 - Fully responsive and meticulously maintained, Next Book offers a seamless user experience across all devices.
