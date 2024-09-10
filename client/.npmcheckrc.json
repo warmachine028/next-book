@@ -7,17 +7,16 @@
             "@uploadthing/react",
             "arctic",
             "ky",
+            "prettier",
+            "prettier-plugin-packagejson",
+            "prettier-plugin-tailwindcss",
             "react-cropper",
             "react-image-file-resizer",
             "react-intersection-observer",
             "react-linkify-it",
             "stream-chat",
             "stream-chat-react",
-            "uploadthing",
-            "@types/node",
-            "prettier",
-            "prettier-plugin-packagejson",
-            "prettier-plugin-tailwindcss"
+            "uploadthing"
         ]
     }
 }
