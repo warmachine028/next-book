@@ -1,10 +1,12 @@
 //? https://github.com/prisma/prisma/discussions/23533#discussioncomment-8838160
-import { PrismaNeon } from '@prisma/adapter-neon'
-import { Pool } from '@neondatabase/serverless'
+import { PrismaNeon, } from '@prisma/adapter-neon'
+import { Pool, neonConfig } from '@neondatabase/serverless'
 import { PrismaClient } from '@prisma/client'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { withPulse } from '@prisma/extension-pulse'
+import ws from 'ws'
 
+neonConfig.webSocketConstructor = ws
 const neon = new Pool({ connectionString: process.env.DATABASE_PRISMA_URL }) // or process.env.POSTGRES_PRISMS_URL
 const adapter = new PrismaNeon(neon)
 const prismaClientSingleton = () => new PrismaClient({ adapter }).$extends(withAccelerate()).$extends(withPulse({
