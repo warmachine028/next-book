@@ -1,0 +1,23 @@
+name: Deploy Preview
+
+on: [pull_request]
+
+jobs:
+    deploy-preview:
+        permissions: write-all
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@main
+
+            - name: Get PR sha
+              id: get_pull_request_sha
+              run: |
+                pull_request_sha=$(jq --raw-output .pull_request.head.sha "$GITHUB_EVENT_PATH" | cut -c1-8 )
+                echo "pull_request_sha=${pull_request_sha}" >> $GITHUB_OUTPUT
+                echo "$pull_request_sha"
+            
+            - name: Neon Database Create Branch Action
+              uses: neondatabase/create-branch-action@main
+              with:
+                project_id: ${{ secrets.NEON_PROJECT_ID }}
