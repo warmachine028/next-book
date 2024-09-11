@@ -41,7 +41,7 @@
         "react-image-file-resizer": "^0.4.8",
         "react-intersection-observer": "^9.13.1",
         "react-linkify-it": "^1.0.8",
-        "stream-chat": "^8.40.3",
+        "stream-chat": "^8.40.5",
         "stream-chat-react": "^11.23.8",
         "tailwind-merge": "^2.5.2",
         "tailwindcss-animate": "^1.0.7",
