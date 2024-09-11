@@ -21,6 +21,8 @@ jobs:
                 cd client
                 npm install --legacy-peer-deps
             - name: Apply all pending migrations to the database
-              run: npm run prisma:deploy
+              run: |
+                cd client
+                npm run prisma:deploy
               env:
                 DATABASE_URL: ${{ secrets.DATABASE_URL }}
