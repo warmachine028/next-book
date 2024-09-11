@@ -51,6 +51,7 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.10.0",
+        "@prisma/extension-optimize": "^1.0.1",
         "@types/eslint__js": "^8.42.3",
         "@types/eslint-config-prettier": "^6.11.3",
         "@types/react": "^18",
@@ -97,6 +98,8 @@
         "prisma:generate": "prisma generate",
         "prisma:push": "prisma db push",
         "prisma:studio": "prisma studio",
+        "prisma:migrate": "prisma migrate dev --name init",
+        "prisma:deploy": "prisma migrate deploy",
         "start": "next start"
     },
     "version": "0.1.0"

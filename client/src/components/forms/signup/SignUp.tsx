@@ -50,7 +50,7 @@ const SignUpForm = () => {
 							{useFormState().errors.userName ? (
 								<FormMessage />
 							) : (
-								<FormDescription>This is your permanent public display name.</FormDescription>
+								<FormDescription>This is your permanent public user name.</FormDescription>
 							)}
 						</FormItem>
 					)}

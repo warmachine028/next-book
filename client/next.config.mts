@@ -13,7 +13,8 @@ export default {
 		},
 		reactCompiler: {
 			compilationMode: 'annotation'
-		}
+		},
+		typedRoutes: true // https://nextjs.org/docs/app/api-reference/next-config-js/typedRoutes
 	},
 	serverExternalPackages: ['@node-rs/argon2']
 } satisfies Config

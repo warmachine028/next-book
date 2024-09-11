@@ -6,6 +6,13 @@ export const cn = (...inputs: ClassValue[]) => {
 	return twMerge(clsx(inputs))
 }
 
+export const formatNumber = (n: number): string => {
+	return Intl.NumberFormat('en-US', {
+		notation: 'compact',
+		maximumFractionDigits: 1
+	}).format(n)
+}
+
 export const formatRelativeDate = (from: Date) => {
 	const currentDate = new Date()
 	const diff = currentDate.getTime() - from.getTime()

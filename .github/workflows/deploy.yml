@@ -1,0 +1,26 @@
+name: 🔺Prisma DB Deploy
+on:
+    workflow_dispatch: # Allow manual triggering of this workflow
+    push:
+        paths:
+            - client/prisma/migrations/** # Only run this workflow when migrations are updated
+        branches:
+            - main
+
+jobs:
+    deploy:
+        name: Deploy
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@main
+            - name: Setup Node
+              uses: actions/setup-node@main
+            - name: Install dependencies
+              run: |
+                cd client
+                npm install --legacy-peer-deps
+            - name: Apply all pending migrations to the database
+              run: npm run prisma:deploy
+              env:
+                DATABASE_URL: ${{ secrets.DATABASE_URL }}
