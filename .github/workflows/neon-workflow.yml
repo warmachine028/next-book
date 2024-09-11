@@ -1,15 +1,18 @@
 name: Create Neon Branch with GitHub Actions Demo
 run-name: Create a Neon Branch 🚀
+on: [push]
+
 jobs:
   Create-Neon-Branch:
-  steps:
-    - uses: neondatabase/create-branch-action@v5
-      with:
-        project_id: ${{ secrets.NEON_PROJECT_ID }}
-        branch_name: from_action_reusable
-        username: ${{ secrets.NEON_USERNAME }}
-        api_key: ${{ secrets.NEON_API_KEY }}
-        id: create-branch
-    - run: echo db_url ${{ steps.create-branch.outputs.db_url }}
-    - run: echo host ${{ steps.create-branch.outputs.host }}
-    - run: echo branch_id ${{ steps.create-branch.outputs.branch_id }}
+    runs-on: ubuntu-latest
+    steps:
+        - uses: neondatabase/create-branch-action@v5
+          id: create-branch
+          with:
+              project_id: ${{ secrets.NEON_PROJECT_ID }}
+              branch_name: from_action_reusable
+              username: ${{ secrets.NEON_USERNAME }}
+              api_key: ${{ secrets.NEON_API_KEY }}
+        - run: echo db_url ${{ steps.create-branch.outputs.db_url }}
+        - run: echo host ${{ steps.create-branch.outputs.host }}
+        - run: echo branch_id ${{ steps.create-branch.outputs.branch_id }}
