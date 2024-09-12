@@ -26,4 +26,4 @@ jobs:
                 npm run prisma:deploy
               env:
                 DATABASE_URL: ${{ secrets.DATABASE_URL }}
-                DATABASE_URL_UNPOOLED: ${{ secrets.DATABASE_URL_UNPOOLED }}
+                DATABASE_URL_UNPOOLED: ${{ secrets.DIRECT_DATABASE_URL }}
