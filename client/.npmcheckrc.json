@@ -1,8 +1,6 @@
 {
     "depcheck": {
         "ignoreMatches": [
-            "@tanstack/react-query",
-            "@tanstack/react-query-devtools",
             "@tiptap/pm",
             "@uploadthing/react",
             "arctic",

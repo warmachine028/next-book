@@ -1,14 +1,15 @@
 'use client'
 
+import './styles.css'
+
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import PlaceHolder from '@tiptap/extension-placeholder'
 import { createPost } from './actions'
 import { useSession } from '@/hooks'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import PlaceHolder from '@tiptap/extension-placeholder'
 import fallbackIcon from '@/assets/avatar-placeholder.png'
 import { Button } from '@/components/ui/button'
-import './styles.css'
 import Link from 'next/link'
 
 const PostEditor = () => {
@@ -34,9 +35,9 @@ const PostEditor = () => {
 	}
 
 	return (
-		<div className="bg-card ring-primary flex flex-col gap-5 rounded-2xl p-5 shadow-sm ring-1">
+		<div className="flex flex-col gap-5 rounded-2xl bg-card p-5 shadow-sm ring-1 ring-primary">
 			<div className="flex gap-5">
-				<Avatar className="xs:inline hidden">
+				<Avatar className="hidden xs:inline">
 					<Link href={`user/${user.userName}`}>
 						<AvatarImage src={user.avatarUrl || fallbackIcon.src} alt={userName} />
 						<AvatarFallback>{displayName[0].toUpperCase()}</AvatarFallback>
@@ -44,7 +45,7 @@ const PostEditor = () => {
 				</Avatar>
 				<EditorContent
 					editor={editor}
-					className="bg-accent max-h-80 w-full overflow-y-auto rounded-md px-5 py-3"
+					className="max-h-80 w-full overflow-y-auto rounded-md bg-accent px-5 py-3"
 				/>
 			</div>
 			<div className="flex justify-end">

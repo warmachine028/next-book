@@ -20,6 +20,7 @@ import { logOut } from '@/app/(auth)/actions'
 import { cn } from '@/lib/utils'
 import { useTheme } from 'next-themes'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import { useQueryClient } from '@tanstack/react-query'
 
 export interface UserButtonProps {
 	className?: string
@@ -29,6 +30,11 @@ const UserButton = ({ className }: UserButtonProps) => {
 	const { user } = useSession()
 	const { userName, displayName } = user
 	const { theme, setTheme } = useTheme()
+	const queryClient = useQueryClient()
+	const handleLogOut = () => {
+		queryClient.clear()
+		logOut()
+	}
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -76,12 +82,7 @@ const UserButton = ({ className }: UserButtonProps) => {
 					</DropdownMenuPortal>
 				</DropdownMenuSub>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem
-					className="hover:bg-destructive cursor-pointer"
-					onClick={() => {
-						logOut()
-					}}
-				>
+				<DropdownMenuItem className="cursor-pointer hover:bg-destructive" onClick={handleLogOut}>
 					<LogOutIcon className="mr-2 size-4" /> <span>Logout</span>
 				</DropdownMenuItem>
 			</DropdownMenuContent>
