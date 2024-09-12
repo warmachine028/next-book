@@ -7,8 +7,6 @@
             "@uploadthing/react",
             "arctic",
             "ky",
-            "prettier-plugin-packagejson",
-            "prettier-plugin-tailwindcss",
             "react-cropper",
             "react-image-file-resizer",
             "react-intersection-observer",
