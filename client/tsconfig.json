@@ -2,7 +2,7 @@
 	"$schema": "https://json.schemastore.org/tsconfig.json",
 	"compilerOptions": {
 		"target": "ESNext",
-		"customConditions": ["workerd"], // or "node"
+		"customConditions": ["node"], // or "node"
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
@@ -24,6 +24,6 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", "next.config.mts", ".next/types/**/*.ts"],
+	"include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", "next.config.ts", ".next/types/**/*.ts"],
 	"exclude": ["node_modules", "future"]
 }

@@ -18,3 +18,4 @@ export default {
 	},
 	serverExternalPackages: ['@node-rs/argon2']
 } satisfies Config
+

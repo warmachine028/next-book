@@ -7,7 +7,6 @@
             "@uploadthing/react",
             "arctic",
             "ky",
-            "prettier",
             "prettier-plugin-packagejson",
             "prettier-plugin-tailwindcss",
             "react-cropper",
