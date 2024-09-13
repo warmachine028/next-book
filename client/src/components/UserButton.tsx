@@ -83,7 +83,7 @@ const UserButton = ({ className }: UserButtonProps) => {
 				</DropdownMenuSub>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem className="cursor-pointer hover:bg-destructive" onClick={handleLogOut}>
-					<LogOutIcon className="mr-2 size-4" /> <span>Logout</span>
+					<LogOutIcon className="mr-2 size-ring-1" /> <span>Logout</span>
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

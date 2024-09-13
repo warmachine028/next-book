@@ -6,8 +6,6 @@
         "@node-rs/argon2": "^1.8.3",
         "@prisma/adapter-neon": "^5.19.1",
         "@prisma/client": "^5.19.1",
-        "@prisma/extension-accelerate": "^1.1.0",
-        "@prisma/extension-pulse": "^1.2.0",
         "@radix-ui/react-alert-dialog": "^1.1.1",
         "@radix-ui/react-avatar": "^1.1.0",
         "@radix-ui/react-dropdown-menu": "^2.1.1",
@@ -50,6 +48,8 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.10.0",
+        "@prisma/extension-accelerate": "^1.1.0",
+        "@prisma/extension-pulse": "^1.2.0",
         "@prisma/extension-optimize": "^1.0.1",
         "@types/eslint__js": "^8.42.3",
         "@types/eslint-config-prettier": "^6.11.3",
@@ -74,16 +74,16 @@
     "name": "next-book",
     "private": true,
     "scripts": {
+        "dev": "next dev",
         "build": "next build",
-        "dev": "next dev --turbo",
+        "start": "next start",
         "lint": "next lint",
         "postinstall": "prisma generate",
         "prisma:generate": "prisma generate",
         "prisma:push": "prisma db push",
         "prisma:studio": "prisma studio",
         "prisma:migrate": "prisma migrate dev --name init",
-        "prisma:deploy": "prisma migrate deploy",
-        "start": "next start"
+        "prisma:deploy": "prisma migrate deploy"
     },
     "version": "0.1.0"
 }

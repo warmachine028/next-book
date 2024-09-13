@@ -1,10 +1,10 @@
 'use client'
 
-import { PostData, PostsPage } from '@/types'
-import kyInstance from '@/lib/ky'
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
+import { PostsPage } from '@/types'
+import { kyInstance } from '@/lib/ky'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
-import { Post, InfiniteScrollContainer } from '@/components'
+import { Post, InfiniteScrollContainer, LoadingSkeletonGroup } from '@/components'
 import { Button } from './ui/button'
 
 const ForYouFeed = () => {
@@ -21,11 +21,13 @@ const ForYouFeed = () => {
 	const posts = data?.pages.flatMap((page) => page.posts) || []
 
 	if (status === 'pending') {
-		return <Loader2 className="mx-auto animate-spin" />
+		return <LoadingSkeletonGroup />
 	}
-
+	if (status === "success" && !posts.length && !hasNextPage) {
+		return <p className='text-center to-muted-foreground'>No one has posted anything yet.</p>
+	}
 	if (status === 'error') {
-		return <p className="text-center text-destructive">An error ocurred while loading posts</p>
+		return <p className="text-center text-destructive">An error occurred while loading posts</p>
 	}
 
 	return (

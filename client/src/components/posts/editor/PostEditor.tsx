@@ -57,4 +57,6 @@ const PostEditor = () => {
 	)
 }
 
+PostEditor.displayName = 'PostEditor'
+
 export default PostEditor

@@ -31,4 +31,5 @@ const Post = ({ post }: PostProps) => {
 	)
 }
 
+Post.displayName = 'Post'
 export default Post
