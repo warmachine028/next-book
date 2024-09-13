@@ -1,6 +1,7 @@
 name: Create/Delete/Reset Branch for Pull Request
 
 on:
+    workflow_dispatch:
     
 
 concurrency:
