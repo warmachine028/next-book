@@ -12,16 +12,15 @@ const prismaClientSingleton = () =>
 	new PrismaClient({ adapter })
 		.$extends(withAccelerate())
 		.$extends(
-			withPulse({
-				apiKey: process.env.PULSE_API_KEY as string
-			})
-		)
-		.$extends(
 			withOptimize({
 				apiKey: process.env.OPTIMIZE_API_KEY as string
 			})
 		)
-
+		.$extends(
+			withPulse({
+				apiKey: process.env.PULSE_API_KEY as string
+			})
+		)
 declare global {
 	var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>
 }

@@ -2,7 +2,7 @@ import { PostData } from '@/types'
 import Link from 'next/link'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import fallbackIcon from '@/assets/avatar-placeholder.png'
-import { formatRelativeDate } from '@/lib'
+import { formatRelativeDate } from '@/lib/utils'
 
 interface PostProps {
 	post: PostData
@@ -23,7 +23,7 @@ const Post = ({ post }: PostProps) => {
 					{user.displayName}
 				</Link>
 				<Link href={`post/${post.id}`} className="block text-sm text-muted-foreground hover:underline">
-					{/* {formatRelativeDate(post.createdAt)} */}
+					{formatRelativeDate(post.createdAt)}
 				</Link>
 			</div>
 			<div className="whitespace-pre-line break-words">{post.content}</div>

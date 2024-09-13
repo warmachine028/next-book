@@ -1,20 +1,16 @@
 'use client'
 
 import { PostData } from '@/types'
+import kyInstance from '@/lib/ky'
 import { useQuery } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
-import { Post } from './posts'
+import { Post } from '@/components'
 
 const ForYouFeed = () => {
+
 	const query = useQuery<PostData[]>({
 		queryKey: ['post-feed', 'for-you'],
-		queryFn: async () => {
-			const result = await fetch('/api/posts/for-you')
-			if (!result.ok) {
-				throw new Error(`Request failed with status code ${result.status}`)
-			}
-			return result.json()
-		}
+		queryFn: kyInstance.get('api/posts/for-you').json<PostData[]>
 	})
 	if (query.status === 'pending') {
 		return <Loader2 className="mx-auto animate-spin" />
