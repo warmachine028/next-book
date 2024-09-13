@@ -2,7 +2,7 @@ import { type Config } from 'tailwindcss'
 import tailwindAnimate from 'tailwindcss-animate'
 
 export default {
-	darkMode: ['class'],
+	darkMode: 'selector',
 	content: [
 		// This is the same as the `purge` option in the future
 		'./pages/**/*.{ts,tsx}',
@@ -10,7 +10,6 @@ export default {
 		'./app/**/*.{ts,tsx}',
 		'./src/**/*.{ts,tsx}'
 	],
-	prefix: '',
 	theme: {
 		container: {
 			center: true,

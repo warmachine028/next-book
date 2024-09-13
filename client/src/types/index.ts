@@ -1,5 +1,10 @@
 import { Prisma } from '@prisma/client'
 
+export interface PostsPage {
+	posts: PostData[]
+	nextCursor: string | null
+}
+
 export const UserDataSelect = {
 	id: true,
 	userName: true,
