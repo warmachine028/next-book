@@ -4,7 +4,7 @@ import { PostData, PostsPage } from '@/types'
 import kyInstance from '@/lib/ky'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
-import { Post } from '@/components'
+import { Post, InfiniteScrollContainer } from '@/components'
 import { Button } from './ui/button'
 
 const ForYouFeed = () => {
@@ -29,12 +29,16 @@ const ForYouFeed = () => {
 	}
 
 	return (
-		<div className="space-y-5">
+		<InfiniteScrollContainer
+			onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
+			className="space-y-5"
+		>
 			{posts.map((post) => (
 				<Post key={post.id} post={post} />
 			))}
+			{isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin" />}
 			<Button onClick={() => fetchNextPage()}>Load more</Button>
-		</div>
+		</InfiniteScrollContainer>
 	)
 }
 
