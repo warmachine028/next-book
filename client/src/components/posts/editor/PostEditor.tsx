@@ -11,6 +11,8 @@ import PlaceHolder from '@tiptap/extension-placeholder'
 import fallbackIcon from '@/assets/avatar-placeholder.png'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { useSubmitPostMutation } from './mutations'
+import LoadingButton from '@/components/LoadingButton'
 
 const PostEditor = () => {
 	const editor = useEditor({
@@ -26,12 +28,14 @@ const PostEditor = () => {
 		immediatelyRender: false
 	})
 	const { user } = useSession()
+	const mutation = useSubmitPostMutation()
 	const { userName, displayName } = user
 	const input = editor?.getText({ blockSeparator: '\n' }) || ''
 
 	const onSubmit = async () => {
-		await createPost(input)
-		editor?.commands.clearContent()
+		mutation.mutate(input, {
+			onSuccess: () => editor?.commands.clearContent()
+		})
 	}
 
 	return (
@@ -49,9 +53,9 @@ const PostEditor = () => {
 				/>
 			</div>
 			<div className="flex justify-end">
-				<Button disabled={!input.trim()} onClick={onSubmit} className="min-w-20">
+				<LoadingButton loading={mutation.isPending} disabled={!input.trim()} onClick={onSubmit} className="min-w-20">
 					Post
-				</Button>
+				</LoadingButton>
 			</div>
 		</div>
 	)
