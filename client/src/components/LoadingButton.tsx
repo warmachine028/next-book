@@ -14,6 +14,8 @@ const LoadingButton = forwardRef<HTMLButtonElement, LoadingButtonProps>(
 				disabled={loading || disabled}
 				className={cn('flex items-center gap-2', className)}
 				ref={ref}
+				variant={variant}
+				size={size}
 				{...props}
 			>
 				{loading && <Loader2 className="size-5 animate-spin" />}
