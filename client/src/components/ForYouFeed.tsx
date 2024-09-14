@@ -39,7 +39,7 @@ const ForYouFeed = () => {
 				<Post key={post.id} post={post} />
 			))}
 			{isFetchingNextPage && <Loader2 className="mx-auto my-3 animate-spin" />}
-			
+
 			<Button onClick={() => fetchNextPage()}>Load more</Button>
 		</InfiniteScrollContainer>
 	)
