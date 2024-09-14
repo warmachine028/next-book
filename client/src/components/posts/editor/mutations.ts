@@ -5,7 +5,9 @@ import { PostsPage } from '@/types'
 
 export const useSubmitPostMutation = () => {
 	const { toast } = useToast()
+
 	const queryClient = useQueryClient()
+
 	const mutation = useMutation({
 		mutationFn: createPost,
 		onSuccess: async (newPost) => {
@@ -40,7 +42,7 @@ export const useSubmitPostMutation = () => {
 			console.error(error)
 			toast({
 				variant: 'destructive',
-				description: 'Failed to post. Please try again.'
+				description: 'Failed to add post. Please try again.'
 			})
 		}
 	})
