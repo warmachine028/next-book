@@ -1,4 +1,5 @@
-import { ForYouFeed, Menubar, TrendsSidebar, PostEditor } from '@/components'
+import { ForYouFeed, Menubar, TrendsSidebar, PostEditor, FollowingFeed } from '@/components'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 const Home = () => {
 	return (
@@ -7,7 +8,28 @@ const Home = () => {
 			<div className="flex w-full min-w-0 gap-5">
 				<div className="w-full min-w-0 space-y-5">
 					<PostEditor />
-					<ForYouFeed />
+					<Tabs defaultValue="for-you">
+						<TabsList className="h-12 w-full gap-1 bg-card shadow-sm">
+							<TabsTrigger
+								className="h-full flex-1 rounded-xl ring-primary hover:bg-background data-[state=active]:font-bold data-[state=active]:ring-1"
+								value="for-you"
+							>
+								For you
+							</TabsTrigger>
+							<TabsTrigger
+								className="h-full flex-1 rounded-xl ring-primary hover:bg-background data-[state=active]:font-bold data-[state=active]:ring-1"
+								value="following"
+							>
+								Following
+							</TabsTrigger>
+						</TabsList>
+						<TabsContent value="for-you">
+							<ForYouFeed />
+						</TabsContent>
+						<TabsContent value="following">
+							<FollowingFeed />
+						</TabsContent>
+					</Tabs>
 				</div>
 				<TrendsSidebar />
 			</div>
