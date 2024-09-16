@@ -51,6 +51,7 @@ model Follow {
     following   User   @relation("Followers", fields: [followingId], references: [id], onDelete: Cascade)
 
     @@unique([followerId, followingId])
+    @@id(name: "followId", [followerId, followingId])
     @@map("follows")
 }
 
