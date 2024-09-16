@@ -6,6 +6,8 @@ export const getUserDataSelect = (userId: string) => {
 		userName: true,
 		displayName: true,
 		avatarUrl: true,
+		bio: true,
+		createdAt: true,
 		followers: {
 			where: {
 				followerId: userId
@@ -16,6 +18,7 @@ export const getUserDataSelect = (userId: string) => {
 		},
 		_count: {
 			select: {
+				posts: true,
 				followers: true
 			}
 		}
@@ -40,3 +43,5 @@ export const getPostDataInclude = (userId: string) => {
 }
 
 export type PostData = Prisma.PostGetPayload<{ include: ReturnType<typeof getPostDataInclude> }>
+
+export type UserData = Prisma.UserGetPayload<{ select: ReturnType<typeof getUserDataSelect> }>

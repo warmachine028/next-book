@@ -19,12 +19,12 @@ const Post = ({ post }: PostProps) => {
 			<div className="flex justify-between gap-3">
 				<div className="flex flex-wrap gap-3">
 					<Avatar className="hidden xs:inline">
-						<Link href={`user/${user.userName}`}>
+						<Link href={`users/${user.userName}`}>
 							<AvatarImage src={user.avatarUrl || fallbackIcon.src} alt={user.userName} />
 							<AvatarFallback>{user.displayName[0].toUpperCase()}</AvatarFallback>
 						</Link>
 					</Avatar>
-					<Link href={`user/${user.userName}`} className="block font-medium hover:underline">
+					<Link href={`users/${user.userName}`} className="block font-medium hover:underline">
 						{user.displayName}
 					</Link>
 					<Link href={`post/${post.id}`} className="block text-sm text-muted-foreground hover:underline">

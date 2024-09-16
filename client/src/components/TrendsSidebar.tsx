@@ -84,7 +84,7 @@ const WhoToFollow = async () => {
 			<div className="text-xl font-bold">Who to Follow</div>
 			{usersToFollow.map((user) => (
 				<div className="flex items-center justify-between gap-3" key={user.id}>
-					<Link href={`/user/${user.userName}`} className="flex items-center justify-between gap-3">
+					<Link href={`/users/${user.userName}`} className="flex items-center justify-between gap-3">
 						<Avatar url={user.avatarUrl} className="flex-none" />
 						<div>
 							<p className="line-clamp-1 break-all font-semibold hover:underline">{user.displayName}</p>

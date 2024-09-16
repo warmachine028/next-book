@@ -42,7 +42,7 @@ const PostEditor = () => {
 		<div className="flex flex-col gap-5 rounded-2xl bg-card p-5 shadow-sm ring-1 ring-primary">
 			<div className="flex gap-5">
 				<Avatar className="hidden xs:inline">
-					<Link href={`user/${user.userName}`}>
+					<Link href={`users/${user.userName}`}>
 						<AvatarImage src={user.avatarUrl || fallbackIcon.src} alt={userName} />
 						<AvatarFallback>{displayName[0].toUpperCase()}</AvatarFallback>
 					</Link>
