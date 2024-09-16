@@ -2,7 +2,6 @@
 
 import { validateRequest } from '@/auth'
 import { prisma } from '@/lib'
-import { UserDataSelect } from '@/types'
 import { Loader2 } from 'lucide-react'
 import { Suspense } from 'react'
 import Link from 'next/link'
@@ -10,6 +9,8 @@ import Avatar from './Avatar'
 import { Button } from './ui/button'
 import { unstable_cache } from 'next/cache'
 import { formatNumber } from '@/lib/utils'
+import FollowButton from './FollowButton'
+import { getUserDataSelect } from '@/types'
 
 const getTrendingTopics = unstable_cache(
 	//
@@ -33,6 +34,7 @@ const getTrendingTopics = unstable_cache(
 		revalidate: 3 * 60 * 60 // 3 hrs
 	}
 )
+
 const TrendingTopics = async () => {
 	const trendingTopics = await getTrendingTopics()
 	return (
@@ -67,9 +69,14 @@ const WhoToFollow = async () => {
 		where: {
 			NOT: {
 				id: user.id
+			},
+			followers: {
+				none: {
+					followerId: user.id
+				}
 			}
 		},
-		select: UserDataSelect,
+		select: getUserDataSelect(user.id),
 		take: 5
 	})
 	return (
@@ -84,7 +91,13 @@ const WhoToFollow = async () => {
 							<p className="line-clamp-1 break-all text-muted-foreground">@{user.userName}</p>
 						</div>
 					</Link>
-					<Button>Follow</Button>
+					<FollowButton
+						userId={user.id}
+						initialState={{
+							followers: user._count.followers,
+							isFollowedByUser: user.followers.some(({ followerId }) => followerId === user.id)
+						}}
+					/>
 				</div>
 			))}
 		</div>

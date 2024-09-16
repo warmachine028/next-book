@@ -23,5 +23,5 @@ const InfiniteScrollContainer = ({ children, onBottomReached, className }: Infin
 	)
 }
 
-// InfiniteScrollContainer.displayName = 'InfiniteScrollContainer'
+InfiniteScrollContainer.displayName = 'InfiniteScrollContainer'
 export default InfiniteScrollContainer

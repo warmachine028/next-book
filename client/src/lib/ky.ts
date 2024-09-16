@@ -1,6 +1,6 @@
 import ky from 'ky'
 
-export const kyInstance = ky.create({
+export const kyInstance: typeof ky = ky.create({
 	parseJson: (text) =>
 		JSON.parse(text, (key, value) => {
 			if (key.endsWith('At')) {

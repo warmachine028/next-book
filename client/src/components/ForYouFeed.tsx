@@ -4,7 +4,7 @@ import { PostsPage } from '@/types'
 import { kyInstance } from '@/lib/ky'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
-import { Post, InfiniteScrollContainer, LoadingSkeletonGroup, DeletePostDialog } from '@/components'
+import { Post, InfiniteScrollContainer, LoadingSkeletonGroup } from '@/components'
 import { Button } from './ui/button'
 
 const ForYouFeed = () => {

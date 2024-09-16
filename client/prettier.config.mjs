@@ -18,5 +18,8 @@ export default {
 	bracketSpacing: true,
 	parser: 'typescript',
 	endOfLine: 'crlf',
-	plugins: ['prettier-plugin-tailwindcss', 'prettier-plugin-packagejson']
+	plugins: [
+		'prettier-plugin-tailwindcss',
+		'prettier-plugin-packagejson' //
+	]
 }

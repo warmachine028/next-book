@@ -69,4 +69,6 @@ const LogInForm = () => {
 	)
 }
 
+LogInForm.displayName = 'LogInForm'
+
 export default LogInForm
