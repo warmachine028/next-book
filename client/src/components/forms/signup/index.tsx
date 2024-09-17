@@ -9,7 +9,7 @@ import { useState, useTransition } from 'react'
 import { signUp } from './actions'
 import { LoadingButton, PasswordInput } from '@/components'
 
-const SignUpForm = () => {
+const SignUp = () => {
 	const [error, setError] = useState<string>()
 	const [isPending, startTransition] = useTransition()
 
@@ -31,7 +31,7 @@ const SignUpForm = () => {
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-				<p className="text-destructive text-center">{error}</p>
+				<p className="text-center text-destructive">{error}</p>
 				<FormField
 					control={form.control}
 					name="userName"
@@ -47,11 +47,9 @@ const SignUpForm = () => {
 									{...field}
 								/>
 							</FormControl>
-							{useFormState().errors.userName ? (
+							{useFormState().errors.userName ?
 								<FormMessage />
-							) : (
-								<FormDescription>This is your permanent public user name.</FormDescription>
-							)}
+							:	<FormDescription>This is your permanent public user name.</FormDescription>}
 						</FormItem>
 					)}
 				/>
@@ -70,11 +68,9 @@ const SignUpForm = () => {
 									{...field}
 								/>
 							</FormControl>
-							{useFormState().errors.email ? (
+							{useFormState().errors.email ?
 								<FormMessage />
-							) : (
-								<FormDescription>You can change your email later.</FormDescription>
-							)}
+							:	<FormDescription>You can change your email later.</FormDescription>}
 						</FormItem>
 					)}
 				/>
@@ -94,11 +90,9 @@ const SignUpForm = () => {
 									{...field}
 								/>
 							</FormControl>
-							{useFormState().errors.password ? (
+							{useFormState().errors.password ?
 								<FormMessage />
-							) : (
-								<FormDescription>Choose a strong 8 character Password.</FormDescription>
-							)}
+							:	<FormDescription>Choose a strong 8 character Password.</FormDescription>}
 						</FormItem>
 					)}
 				/>
@@ -110,6 +104,6 @@ const SignUpForm = () => {
 	)
 }
 
-SignUpForm.displayName = "SignUpForm"
+SignUp.displayName = 'SignUpForm'
 
-export default SignUpForm
+export default SignUp

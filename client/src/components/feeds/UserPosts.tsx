@@ -5,14 +5,18 @@ import { kyInstance } from '@/lib/ky'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
 import { Post, InfiniteScrollContainer, LoadingSkeletonGroup } from '@/components'
-import { Button } from './ui/button'
+import { Button } from '@/components/ui/button'
 
-const FollowingFeed = () => {
+interface UserPostsProps {
+	userId: string
+}
+
+const UserPosts = ({ userId }: UserPostsProps) => {
 	const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery({
-		queryKey: ['post-feed', 'following'],
+		queryKey: ['post-feed', 'user-posts', userId],
 		queryFn: ({ pageParam }) =>
 			kyInstance
-				.get('/api/posts/following', pageParam ? { searchParams: { cursor: pageParam } } : {})
+				.get(`/api/users/${userId}/posts`, pageParam ? { searchParams: { cursor: pageParam } } : {})
 				.json<PostsPage>(),
 		initialPageParam: null as string | null,
 		getNextPageParam: (lastPage) => lastPage.nextCursor
@@ -24,9 +28,7 @@ const FollowingFeed = () => {
 		return <LoadingSkeletonGroup />
 	}
 	if (status === 'success' && !posts.length && !hasNextPage) {
-        return <p className="to-muted-foreground text-center">
-            No posts found. Start following people to see their posts here. 
-        </p>
+		return <p className="to-muted-foreground text-center">This user hasn&apos;t posted anything yet.</p>
 	}
 	if (status === 'error') {
 		return <p className="text-center text-destructive">An error occurred while loading posts</p>
@@ -47,6 +49,6 @@ const FollowingFeed = () => {
 	)
 }
 
-FollowingFeed.displayName = 'FollowingFeed'
+UserPosts.displayName = 'UserPostsFeed'
 
-export default FollowingFeed
+export default UserPosts

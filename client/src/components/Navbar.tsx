@@ -1,16 +1,16 @@
 import Link from 'next/link'
-import UserButton from './UserButton'
+import Button from './users/Button'
 import SearchBar from './SearchBar'
 
 const Navbar = () => {
 	return (
-		<header className="bg-card ring-primary sticky top-0 z-10 shadow-xl ring-1">
+		<header className="sticky top-0 z-10 bg-card shadow-xl ring-1 ring-primary">
 			<nav className="container mx-auto flex flex-wrap items-center justify-center gap-5 px-5 py-3">
-				<Link href="/" className="text-primary text-2xl font-bold">
+				<Link href="/" className="text-2xl font-bold text-primary">
 					Next Book
 				</Link>
 				<SearchBar />
-				<UserButton className="sm:ms-auto" />
+				<Button className="sm:ms-auto" />
 			</nav>
 		</header>
 	)

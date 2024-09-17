@@ -9,7 +9,7 @@ import { useState, useTransition } from 'react'
 import { logIn } from './actions'
 import { PasswordInput, LoadingButton } from '@/components'
 
-const LogInForm = () => {
+const LogIn = () => {
 	const [error, setError] = useState<string>()
 	const [isPending, startTransition] = useTransition()
 
@@ -27,7 +27,7 @@ const LogInForm = () => {
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-				<p className="text-destructive text-center">{error}</p>
+				<p className="text-center text-destructive">{error}</p>
 				<FormField
 					control={form.control}
 					name="userName"
@@ -69,6 +69,6 @@ const LogInForm = () => {
 	)
 }
 
-LogInForm.displayName = 'LogInForm'
+LogIn.displayName = 'LogInForm'
 
-export default LogInForm
+export default LogIn

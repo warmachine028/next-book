@@ -187,3 +187,4 @@ function useToast() {
 }
 
 export { useToast, toast }
+export default useToast

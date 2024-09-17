@@ -1,5 +1,5 @@
 import { PostData, PostsPage } from '@/types'
-import { useToast } from '@/components/ui/use-toast'
+import { useToast } from '@/hooks/useToast'
 import { InfiniteData, QueryFilters, useMutation, useQueryClient } from '@tanstack/react-query'
 import { usePathname, useRouter } from 'next/navigation'
 import { deletePost } from './actions'

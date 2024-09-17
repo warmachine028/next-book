@@ -19,14 +19,14 @@ import { Check, LogOutIcon, Monitor, Moon, Sun, UserIcon } from 'lucide-react'
 import { logOut } from '@/app/(auth)/actions'
 import { cn } from '@/lib/utils'
 import { useTheme } from 'next-themes'
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { useQueryClient } from '@tanstack/react-query'
 
 export interface UserButtonProps {
 	className?: string
 }
 
-const UserButton = ({ className }: UserButtonProps) => {
+const Button = ({ className }: UserButtonProps) => {
 	const { user } = useSession()
 	const { userName, displayName } = user
 	const { theme, setTheme } = useTheme()
@@ -83,13 +83,13 @@ const UserButton = ({ className }: UserButtonProps) => {
 				</DropdownMenuSub>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem className="cursor-pointer hover:bg-destructive" onClick={handleLogOut}>
-					<LogOutIcon className="mr-2 size-ring-1" /> <span>Logout</span>
+					<LogOutIcon className="size-ring-1 mr-2" /> <span>Logout</span>
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	)
 }
 
-UserButton.displayName = 'UserButton'
+Button.displayName = 'UserButton'
 
-export default UserButton
+export default Button
