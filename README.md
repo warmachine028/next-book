@@ -1,4 +1,4 @@
-    updated on: 16th September 2024, Monday
+    updated on: 17th September 2024, Tuesday
 
 <div align="center">
     <picture>
@@ -102,4 +102,4 @@ $> npm run dev
 [line]: https://user-images.githubusercontent.com/75939390/137615281-3a875960-92cc-407f-97fe-fd2319bdb252.png
 [License]: https://github.com/warmachine028/next-book/blob/main/LICENSE
 
-<!-- 16/09/24 -->
+<!-- 17/09/24 -->
