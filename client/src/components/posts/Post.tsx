@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { formatRelativeDate } from '@/lib/utils'
 import { useSession } from '@/hooks'
 import PostMoreButton from './PostMoreButton'
+import Linkify from '../Linkify'
 
 interface PostProps {
 	post: PostData
@@ -32,10 +33,15 @@ const Post = ({ post }: PostProps) => {
 					</Link>
 				</div>
 				{user.id === currentUser.id && (
-					<PostMoreButton post={post} className={"opacity-0 transition-opacity group-hover/post:opacity-100"} />
+					<PostMoreButton
+						post={post}
+						className={'opacity-0 transition-opacity group-hover/post:opacity-100'}
+					/>
 				)}
 			</div>
-			<div className="whitespace-pre-line break-words">{post.content}</div>
+			<Linkify>
+				<div className="whitespace-pre-line break-words">{post.content}</div>
+			</Linkify>
 		</article>
 	)
 }

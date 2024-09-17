@@ -9,7 +9,6 @@
             "prettier-plugin-tailwindcss",
             "react-cropper",
             "react-image-file-resizer",
-            "react-linkify-it",
             "stream-chat",
             "stream-chat-react",
             "uploadthing"

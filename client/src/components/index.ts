@@ -1,5 +1,6 @@
 export { default as Avatar } from './Avatar'
 export { default as Navbar } from './Navbar'
+export { default as Linkify } from './Linkify'
 export { default as Menubar } from './Menubar'
 export { LogInForm, SignUpForm } from './forms'
 export { default as SearchBar } from './SearchBar'

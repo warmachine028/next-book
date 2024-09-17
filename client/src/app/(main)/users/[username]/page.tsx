@@ -1,5 +1,5 @@
 import { validateRequest } from '@/auth'
-import { Avatar, FollowButton, FollowerCount, Menubar, TrendsSidebar, UserPostsFeed } from '@/components'
+import { Avatar, FollowButton, FollowerCount, Linkify, Menubar, TrendsSidebar, UserPostsFeed } from '@/components'
 import { Button } from '@/components/ui/button'
 import { prisma } from '@/lib'
 import { formatNumber } from '@/lib/utils'
@@ -76,9 +76,11 @@ const UserProfile = async ({ user, currentUserId }: UserProfileProps) => {
 				:	<FollowButton userId={user.id} initialState={followerInfo} />}
 			</div>
 			<hr />
-			<p className="overflow-hidden whitespace-pre-line break-words italic">
-				{user.bio || 'User does not have a bio yet'}
-			</p>
+			<Linkify>
+				<p className="overflow-hidden whitespace-pre-line break-words italic">
+					{user.bio || 'User does not have a bio yet'}
+				</p>
+			</Linkify>
 		</section>
 	)
 }
