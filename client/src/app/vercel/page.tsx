@@ -27,7 +27,7 @@ const Vercel = () => {
 					</li>
 					<li>Save and see your changes instantly.</li>
 				</ol>
-				<div className="grid w-full grid-cols-2 flex-col gap-4 sm:flex-row sm:items-center">
+				<div className="grid w-full grid-cols-1 flex-col gap-4 sm:grid-cols-2 sm:flex-row sm:items-center">
 					<Link
 						className="col-span-2 flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent bg-foreground px-4 text-sm font-medium text-background transition-colors hover:opacity-70 sm:col-span-1 sm:h-12 sm:px-5 sm:text-base"
 						href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
@@ -53,17 +53,11 @@ const Vercel = () => {
 						Read our docs
 					</Link>
 					<AlertButton className="col-span-2">Open alert</AlertButton>
-					<ToastButton
-						className="col-span-2"
-						toastProps={{
-							// variant: 'success',
-							variant: 'info'
-						}}
-					>
+					<ToastButton className="col-span-2" toastProps={{ variant: 'info' }}>
 						Open toast
 					</ToastButton>
 					<Link
-						className="flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-primary px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-primary hover:text-foreground sm:h-12 sm:min-w-44 sm:px-5 sm:text-base"
+						className="col-span-2 flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-primary px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-primary hover:text-foreground sm:col-span-1 sm:h-12 sm:min-w-44 sm:px-5 sm:text-base"
 						href="/"
 						rel="noopener noreferrer"
 					>
@@ -71,7 +65,7 @@ const Vercel = () => {
 						<Home size={16} />
 					</Link>
 					<Link
-						className="flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent bg-foreground px-4 text-sm font-medium text-background transition-colors hover:opacity-70 sm:h-12 sm:px-5 sm:text-base"
+						className="col-span-2 flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent bg-foreground px-4 text-sm font-medium text-background transition-colors hover:opacity-70 sm:col-span-1 sm:h-12 sm:px-5 sm:text-base"
 						href="https://github.com/warmachine028/next-book"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -115,6 +109,4 @@ const Vercel = () => {
 }
 
 export default Vercel
-
-
 
