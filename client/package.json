@@ -2,7 +2,7 @@
     "dependencies": {
         "@hookform/resolvers": "^3.9.0",
         "@lucia-auth/adapter-prisma": "^4.0.1",
-        "@neondatabase/serverless": "^0.9.5",
+        "@neondatabase/serverless": "^0.10.1",
         "@node-rs/argon2": "^1.8.3",
         "@prisma/adapter-neon": "^5.19.1",
         "@prisma/client": "^5.19.1",
