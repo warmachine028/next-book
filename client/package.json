@@ -2,6 +2,7 @@
     "dependencies": {
         "@hookform/resolvers": "^3.9.0",
         "@lucia-auth/adapter-prisma": "^4.0.1",
+        "@neondatabase/serverless": "^0.10.1",
         "@node-rs/argon2": "^2.0.0",
         "@prisma/adapter-neon": "^5.21.1",
         "@prisma/client": "^5.21.1",
@@ -31,6 +32,7 @@
         "lucia": "^3.2.2",
         "lucide-react": "^0.453.0",
         "next": "15.0.1-canary.3",
+        "next-book": ".",
         "next-themes": "^0.3.0",
         "react": "19.0.0-rc-69d4b800-20241021",
         "react-cropper": "^2.3.3",
