@@ -17,9 +17,7 @@ interface DatabaseUserAttributes {
 export const lucia = new Lucia(adapter, {
 	sessionCookie: {
 		expires: false,
-		attributes: {
-			secure: process.env.NODE_ENV === 'production'
-		}
+		attributes: { secure: process.env.NODE_ENV === 'production' }
 	},
 	getUserAttributes({ id, userName, displayName, avatarUrl, googleId }: DatabaseUserAttributes) {
 		return {
@@ -34,7 +32,8 @@ export const lucia = new Lucia(adapter, {
 
 export const validateRequest = cache(
 	async (): Promise<{ user: User; session: Session } | { user: null; session: null }> => {
-		const sessionId = cookies().get(lucia.sessionCookieName)?.value ?? null
+		const cookieStore = await cookies()
+		const sessionId = cookieStore.get(lucia.sessionCookieName)?.value ?? null
 		if (!sessionId) {
 			return {
 				user: null,
@@ -46,12 +45,12 @@ export const validateRequest = cache(
 			if (result.session?.fresh) {
 				const sessionCookie = lucia.createSessionCookie(result.session.id)
 				const { name, value, attributes } = sessionCookie
-				cookies().set(name, value, attributes)
+				cookieStore.set(name, value, attributes)
 			}
 			if (!result.session) {
 				const sessionCookie = lucia.createBlankSessionCookie()
 				const { name, value, attributes } = sessionCookie
-				cookies().set(name, value, attributes)
+				cookieStore.set(name, value, attributes)
 			}
 		} catch (error) {
 			console.error(error)

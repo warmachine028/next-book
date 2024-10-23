@@ -9,10 +9,11 @@ export const logOut = async (): Promise<{ error: string }> => {
 	if (!session) {
 		throw new Error('Unauthorized: You are not logged in')
 	}
-
+	
 	await lucia.invalidateSession(session.id)
+	const sessionCookie = await cookies()
 	const { name, value, attributes } = lucia.createBlankSessionCookie()
-	cookies().set(name, value, attributes)
+	sessionCookie.set(name, value, attributes)
 
 	return redirect('/login')
 }

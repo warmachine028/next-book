@@ -33,10 +33,11 @@ export const logIn = async (credentials: LogInValues): Promise<{ error: string }
 		if (!validPassword) {
 			return { error: 'Invalid username or password' }
 		}
+		const cookieStore = await cookies()
 		const { id: userId } = existingUser
 		const { id } = await lucia.createSession(userId, {})
 		const { name, value, attributes } = lucia.createSessionCookie(id)
-		cookies().set(name, value, attributes)
+		cookieStore.set(name, value, attributes)
 		return redirect('/')
 	} catch (error) {
 		if (isRedirectError(error)) {

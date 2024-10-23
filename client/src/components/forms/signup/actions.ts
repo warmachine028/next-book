@@ -52,9 +52,11 @@ export const signUp = async (credentials: SignUpValues): Promise<{ error: string
 				passwordHash
 			}
 		})
+
 		const { id } = await lucia.createSession(userId, {})
 		const { name, value, attributes } = lucia.createSessionCookie(id)
-		cookies().set(name, value, attributes)
+		const sessionCookie = await cookies()
+		sessionCookie.set(name, value, attributes)
 		return redirect('/')
 	} catch (error) {
 		if (isRedirectError(error)) {

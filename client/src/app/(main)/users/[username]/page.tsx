@@ -10,7 +10,7 @@ import { notFound } from 'next/navigation'
 import { cache } from 'react'
 
 interface PageProps {
-	params: { username: string }
+	params: Promise<{ username: string }>
 }
 
 const getUser = cache(async (username: string, userId: string) => {
@@ -30,7 +30,8 @@ const getUser = cache(async (username: string, userId: string) => {
 	return user
 })
 
-export const generateMetadata = async ({ params: { username } }: PageProps): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
+	const { username } = await params
 	const { user: currentUser } = await validateRequest()
 
 	if (!currentUser) {
@@ -43,6 +44,7 @@ export const generateMetadata = async ({ params: { username } }: PageProps): Pro
 		title: `${user.displayName} (@${user.userName})`
 	}
 }
+
 interface UserProfileProps {
 	user: UserData
 	currentUserId: string
@@ -85,7 +87,8 @@ const UserProfile = async ({ user, currentUserId }: UserProfileProps) => {
 	)
 }
 
-const Profile = async ({ params: { username } }: PageProps) => {
+const Profile = async ({ params }: PageProps) => {
+	const { username } = await params
 	const { user: currentUser } = await validateRequest()
 
 	if (!currentUser) {

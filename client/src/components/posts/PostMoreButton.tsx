@@ -1,9 +1,9 @@
 import { PostData } from '@/types'
-import { Suspense, useEffect, useState } from 'react'
+import { useState } from 'react'
 import DeletePostDialog from './DeletePostDialog'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { Button } from '../ui/button'
-import { CircleCheckBig, Info, Loader2, MoreHorizontal, Trash2, TriangleAlert } from 'lucide-react'
+import { CircleCheckBig, Info, MoreHorizontal, Trash2, TriangleAlert } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 
@@ -33,13 +33,13 @@ const PostMoreButton = ({ post, className }: PostMoreButtonProps) => {
 							</DropdownMenuItem>
 						</TooltipTrigger>
 						<TooltipContent side="left">
-							<p>Delete action</p>
+							<p>Destructive action</p>
 						</TooltipContent>
 					</Tooltip>
 					<Tooltip>
 						<TooltipTrigger asChild>
 							<DropdownMenuItem>
-								<span className="text-success flex items-center gap-3">
+								<span className="flex items-center gap-3 text-success">
 									<CircleCheckBig className="size-4" />
 									Success
 								</span>
@@ -52,7 +52,7 @@ const PostMoreButton = ({ post, className }: PostMoreButtonProps) => {
 					<Tooltip>
 						<TooltipTrigger asChild>
 							<DropdownMenuItem>
-								<span className="text-info flex items-center gap-3">
+								<span className="flex items-center gap-3 text-info">
 									<Info className="size-4" />
 									Info
 								</span>

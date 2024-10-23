@@ -1,3 +1,4 @@
+import { Route } from 'next'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 import { LinkIt, LinkItUrl } from 'react-linkify-it'
