@@ -3,8 +3,12 @@ import { prisma } from '@/lib'
 import { getUserDataSelect } from '@/types'
 import { NextRequest } from 'next/server'
 
-export const GET = async (req: NextRequest, { params: { username } }: { params: { username: string } }) => {
+export const GET = async (
+	req: NextRequest, //
+	{ params }: { params: Promise<{ username: string }> }
+) => {
 	try {
+		const { username } = await params
 		const { user: loggedInUser } = await validateRequest()
 
 		if (!loggedInUser) {
