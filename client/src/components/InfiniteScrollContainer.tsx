@@ -1,6 +1,6 @@
 'use client'
 
-import { PropsWithChildren, useRef, useEffect } from 'react'
+import { PropsWithChildren } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 interface InfiniteScrollContainerProps extends PropsWithChildren {
@@ -9,11 +9,10 @@ interface InfiniteScrollContainerProps extends PropsWithChildren {
 }
 
 const InfiniteScrollContainer = ({ children, onBottomReached, className }: InfiniteScrollContainerProps) => {
-	const ref = useRef(null)
-	// const { ref } = useInView({
-	// 	rootMargin: '200px',
-	// 	onChange: (inView) => inView && onBottomReached()
-	// })
+	const { ref } = useInView({
+		rootMargin: '200px',
+		onChange: (inView) => inView && onBottomReached()
+	})
 	return (
 		<div className={className}>
 			{children}

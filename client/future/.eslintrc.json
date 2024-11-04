@@ -1,8 +1,0 @@
-{
-	"plugins": ["eslint-plugin-react-compiler"],
-	"extends": ["next/core-web-vitals", "prettier"],
-	"rules": {
-		"no-console": 2,
-		"react-compiler/react-compiler": "error"
-	}
-}
