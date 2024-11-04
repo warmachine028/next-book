@@ -70,7 +70,7 @@ const UserProfile = async ({ user, currentUserId }: UserProfileProps) => {
 						<span>
 							Posts: <strong className="font-semibold">{formatNumber(user._count.posts)}</strong>{' '}
 						</span>
-						<FollowerCount userId={user.id} initalState={followerInfo} />
+						<FollowerCount userId={user.id} initialState={followerInfo} />
 					</div>
 				</div>
 				{user.id === currentUserId ?

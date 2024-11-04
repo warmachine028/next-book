@@ -5,15 +5,13 @@ import { prisma } from '@/lib'
 import { Loader2 } from 'lucide-react'
 import { Suspense } from 'react'
 import Link from 'next/link'
-import Avatar from './Avatar'
-import { Button } from './ui/button'
 import { unstable_cache } from 'next/cache'
 import { formatNumber } from '@/lib/utils'
-import FollowButton from './FollowButton'
+import { Avatar, FollowButton } from '@/components'
 import { getUserDataSelect } from '@/types'
+import { UserTooltip } from './users'
 
 const getTrendingTopics = unstable_cache(
-	//
 	async () => {
 		const result = await prisma.$queryRaw<{ hashtag: string; count: bigint }[]>`
 			SELECT 
@@ -24,7 +22,7 @@ const getTrendingTopics = unstable_cache(
 			ORDER BY count DESC, hashtag ASC
 			LIMIT 5
 		`
-		return await result.map((row) => ({
+		return result.map((row) => ({
 			hashtag: row.hashtag,
 			count: Number(row.count)
 		}))
@@ -84,13 +82,17 @@ const WhoToFollow = async () => {
 			<div className="text-xl font-bold">Who to Follow</div>
 			{usersToFollow.map((user) => (
 				<div className="flex items-center justify-between gap-3" key={user.id}>
-					<Link href={`/users/${user.userName}`} className="flex items-center justify-between gap-3">
-						<Avatar url={user.avatarUrl} className="flex-none" />
-						<div>
-							<p className="line-clamp-1 break-all font-semibold hover:underline">{user.displayName}</p>
-							<p className="line-clamp-1 break-all text-muted-foreground">@{user.userName}</p>
-						</div>
-					</Link>
+					<UserTooltip user={user}>
+						<Link href={`/users/${user.userName}`} className="flex items-center justify-between gap-3">
+							<Avatar url={user.avatarUrl} className="flex-none" />
+							<div>
+								<p className="line-clamp-1 break-all font-semibold hover:underline">
+									{user.displayName}
+								</p>
+								<p className="line-clamp-1 break-all text-muted-foreground">@{user.userName}</p>
+							</div>
+						</Link>
+					</UserTooltip>
 					<FollowButton
 						userId={user.id}
 						initialState={{

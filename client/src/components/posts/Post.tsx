@@ -2,11 +2,13 @@
 import Link from 'next/link'
 import fallbackIcon from '@/assets/avatar-placeholder.png'
 import { PostData } from '@/types'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+// import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { formatRelativeDate } from '@/lib/utils'
 import { useSession } from '@/hooks'
 import PostMoreButton from './PostMoreButton'
 import Linkify from '../Linkify'
+import Avatar from '../Avatar'
+import { UserTooltip } from '../users'
 
 interface PostProps {
 	post: PostData
@@ -19,18 +21,21 @@ const Post = ({ post }: PostProps) => {
 		<article className="group/post space-y-3 rounded-3xl bg-card p-5 shadow-sm ring-1 ring-primary">
 			<div className="flex justify-between gap-3">
 				<div className="flex flex-wrap gap-3">
-					<Avatar className="hidden xs:inline">
-						<Link href={`users/${user.userName}`}>
-							<AvatarImage src={user.avatarUrl || fallbackIcon.src} alt={user.userName} />
-							<AvatarFallback>{user.displayName[0].toUpperCase()}</AvatarFallback>
+					<UserTooltip user={user}>
+						<Link href={`/users/${user.userName}`}>
+							<Avatar url={user.avatarUrl} />
 						</Link>
-					</Avatar>
-					<Link href={`users/${user.userName}`} className="block font-medium hover:underline">
-						{user.displayName}
-					</Link>
-					<Link href={`post/${post.id}`} className="block text-sm text-muted-foreground hover:underline">
-						{formatRelativeDate(post.createdAt)}
-					</Link>
+					</UserTooltip>
+					<div>
+						<UserTooltip user={user}>
+							<Link href={`users/${user.userName}`} className="block font-medium hover:underline">
+								{user.displayName}
+							</Link>
+						</UserTooltip>
+						<Link href={`post/${post.id}`} className="block text-sm text-muted-foreground hover:underline">
+							{formatRelativeDate(post.createdAt)}
+						</Link>
+					</div>
 				</div>
 				{user.id === currentUser.id && (
 					<PostMoreButton

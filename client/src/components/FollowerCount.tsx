@@ -1,15 +1,15 @@
 'use client'
 import { useFollowerInfo } from '@/hooks'
 import { formatNumber } from '@/lib/utils'
-import { FollowerInfo } from '@/types'
+import type { FollowerInfo } from '@/types'
 
 interface FollowerCountProps {
 	userId: string
-	initalState: FollowerInfo
+	initialState: FollowerInfo
 }
 
-const FollowerCount = ({ userId, initalState }: FollowerCountProps) => {
-	const { data } = useFollowerInfo(userId, initalState)
+const FollowerCount = ({ userId, initialState }: FollowerCountProps) => {
+	const { data } = useFollowerInfo(userId, initialState)
 	return (
 		<span>
 			Followers: <strong className="font-semibold">{formatNumber(data.followers)}</strong>

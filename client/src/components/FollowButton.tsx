@@ -1,7 +1,7 @@
 'use client'
 
 import { useFollowerInfo, useToast } from '@/hooks'
-import { FollowerInfo } from '@/types'
+import type { FollowerInfo } from '@/types'
 import { QueryKey, useMutation, useQueryClient } from '@tanstack/react-query'
 import { Button } from './ui/button'
 import { kyInstance } from '@/lib/ky'
