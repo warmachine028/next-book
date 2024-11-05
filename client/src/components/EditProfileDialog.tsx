@@ -36,7 +36,7 @@ const EditProfileDialog = ({ user, open, onOpenChange }: EditProfileDialogProps)
 	const mutation = useUpdateProfileMutation()
 	const [croppedAvatar, setCroppedAvatar] = useState<Blob | null>()
 	const avatarFile = croppedAvatar ? new File([croppedAvatar], `avatar_${user.id}.webp`) : undefined
-	const handleSubmit = async (values: UpdateUserProfile1Values) => {
+	const handleSubmit = async (values: UpdateUserProfileValues) => {
 		mutation.mutate(
 			{
 				values,
