@@ -17,5 +17,7 @@ export const createPostSchema = z.object({
 	content: isRequired
 })
 
+
+
 export type SignUpValues = z.infer<typeof signUpSchema>
 export type LogInValues = z.infer<typeof logInSchema>

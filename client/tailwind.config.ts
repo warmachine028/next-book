@@ -1,7 +1,8 @@
 import { type Config } from 'tailwindcss'
 import tailwindAnimate from 'tailwindcss-animate'
+import { withUt } from 'uploadthing/tw'
 
-export default {
+export default withUt({
 	darkMode: 'selector',
 	content: [
 		// This is the same as the `purge` option in the future
@@ -109,4 +110,4 @@ export default {
 		}
 	},
 	plugins: [tailwindAnimate]
-} satisfies Config
+}) satisfies Config

@@ -13,9 +13,17 @@ export default {
 		},
 		reactCompiler: {
 			compilationMode: 'annotation'
-		},
+		}
 		// typedRoutes: true // https://nextjs.org/docs/app/api-reference/next-config-js/typedRoutes
 	},
-	serverExternalPackages: ['@node-rs/argon2']
+	serverExternalPackages: ['@node-rs/argon2'],
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'utfs.io',
+				pathname: `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/*`
+			}
+		]
+	}
 } satisfies Config
-
