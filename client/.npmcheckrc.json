@@ -6,8 +6,6 @@
             "prettier",
             "prettier-plugin-packagejson",
             "prettier-plugin-tailwindcss",
-            "react-cropper",
-            "react-image-file-resizer",
             "stream-chat",
             "stream-chat-react"
         ]

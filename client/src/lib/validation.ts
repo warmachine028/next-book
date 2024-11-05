@@ -17,7 +17,12 @@ export const createPostSchema = z.object({
 	content: isRequired
 })
 
+export const updateUserProfileSchema = z.object({
+	displayName: isRequired,
+	bio: z.string().max(1000, 'Must be at most 1000 characters'),
+})
 
 
 export type SignUpValues = z.infer<typeof signUpSchema>
 export type LogInValues = z.infer<typeof logInSchema>
+export type UpdateUserProfileValues = z.infer<typeof updateUserProfileSchema>

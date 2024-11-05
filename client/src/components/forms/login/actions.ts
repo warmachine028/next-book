@@ -1,7 +1,8 @@
 'use server'
 
 import { lucia } from '@/auth'
-import { prisma, logInSchema, LogInValues } from '@/lib'
+import { prisma } from '@/lib'
+import { logInSchema, LogInValues } from '@/lib/validation'
 import { verify } from '@node-rs/argon2'
 import { isRedirectError } from 'next/dist/client/components/redirect'
 import { cookies } from 'next/headers'

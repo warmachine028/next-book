@@ -1,7 +1,8 @@
 'use server'
 
 import { lucia } from '@/auth'
-import { prisma, signUpSchema, SignUpValues } from '@/lib'
+import { prisma } from '@/lib'
+import { signUpSchema, SignUpValues } from '@/lib/validation'
 import { hash } from '@node-rs/argon2'
 import { generateIdFromEntropySize } from 'lucia'
 import { isRedirectError } from 'next/dist/client/components/redirect'

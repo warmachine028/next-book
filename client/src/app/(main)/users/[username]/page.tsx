@@ -1,9 +1,17 @@
 import { validateRequest } from '@/auth'
-import { Avatar, FollowButton, FollowerCount, Linkify, Menubar, TrendsSidebar, UserPostsFeed } from '@/components'
-import { Button } from '@/components/ui/button'
+import {
+	Avatar,
+	FollowButton,
+	FollowerCount,
+	Linkify,
+	Menubar,
+	TrendsSidebar,
+	UserPostsFeed,
+	EditProfileButton
+} from '@/components'
 import { prisma } from '@/lib'
 import { formatNumber } from '@/lib/utils'
-import { FollowerInfo, getUserDataSelect, UserData } from '@/types'
+import { type FollowerInfo, getUserDataSelect, type UserData } from '@/types'
 import { formatDate } from 'date-fns'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -74,7 +82,7 @@ const UserProfile = async ({ user, currentUserId }: UserProfileProps) => {
 					</div>
 				</div>
 				{user.id === currentUserId ?
-					<Button>Edit profile</Button>
+					<EditProfileButton user={user} />
 				:	<FollowButton userId={user.id} initialState={followerInfo} />}
 			</div>
 			<hr />
@@ -92,7 +100,12 @@ const Profile = async ({ params }: PageProps) => {
 	const { user: currentUser } = await validateRequest()
 
 	if (!currentUser) {
-		return <p className="text-destructive">You&apos;re not authorized to view this page.</p>
+		return (
+			<p className="text-destructive">
+				{/* */}
+				You&apos;re not authorized to view this page.
+			</p>
+		)
 	}
 
 	const user = await getUser(username, currentUser.id)
