@@ -39,7 +39,7 @@ const PostEditor = () => {
 	}
 
 	return (
-		<div className="flex flex-col gap-5 rounded-2xl bg-card p-5 shadow-sm ring-1 ring-primary">
+		<div className="flex flex-col gap-5 bg-card p-5 shadow-sm">
 			<div className="flex gap-5">
 				<Avatar className="hidden xs:inline">
 					<Link href={`users/${user.userName}`}>
@@ -53,7 +53,12 @@ const PostEditor = () => {
 				/>
 			</div>
 			<div className="flex justify-end">
-				<LoadingButton loading={mutation.isPending} disabled={!input.trim()} onClick={onSubmit} className="min-w-20">
+				<LoadingButton
+					loading={mutation.isPending}
+					disabled={!input.trim()}
+					onClick={onSubmit}
+					className="min-w-20"
+				>
 					Post
 				</LoadingButton>
 			</div>

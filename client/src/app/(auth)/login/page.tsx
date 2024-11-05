@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: 'Log In' }
 
 const LogIn = () => {
 	return (
-		<div className="bg-card flex max-h-[40rem] w-full overflow-hidden rounded-2xl shadow-2xl sm:h-full md:min-w-[64rem] sm:ring-1 ring-secondary">
+		<div className="bg-card flex max-h-[40rem] w-full overflow-hidden shadow-2xl sm:h-full md:min-w-[64rem] sm:ring-1 ring-secondary">
 			<Image src={hero} priority alt="log-in" className="hidden w-1/2 object-cover md:block" />
 
 			<div className="w-full space-y-10 overflow-y-auto md:w-1/2 md:p-10">

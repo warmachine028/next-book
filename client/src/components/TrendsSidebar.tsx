@@ -36,7 +36,7 @@ const getTrendingTopics = unstable_cache(
 const TrendingTopics = async () => {
 	const trendingTopics = await getTrendingTopics()
 	return (
-		<div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm ring-1 ring-primary">
+		<div className="space-y-5 bg-card p-5 shadow-sm">
 			<div className="text-xl font-bold">Trending Topics</div>
 			{trendingTopics.map(({ hashtag, count }) => {
 				const title = hashtag.split('#')[1]
@@ -78,7 +78,7 @@ const WhoToFollow = async () => {
 		take: 5
 	})
 	return (
-		<div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm ring-1 ring-primary">
+		<div className="space-y-5 bg-card p-5 shadow-sm">
 			<div className="text-xl font-bold">Who to Follow</div>
 			{usersToFollow.map((user) => (
 				<div className="flex items-center justify-between gap-3" key={user.id}>

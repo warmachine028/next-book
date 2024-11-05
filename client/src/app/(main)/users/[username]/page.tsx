@@ -65,7 +65,7 @@ const UserProfile = async ({ user, currentUserId }: UserProfileProps) => {
 	}
 
 	return (
-		<section className="h-fit w-full space-y-5 rounded-2xl bg-card p-5 shadow-sm ring-1 ring-primary">
+		<section className="h-fit w-full space-y-5 bg-card p-5 shadow-sm">
 			<Avatar url={user.avatarUrl} size={250} className="mx-auto size-full max-h-60 max-w-60 rounded-full" />
 			<div className="flex flex-wrap gap-3 sm:flex-nowrap">
 				<div className="me-auto space-y-3">
@@ -85,12 +85,8 @@ const UserProfile = async ({ user, currentUserId }: UserProfileProps) => {
 					<EditProfileButton user={user} />
 				:	<FollowButton userId={user.id} initialState={followerInfo} />}
 			</div>
-			<hr />
-			<Linkify>
-				<p className="overflow-hidden whitespace-pre-line break-words italic">
-					{user.bio || 'User does not have a bio yet'}
-				</p>
-			</Linkify>
+			<hr className="h-3" />
+			<Linkify>{user.bio || 'User does not have a bio yet'}</Linkify>
 		</section>
 	)
 }
@@ -112,11 +108,11 @@ const Profile = async ({ params }: PageProps) => {
 
 	return (
 		<main className="container mx-auto flex min-h-[calc(100vh-125px)] w-full grow gap-5 p-5">
-			<Menubar className="sticky top-[5.25rem] hidden h-fit flex-none space-y-3 rounded-2xl bg-card px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
+			<Menubar className="sticky top-[5.25rem] hidden h-fit flex-none space-y-3 bg-card px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
 			<div className="flex w-full min-w-0 gap-5">
 				<div className="w-full min-w-0 space-y-5">
 					<UserProfile user={user} currentUserId={currentUser.id} />
-					<div className="rounded-2xl bg-card p-5 shadow-sm ring-1 ring-primary">
+					<div className="bg-card p-5 shadow-sm">
 						<h2 className="text-center text-2xl font-bold">{user.displayName}&apos;s posts</h2>
 					</div>
 					<UserPostsFeed userId={user.id} />

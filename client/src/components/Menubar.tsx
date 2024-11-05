@@ -9,7 +9,7 @@ interface MenubarProps {
 
 const Menubar = ({ className }: MenubarProps) => {
 	return (
-		<aside className={cn('text-primary ring-1 ring-primary', className)}>
+		<aside className={cn('text-primary', className)}>
 			<Button className="flex items-center justify-start gap-3" variant="ghost" title="Home" asChild>
 				<Link href="/">
 					<Home />
