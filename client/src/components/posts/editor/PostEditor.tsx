@@ -124,6 +124,7 @@ const AddAttachmentButton = ({ onFilesSelected, disabled }: AddAttachmentButtonP
 				multiple
 				ref={fileInputRef}
 				hidden
+				className="hidden sr-only"
 				onChange={(e) => {
 					const files = Array.from(e.target.files || [])
 					if (files.length) {

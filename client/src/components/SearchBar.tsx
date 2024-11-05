@@ -5,6 +5,14 @@ import { FormEvent, useEffect, useState } from 'react'
 import { Input } from './ui/input'
 import { SearchIcon } from 'lucide-react'
 import { Button } from './ui/button'
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger
+} from '@/components/ui/dialog'
 
 const suggestions = [
 	'🐶 dogs',
@@ -17,8 +25,15 @@ const suggestions = [
 	'🧑 people'
 ]
 
-const SearchBar = () => {
-	const router = useRouter()
+const SearchInput = ({
+	className = '',
+	onSearch,
+	autoFocus = false
+}: {
+	className?: string
+	onSearch?: (query: string) => void
+	autoFocus?: boolean
+}) => {
 	const [currentSuggestion, setCurrentSuggestion] = useState(suggestions[0])
 	const [nextSuggestion, setNextSuggestion] = useState(suggestions[1])
 	const [isAnimating, setIsAnimating] = useState(false)
@@ -49,19 +64,24 @@ const SearchBar = () => {
 		if (!searchQuery) {
 			return
 		}
-		router.push(`/search?q=${encodeURIComponent(searchQuery)}`)
+
+		if (onSearch) {
+			onSearch(searchQuery)
+		}
+		setQuery('')
 	}
 
 	return (
-		<form onSubmit={handleSubmit} action="/search" className="cursor-pointer">
+		<form onSubmit={handleSubmit} action="/search" className={`cursor-pointer ${className}`}>
 			<div className="relative text-sm">
 				<Input
 					name="query"
 					value={query}
-					className="pe-10 sm:w-64"
+					className="pe-10"
 					onChange={(event) => setQuery(event.target.value)}
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setIsFocused(false)}
+					autoFocus={autoFocus}
 				/>
 				<div
 					className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 transform"
@@ -97,6 +117,52 @@ const SearchBar = () => {
 				</Button>
 			</div>
 		</form>
+	)
+}
+
+interface SearchDialogProps {
+	isOpen: boolean
+	setIsOpen: (open: boolean) => void
+	onSearch: (query: string) => void
+}
+
+const SearchDialog = ({ isOpen, setIsOpen, onSearch: handleSearch }: SearchDialogProps) => {
+	return (
+		<Dialog open={isOpen} onOpenChange={setIsOpen}>
+			<DialogTrigger asChild>
+				<Button variant="ghost" size="icon" className="text-muted-foreground rounded-full">
+					<SearchIcon className="size-5" />
+				</Button>
+			</DialogTrigger>
+			<DialogContent className="sm:max-w-md">
+				<DialogHeader>
+					<DialogTitle>Search</DialogTitle>
+					<DialogDescription>Search for posts, users, and more</DialogDescription>
+				</DialogHeader>
+				<SearchInput className="w-full" onSearch={handleSearch} autoFocus={true} />
+			</DialogContent>
+		</Dialog>
+	)
+}
+
+const SearchBar = () => {
+	const router = useRouter()
+	const [isOpen, setIsOpen] = useState(false)
+
+	const handleSearch = (query: string) => {
+		router.push(`/search?q=${encodeURIComponent(query)}`)
+		setIsOpen(false)
+	}
+
+	return (
+		<>
+			<div className="hidden sm:block">
+				<SearchInput className="w-64" onSearch={handleSearch} />
+			</div>
+			<div className="sm:hidden">
+				<SearchDialog isOpen={isOpen} setIsOpen={setIsOpen} onSearch={handleSearch} />
+			</div>
+		</>
 	)
 }
 

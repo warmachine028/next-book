@@ -21,12 +21,13 @@ import { cn } from '@/lib/utils'
 import { useTheme } from 'next-themes'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { useQueryClient } from '@tanstack/react-query'
+import { Button } from '../ui/button'
 
 export interface UserButtonProps {
 	className?: string
 }
 
-const Button = ({ className }: UserButtonProps) => {
+const UserButton = ({ className }: UserButtonProps) => {
 	const { user } = useSession()
 	const { userName, displayName } = user
 	const { theme, setTheme } = useTheme()
@@ -38,14 +39,14 @@ const Button = ({ className }: UserButtonProps) => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<button className={cn('flex-none rounded-full', className)}>
+				<Button variant="ghost" size="icon" className={cn('flex-none rounded-full', className)}>
 					<Avatar>
 						<AvatarImage src={user.avatarUrl || fallbackIcon.src} alt={userName} />
 						<AvatarFallback>{displayName[0].toUpperCase()}</AvatarFallback>
 					</Avatar>
-				</button>
+				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent>
+			<DropdownMenuContent align="end">
 				<DropdownMenuLabel>Logged in as @{userName}</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<Link href={`/users/${userName}`}>
@@ -60,7 +61,7 @@ const Button = ({ className }: UserButtonProps) => {
 						<span>Theme</span>
 					</DropdownMenuSubTrigger>
 					<DropdownMenuPortal>
-						<DropdownMenuSubContent>
+						<DropdownMenuSubContent >
 							<DropdownMenuItem onClick={() => setTheme('light')} className="cursor-pointer">
 								<Sun className="mr-2 size-4" />
 								<span>Light</span>
@@ -90,6 +91,6 @@ const Button = ({ className }: UserButtonProps) => {
 	)
 }
 
-Button.displayName = 'UserButton'
+UserButton.displayName = 'UserButton'
 
-export default Button
+export default UserButton
