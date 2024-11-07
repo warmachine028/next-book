@@ -14,7 +14,7 @@ import Link from 'next/link'
 import { useSubmitPostMutation } from './mutations'
 import { ClipboardEvent, useRef } from 'react'
 import Image from 'next/image'
-import { Image as ImageIcon, Loader2, X } from 'lucide-react'
+import { ImageIcon, Loader2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useDropzone } from '@uploadthing/react'
 import { UserTooltip } from '@/components/users'
@@ -31,7 +31,7 @@ const PostEditor = () => {
 		uploadProgress
 	} = useMediaUpload()
 
-	const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({
 		onDrop: startUpload
 	})
 	const { onClick, ...rootProps } = getRootProps()
@@ -72,7 +72,7 @@ const PostEditor = () => {
 	}
 
 	return (
-		<div className="flex flex-col gap-5 bg-card p-5 shadow-sm">
+		<div className="flex flex-col gap-5 bg-card p-5 shadow-sm rounded-md">
 			<div className="flex gap-5">
 				<UserTooltip
 					user={{

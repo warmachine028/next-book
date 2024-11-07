@@ -17,7 +17,7 @@ const Post = ({ post }: PostProps) => {
 	const { user } = post
 	const { user: currentUser } = useSession()
 	return (
-		<article className="group/post space-y-3 bg-card p-5 shadow-sm">
+		<article className="group/post space-y-3 bg-card p-5 shadow-sm rounded-md">
 			<div className="flex justify-between gap-3">
 				<div className="flex flex-wrap gap-3">
 					<UserTooltip user={user}>
@@ -79,14 +79,14 @@ const MediaPreview = ({ media }: MediaPreviewProps) => {
 				alt="attachment"
 				width={500}
 				height={500}
-				className="mx-auto flex size-fit w-full rounded-2xl"
+				className="mx-auto flex size-fit w-full rounded-md"
 			/>
 		)
 	}
 	if (media.type === 'VIDEO') {
 		return (
 			<div className="aspect-video w-full rounded-md bg-muted">
-				<video src={media.url} controls className="mx-auto size-fit max-w-[30rem] rounded-2xl" />
+				<video src={media.url} controls className="mx-auto size-fit max-w-[30rem] rounded-xl" />
 			</div>
 		)
 	}
