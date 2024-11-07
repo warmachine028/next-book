@@ -1,14 +1,13 @@
 'use client'
 import Link from 'next/link'
-import fallbackIcon from '@/assets/avatar-placeholder.png'
 import { PostData } from '@/types'
-// import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
-import { formatRelativeDate } from '@/lib/utils'
+import { cn, formatRelativeDate } from '@/lib/utils'
 import { useSession } from '@/hooks'
 import PostMoreButton from './PostMoreButton'
-import Linkify from '../Linkify'
-import Avatar from '../Avatar'
+import { Avatar, Linkify } from '@/components'
 import { UserTooltip } from '../users'
+import { Media } from '@prisma/client'
+import Image from 'next/image'
 
 interface PostProps {
 	post: PostData
@@ -47,9 +46,51 @@ const Post = ({ post }: PostProps) => {
 			<Linkify>
 				<div className="whitespace-pre-line break-words">{post.content}</div>
 			</Linkify>
+			{!!post.attachments.length && <MediaPreviews attachments={post.attachments} />}
 		</article>
 	)
 }
 
 Post.displayName = 'Post'
+
+interface MediaPreviewsProps {
+	attachments: Media[]
+}
+
+const MediaPreviews = ({ attachments }: MediaPreviewsProps) => {
+	return (
+		<div className={cn('flex flex-col flex-wrap gap-3', attachments.length > 1 && 'sm:grid sm:grid-cols-2')}>
+			{attachments.map((media) => (
+				<MediaPreview media={media} key={media.id} />
+			))}
+		</div>
+	)
+}
+
+interface MediaPreviewProps {
+	media: Media
+}
+
+const MediaPreview = ({ media }: MediaPreviewProps) => {
+	if (media.type === 'IMAGE') {
+		return (
+			<Image
+				src={media.url}
+				alt="attachment"
+				width={500}
+				height={500}
+				className="mx-auto flex size-fit w-full rounded-2xl"
+			/>
+		)
+	}
+	if (media.type === 'VIDEO') {
+		return (
+			<div className="aspect-video w-full rounded-md bg-muted">
+				<video src={media.url} controls className="mx-auto size-fit max-w-[30rem] rounded-2xl" />
+			</div>
+		)
+	}
+	return <p className="text-destructive">Unsupported media type</p>
+}
+
 export default Post

@@ -3,22 +3,20 @@
 import './styles.css'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { createPost } from './actions'
 import { useSession, useMediaUpload } from '@/hooks'
+import type { Attachment } from '@/hooks/useMediaUpload'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import LoadingButton from '@/components/LoadingButton'
 import PlaceHolder from '@tiptap/extension-placeholder'
 import fallbackIcon from '@/assets/avatar-placeholder.png'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useSubmitPostMutation } from './mutations'
-import LoadingButton from '@/components/LoadingButton'
 import { useRef } from 'react'
 import Image from 'next/image'
-import { Image as ImageIcon, Loader2 } from 'lucide-react'
-import { Input } from '@/components/ui/input'
-import type { Attachment } from '@/hooks/useMediaUpload'
+import { Image as ImageIcon, Loader2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { X } from 'lucide-react'
 
 const PostEditor = () => {
 	const { user } = useSession()
@@ -79,7 +77,7 @@ const PostEditor = () => {
 			{!!attachments.length && (
 				<AttachmentsPreviews attachments={attachments} removeAttachment={removeAttachment} />
 			)}
-			<div className="flex justify-end">
+			<div className="flex items-center justify-end gap-3">
 				{isUploading && (
 					<>
 						<span className="text-sm text-muted-foreground">{uploadProgress ?? 0}%</span>
@@ -124,7 +122,7 @@ const AddAttachmentButton = ({ onFilesSelected, disabled }: AddAttachmentButtonP
 				multiple
 				ref={fileInputRef}
 				hidden
-				className="hidden sr-only"
+				className="sr-only hidden"
 				onChange={(e) => {
 					const files = Array.from(e.target.files || [])
 					if (files.length) {
@@ -161,7 +159,7 @@ interface AttachmentsPreviewProps {
 	onRemove: () => void
 }
 
-const AttachmentsPreview = ({ attachment: { file, mediaId, isUploading }, onRemove }: AttachmentsPreviewProps) => {
+const AttachmentsPreview = ({ attachment: { file, isUploading }, onRemove }: AttachmentsPreviewProps) => {
 	const src = URL.createObjectURL(file)
 
 	return (

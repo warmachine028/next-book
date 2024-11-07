@@ -1,4 +1,3 @@
-import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useUploadThing, useToast } from '@/hooks'
 
@@ -53,15 +52,14 @@ const useMediaUpload = () => {
 
 	const handleStartUpload = (files: File[]) => {
 		if (isUploading) {
-			toast({
+			return toast({
 				variant: 'destructive',
 				description: 'Please wait for the current upload to finish.'
 			})
-			return
 		}
 
 		if (attachments.length + files.length > 5) {
-			toast({
+			return toast({
 				variant: 'destructive',
 				description: 'You can only upload up to 5 attachments per post.'
 			})

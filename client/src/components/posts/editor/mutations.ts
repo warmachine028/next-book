@@ -44,6 +44,7 @@ export const useSubmitPostMutation = () => {
 				}
 			})
 			toast({
+				variant: 'success',
 				description: 'Post created Successfully'
 			})
 		},
