@@ -12,7 +12,7 @@ import LoadingButton from '@/components/LoadingButton'
 import PlaceHolder from '@tiptap/extension-placeholder'
 import Link from 'next/link'
 import { useSubmitPostMutation } from './mutations'
-import { useRef } from 'react'
+import { ClipboardEvent, useRef } from 'react'
 import Image from 'next/image'
 import { Image as ImageIcon, Loader2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -48,7 +48,6 @@ const PostEditor = () => {
 		],
 		immediatelyRender: false
 	})
-	const { userName, displayName } = user
 	const input = editor?.getText({ blockSeparator: '\n' }) || ''
 
 	const onSubmit = async () => {
@@ -65,7 +64,12 @@ const PostEditor = () => {
 			}
 		)
 	}
-	
+	const handlePaste = (e: ClipboardEvent<HTMLInputElement>) => {
+		const files = Array.from(e.clipboardData.items)
+			.filter((item) => item.kind === 'file')
+			.map((item) => item.getAsFile()) as File[]
+		startUpload(files)
+	}
 
 	return (
 		<div className="flex flex-col gap-5 bg-card p-5 shadow-sm">
@@ -90,6 +94,7 @@ const PostEditor = () => {
 							'max-h-80 w-full overflow-y-auto rounded-md bg-accent px-5 py-3',
 							isDragActive && 'outline-dashed outline-1 outline-primary'
 						)}
+						onPaste={handlePaste}
 					/>
 					<Input {...getInputProps()} />
 				</div>
@@ -164,7 +169,7 @@ const AttachmentsPreviews = ({ attachments, removeAttachment }: AttachmentsPrevi
 	return (
 		<div className={cn('flex flex-wrap gap-3', attachments.length > 1 && 'sm:grid sm:grid-cols-2')}>
 			{attachments.map((attachment) => (
-				<AttachmentsPreview
+				<AttachmentPreview
 					key={attachment.file.name}
 					attachment={attachment}
 					onRemove={() => removeAttachment(attachment.file.name)}
@@ -174,16 +179,16 @@ const AttachmentsPreviews = ({ attachments, removeAttachment }: AttachmentsPrevi
 	)
 }
 
-interface AttachmentsPreviewProps {
+interface AttachmentPreviewProps {
 	attachment: Attachment
 	onRemove: () => void
 }
 
-const AttachmentsPreview = ({ attachment: { file, isUploading }, onRemove }: AttachmentsPreviewProps) => {
+const AttachmentPreview = ({ attachment: { file, isUploading }, onRemove }: AttachmentPreviewProps) => {
 	const src = URL.createObjectURL(file)
 
 	return (
-		<div className={cn('relative, mx-auto, size-fit', isUploading && 'opacity-50')}>
+		<div className={cn('mx-auto, relative size-fit', isUploading && 'opacity-50')}>
 			{file.type.startsWith('image') ?
 				<Image
 					src={src}
@@ -201,7 +206,7 @@ const AttachmentsPreview = ({ attachment: { file, isUploading }, onRemove }: Att
 					onClick={onRemove}
 					variant="ghost"
 					size="icon"
-					className="absolute right-3 top-3 rounded-full bg-foreground p-1.5 text-background transition-colors hover:bg-foreground/60"
+					className="absolute right-3 top-3 rounded-full bg-foreground p-1.5 text-background transition-colors hover:bg-muted"
 				>
 					<X size={20} />
 				</Button>
