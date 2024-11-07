@@ -4,19 +4,20 @@ import './styles.css'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useSession, useMediaUpload } from '@/hooks'
+import { Avatar } from '@/components'
 import type { Attachment } from '@/hooks/useMediaUpload'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import LoadingButton from '@/components/LoadingButton'
 import PlaceHolder from '@tiptap/extension-placeholder'
-import fallbackIcon from '@/assets/avatar-placeholder.png'
 import Link from 'next/link'
 import { useSubmitPostMutation } from './mutations'
 import { useRef } from 'react'
 import Image from 'next/image'
 import { Image as ImageIcon, Loader2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useDropzone } from '@uploadthing/react'
+import { UserTooltip } from '@/components/users'
 
 const PostEditor = () => {
 	const { user } = useSession()
@@ -29,6 +30,11 @@ const PostEditor = () => {
 		reset: resetMediaUpload,
 		uploadProgress
 	} = useMediaUpload()
+
+	const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({
+		onDrop: startUpload
+	})
+	const { onClick, ...rootProps } = getRootProps()
 
 	const editor = useEditor({
 		extensions: [
@@ -59,20 +65,34 @@ const PostEditor = () => {
 			}
 		)
 	}
+	
 
 	return (
 		<div className="flex flex-col gap-5 bg-card p-5 shadow-sm">
 			<div className="flex gap-5">
-				<Avatar className="hidden xs:inline">
-					<Link href={`users/${user.userName}`}>
-						<AvatarImage src={user.avatarUrl || fallbackIcon.src} alt={userName} />
-						<AvatarFallback>{displayName[0].toUpperCase()}</AvatarFallback>
+				<UserTooltip
+					user={{
+						...user,
+						followers: [],
+						_count: { followers: 0, posts: 0 },
+						bio: null,
+						createdAt: new Date()
+					}}
+				>
+					<Link href={`/users/${user.userName}`}>
+						<Avatar url={user.avatarUrl} />
 					</Link>
-				</Avatar>
-				<EditorContent
-					editor={editor}
-					className="max-h-80 w-full overflow-y-auto rounded-md bg-accent px-5 py-3"
-				/>
+				</UserTooltip>
+				<div {...rootProps} className="flex-1">
+					<EditorContent
+						editor={editor}
+						className={cn(
+							'max-h-80 w-full overflow-y-auto rounded-md bg-accent px-5 py-3',
+							isDragActive && 'outline-dashed outline-1 outline-primary'
+						)}
+					/>
+					<Input {...getInputProps()} />
+				</div>
 			</div>
 			{!!attachments.length && (
 				<AttachmentsPreviews attachments={attachments} removeAttachment={removeAttachment} />
