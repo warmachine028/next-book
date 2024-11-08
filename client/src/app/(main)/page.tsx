@@ -1,4 +1,5 @@
 import { ForYouFeed, Menubar, TrendsSidebar, PostEditor, FollowingFeed } from '@/components'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 const Home = () => {
@@ -9,7 +10,7 @@ const Home = () => {
 				<div className="w-full min-w-0 space-y-5">
 					<PostEditor />
 					<Tabs defaultValue="for-you">
-						<TabsList className="mb-3 h-12 w-full gap-2 rounded-md bg-card shadow-sm">
+						<TabsList className="mb-2 h-12 w-full gap-2 rounded-md bg-card shadow-sm">
 							<TabsTrigger
 								className="h-full flex-1 rounded-md ring-primary hover:bg-background data-[state=active]:font-bold"
 								value="for-you"
@@ -23,12 +24,14 @@ const Home = () => {
 								Following
 							</TabsTrigger>
 						</TabsList>
-						<TabsContent value="for-you">
-							<ForYouFeed />
-						</TabsContent>
-						<TabsContent value="following">
-							<FollowingFeed />
-						</TabsContent>
+						<ScrollArea className="h-[calc(100vh-390px)] min-w-full min-h-96">
+							<TabsContent value="for-you">
+								<ForYouFeed />
+							</TabsContent>
+							<TabsContent value="following">
+								<FollowingFeed />
+							</TabsContent>
+						</ScrollArea>
 					</Tabs>
 				</div>
 				<TrendsSidebar />

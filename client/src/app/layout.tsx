@@ -24,17 +24,19 @@ export const metadata: Metadata = {
 		template: '%s | Next Book',
 		default: 'Next Book'
 	},
-	description: 'A full-stack social media web app built on NextJS 15 for the Next Fans'
+	description: 'A full-stack social media web app built on NextJS 15 for the Next Fans',
+	icons: {
+		icon: [{ url: '/favicon.svg' }, new URL('/favicon.svg', 'https://nextbook.vercel.app')]
+	}
 }
 
-// TODO: shadcn-ui/toast
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 	return (
 		//? FIX: https://github.com/shadcn-ui/ui/issues/1906#issuecomment-1807426212
 		<html lang="en" suppressHydrationWarning>
 			<head />
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
-				<NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)}/>
+				<NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)} />
 				<ReactQueryprovider>
 					<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 						{children}

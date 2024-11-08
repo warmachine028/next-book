@@ -17,7 +17,7 @@ const Post = ({ post }: PostProps) => {
 	const { user } = post
 	const { user: currentUser } = useSession()
 	return (
-		<article className="group/post space-y-3 bg-card p-5 shadow-sm rounded-md">
+		<article className="group/post space-y-3 rounded-md bg-card p-5 shadow-sm">
 			<div className="flex justify-between gap-3">
 				<div className="flex flex-wrap gap-3">
 					<UserTooltip user={user}>
@@ -59,7 +59,7 @@ interface MediaPreviewsProps {
 
 const MediaPreviews = ({ attachments }: MediaPreviewsProps) => {
 	return (
-		<div className={cn('flex flex-col flex-wrap gap-3', attachments.length > 1 && 'sm:grid sm:grid-cols-2')}>
+		<div className={cn('space-y-4', attachments.length < 2 ? 'columns-1' : 'md:columns-2')}>
 			{attachments.map((media) => (
 				<MediaPreview media={media} key={media.id} />
 			))}
@@ -72,25 +72,17 @@ interface MediaPreviewProps {
 }
 
 const MediaPreview = ({ media }: MediaPreviewProps) => {
-	if (media.type === 'IMAGE') {
-		return (
-			<Image
-				src={media.url}
-				alt="attachment"
-				width={500}
-				height={500}
-				className="mx-auto flex size-fit w-full rounded-md"
-			/>
-		)
-	}
-	if (media.type === 'VIDEO') {
-		return (
+	const mediaObject = {
+		IMAGE: (
+			<Image src={media.url} alt="attachment" width={500} height={500} className="size-fit w-full rounded-md" />
+		),
+		VIDEO: (
 			<div className="aspect-video w-full rounded-md bg-muted">
 				<video src={media.url} controls className="mx-auto size-fit max-w-[30rem] rounded-xl" />
 			</div>
 		)
 	}
-	return <p className="text-destructive">Unsupported media type</p>
+	return mediaObject[media.type] || <p className="text-destructive">Unsupported media type</p>
 }
 
 export default Post

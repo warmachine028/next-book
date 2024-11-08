@@ -1,6 +1,7 @@
 export * from './posts'
 export { default as Avatar } from './Avatar'
 export { default as Navbar } from './Navbar'
+export { default as Footer } from './Footer'
 export { default as Linkify } from './Linkify'
 export { default as Menubar } from './Menubar'
 export { Button as UserButton } from './users'

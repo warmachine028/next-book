@@ -1,5 +1,5 @@
 import { validateRequest } from '@/auth'
-import { Menubar, Navbar } from '@/components'
+import { Menubar, Navbar, Footer } from '@/components'
 import { SessionProvider } from '@/providers'
 import { redirect } from 'next/navigation'
 
@@ -13,6 +13,7 @@ const MainLayout = async ({ children }: Readonly<{ children: React.ReactNode }>)
 			<Navbar />
 			{children}
 			<Menubar className="sticky bottom-0 flex w-full justify-center gap-5 border-t bg-card p-3 sm:hidden" />
+			<Footer />
 		</SessionProvider>
 	)
 }

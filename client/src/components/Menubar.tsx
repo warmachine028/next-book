@@ -31,7 +31,7 @@ const Menubar = ({ className }: MenubarProps) => {
 			<Button className="flex items-center justify-start gap-3" variant="ghost" title="Bookmarks" asChild>
 				<Link href="/bookmarks">
 					<Bookmark />
-					<span className="hidden lg:inline">Bookmarks</span>
+					<span className="hidden lg:inline">Saved</span>
 				</Link>
 			</Button>
 		</aside>
