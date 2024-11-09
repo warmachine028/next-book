@@ -43,7 +43,7 @@ export const GET = async (req: NextRequest, { params }: { params: Promise<{ user
 	}
 }
 
-export const POST = async (req: NextRequest, { params }: { params: Promise<{ userId: string }> }) => {
+export const POST = async (_: NextRequest, { params }: { params: Promise<{ userId: string }> }) => {
 	try {
 		const { userId } = await params
 		const { user: currentUser } = await validateRequest()

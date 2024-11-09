@@ -14,7 +14,7 @@ export const GET = async (req: NextRequest) => {
 		}
 		const posts = await prisma.post.findMany({
 			where: {
-				user: {
+				author: {
 					followers: { some: { followerId: user.id } }
 				}
 			},
