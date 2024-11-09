@@ -25,16 +25,15 @@ export const metadata: Metadata = {
 		default: 'Next Book'
 	},
 	description: 'A full-stack social media web app built on NextJS 15 for the Next Fans',
-	icons: {
-		icon: [{ url: '/favicon.svg' }, new URL('/favicon.svg', 'https://nextbook.vercel.app')]
-	}
 }
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 	return (
 		//? FIX: https://github.com/shadcn-ui/ui/issues/1906#issuecomment-1807426212
 		<html lang="en" suppressHydrationWarning>
-			<head />
+			<head>
+				<link rel="icon" href="/favicon.svg" sizes='any' />
+			</head>
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
 				<NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)} />
 				<ReactQueryprovider>

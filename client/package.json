@@ -1,4 +1,9 @@
 {
+    "author": {
+        "email": "pritamkundu771@gmail.com",
+        "name": "Pritam Kundu",
+        "url": "https://github.com/warmachine028"
+    },
     "dependencies": {
         "@hookform/resolvers": "^3.9.1",
         "@lucia-auth/adapter-prisma": "^4.0.1",
@@ -33,7 +38,7 @@
         "ky": "^1.7.2",
         "lucia": "^3.2.2",
         "lucide-react": "^0.456.0",
-        "next": "15.0.3",
+        "next": "15.0.4-canary.3",
         "next-themes": "^0.4.3",
         "react": "19.0.0-rc-5c56b873-20241107",
         "react-cropper": "^2.3.3",
@@ -72,30 +77,32 @@
         "tailwindcss": "^3.4.14",
         "typescript": "^5.6.3"
     },
-    "name": "next-book",
     "license": "MIT",
-    "version": "0.1.0",
-    "private": true,
-    "type": "module",
-    "author": {
-        "name": "Pritam Kundu",
-        "email": "pritamkundu771@gmail.com",
-        "url": "https://github.com/warmachine028"
+	"name": "next-book",
+	"description": "A full-stack social media web app built on NextJS 15 for the Next Fans",
+	"overrides": {
+		"@types/react": "npm:types-react@19.0.0-rc.1",
+        "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
     },
+    "tags": [
+        "nextjs",
+        "nextjs15",
+        "socialmedia",
+        "fullstack"
+    ],
+    "private": true,
     "scripts": {
-        "dev": "next dev --turbopack",
         "build": "next build",
-        "start": "next start",
+        "dev": "next dev --turbopack",
         "lint": "next lint",
         "postinstall": "prisma generate",
+        "prisma:deploy": "prisma migrate deploy",
         "prisma:generate": "prisma generate",
+        "prisma:migrate": "prisma migrate dev --name init",
         "prisma:push": "prisma db push",
         "prisma:studio": "prisma studio",
-        "prisma:migrate": "prisma migrate dev --name init",
-        "prisma:deploy": "prisma migrate deploy"
+        "start": "next start"
     },
-    "overrides": {
-        "@types/react": "npm:types-react@19.0.0-rc.1",
-        "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-    }
+	"type": "module",
+	"version": "0.1.0"
 }

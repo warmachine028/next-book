@@ -109,8 +109,9 @@ const SearchInput = ({
 					</div>
 				</div>
 				<Button
-					className="absolute right-3 top-1/2 -translate-y-1/2 transform text-muted-foreground"
+					className="absolute right-0 top-1/2 -translate-y-1/2 transform text-muted-foreground hover:bg-transparent"
 					type="submit"
+					title="Search"
 					variant="ghost"
 				>
 					<SearchIcon className="size-5" />
@@ -130,7 +131,7 @@ const SearchDialog = ({ isOpen, setIsOpen, onSearch: handleSearch }: SearchDialo
 	return (
 		<Dialog open={isOpen} onOpenChange={setIsOpen}>
 			<DialogTrigger asChild>
-				<Button variant="ghost" size="icon" className="text-muted-foreground rounded-full">
+				<Button variant="ghost" size="icon" className="rounded-full text-muted-foreground">
 					<SearchIcon className="size-5" />
 				</Button>
 			</DialogTrigger>

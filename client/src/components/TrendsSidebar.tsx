@@ -36,7 +36,7 @@ const getTrendingTopics = unstable_cache(
 const TrendingTopics = async () => {
 	const trendingTopics = await getTrendingTopics()
 	return (
-		<div className="space-y-5 bg-card p-5 shadow-sm rounded-md">
+		<div className="space-y-5 rounded-md bg-card p-5 shadow-sm">
 			<div className="text-xl font-bold">Trending Topics</div>
 			{trendingTopics.map(({ hashtag, count }) => {
 				const title = hashtag.split('#')[1]
@@ -48,7 +48,7 @@ const TrendingTopics = async () => {
 						<p className="line-clamp-1 break-all text-sm text-muted-foreground">
 							{formatNumber(count)} {count === 1 ? 'post' : 'posts'}
 						</p>
-						<div className="flex items-center justify-between gap-3" key={hashtag}></div>
+						<div className="flex items-center justify-between gap-3" key={hashtag} />
 					</Link>
 				)
 			})}
@@ -65,20 +65,14 @@ const WhoToFollow = async () => {
 
 	const usersToFollow = await prisma.user.findMany({
 		where: {
-			NOT: {
-				id: user.id
-			},
-			followers: {
-				none: {
-					followerId: user.id
-				}
-			}
+			NOT: { id: user.id },
+			followers: { none: { followerId: user.id } }
 		},
 		select: getUserDataSelect(user.id),
 		take: 5
 	})
 	return (
-		<div className="space-y-5 bg-card p-5 shadow-sm rounded-md">
+		<div className="space-y-5 rounded-md bg-card p-5 shadow-sm">
 			<div className="text-xl font-bold">Who to Follow</div>
 			{usersToFollow.map((user) => (
 				<div className="flex items-center justify-between gap-3" key={user.id}>

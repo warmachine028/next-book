@@ -1,5 +1,5 @@
 import { AlertButton, ToastButton } from '@/components'
-import { GitHubLogoIcon } from '@radix-ui/react-icons'
+import { IconBrandGithub } from '@tabler/icons-react'
 import { Home } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -62,7 +62,7 @@ const Vercel = () => {
 						rel="noopener noreferrer"
 					>
 						Go to Home
-						<Home size={16} />
+						<Home className="size-5" />
 					</Link>
 					<Link
 						className="col-span-2 flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent bg-foreground px-4 text-sm font-medium text-background transition-colors hover:opacity-70 sm:col-span-1 sm:h-12 sm:px-5 sm:text-base"
@@ -70,7 +70,7 @@ const Vercel = () => {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<GitHubLogoIcon className="size-5" />
+						<IconBrandGithub className="size-5" />
 						Repository
 					</Link>
 				</div>

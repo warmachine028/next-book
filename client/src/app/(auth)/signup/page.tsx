@@ -1,5 +1,5 @@
-import hero from '@/assets/signup-image.jpg'
 import { Metadata } from 'next'
+import hero from '@/assets/signup-image.jpg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { SignUpForm } from '@/components'

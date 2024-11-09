@@ -178,4 +178,6 @@ const AvatarInput = ({ src, onImageCropped }: AvatarInputProps) => {
 	)
 }
 
+EditProfileDialog.displayName = 'EditProfileDialog'
+
 export default EditProfileDialog
