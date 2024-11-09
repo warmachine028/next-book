@@ -34,12 +34,31 @@ export interface FollowerInfo {
 	followers: number
 	isFollowedByUser: boolean
 }
+
+export interface LikeInfo {
+	likes: number
+	isLikedByUser: boolean
+}
+
 export const getPostDataInclude = (userId: string) => {
 	return {
 		author: {
 			select: getUserDataSelect(userId)
 		},
-		attachments: true
+		attachments: true,
+		likes: {
+			where: {
+				userId: userId
+			},
+			select: {
+				userId: true
+			}
+		},
+		_count: {
+			select: {
+				likes: true
+			}
+		}
 	} satisfies Prisma.PostInclude
 }
 
