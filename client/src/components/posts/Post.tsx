@@ -1,4 +1,5 @@
 'use client'
+
 import Link from 'next/link'
 import { PostData } from '@/types'
 import { cn, formatRelativeDate } from '@/lib/utils'
@@ -14,29 +15,29 @@ interface PostProps {
 }
 
 const Post = ({ post }: PostProps) => {
-	const { user } = post
+	const { author } = post
 	const { user: currentUser } = useSession()
 	return (
 		<article className="group/post space-y-3 rounded-md bg-card p-5 shadow-sm">
 			<div className="flex justify-between gap-3">
 				<div className="flex flex-wrap gap-3">
-					<UserTooltip user={user}>
-						<Link href={`/users/${user.userName}`}>
-							<Avatar url={user.avatarUrl} />
+					<UserTooltip user={author}>
+						<Link href={`/users/${author.userName}`}>
+							<Avatar url={author.avatarUrl} />
 						</Link>
 					</UserTooltip>
 					<div>
-						<UserTooltip user={user}>
-							<Link href={`users/${user.userName}`} className="block font-medium hover:underline">
-								{user.displayName}
+						<UserTooltip user={author}>
+							<Link href={`/users/${author.userName}`} className="block font-medium hover:underline">
+								{author.displayName}
 							</Link>
 						</UserTooltip>
-						<Link href={`post/${post.id}`} className="block text-sm text-muted-foreground hover:underline">
+						<Link suppressHydrationWarning href={`/posts/${post.id}`} className="block text-sm text-muted-foreground hover:underline">
 							{formatRelativeDate(post.createdAt)}
 						</Link>
 					</div>
 				</div>
-				{user.id === currentUser.id && (
+				{author.id === currentUser.id && (
 					<PostMoreButton
 						post={post}
 						className={'opacity-0 transition-opacity group-hover/post:opacity-100'}

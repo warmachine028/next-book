@@ -30,6 +30,7 @@ export const useDeletePostMutation = () => {
 				}
 			})
 			toast({
+				variant: 'info',
 				description: 'Post deleted Successfully'
 			})
 			if (pathName === `/posts/${deletedPost.id}`) {

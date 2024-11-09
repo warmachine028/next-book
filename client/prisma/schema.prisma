@@ -59,7 +59,7 @@ model Post {
     id          String  @id @default(cuid())
     content     String
     authorId    String
-    user        User    @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    author      User    @relation(fields: [authorId], references: [id], onDelete: Cascade)
     attachments Media[]
 
     createdAt DateTime @default(now())

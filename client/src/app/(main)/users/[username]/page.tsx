@@ -98,7 +98,6 @@ const Profile = async ({ params }: PageProps) => {
 	if (!currentUser) {
 		return (
 			<p className="text-destructive">
-				{/* */}
 				You&apos;re not authorized to view this page.
 			</p>
 		)

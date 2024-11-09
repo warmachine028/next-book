@@ -36,7 +36,7 @@ export interface FollowerInfo {
 }
 export const getPostDataInclude = (userId: string) => {
 	return {
-		user: {
+		author: {
 			select: getUserDataSelect(userId)
 		},
 		attachments: true
