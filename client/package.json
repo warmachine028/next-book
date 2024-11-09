@@ -30,8 +30,8 @@
         "@tiptap/react": "^2.9.1",
         "@tiptap/starter-kit": "^2.9.1",
         "@uploadthing/react": "7.1.1",
-        "arctic": "^2.0.1",
-        "babel-plugin-react-compiler": "^19.0.0-beta-8a03594-20241020",
+        "arctic": "2.2.2",
+        "babel-plugin-react-compiler": "^19.0.0-beta-63b359f-20241101",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
         "date-fns": "^4.1.0",
@@ -43,7 +43,7 @@
         "react": "19.0.0-rc-5c56b873-20241107",
         "react-cropper": "^2.3.3",
         "react-dom": "19.0.0-rc-5c56b873-20241107",
-        "react-hook-form": "^7.53.1",
+        "react-hook-form": "7.53.2",
         "react-image-file-resizer": "^0.4.8",
         "react-intersection-observer": "^9.13.1",
         "react-linkify-it": "^1.0.8",
@@ -78,10 +78,10 @@
         "typescript": "^5.6.3"
     },
     "license": "MIT",
-	"name": "next-book",
-	"description": "A full-stack social media web app built on NextJS 15 for the Next Fans",
-	"overrides": {
-		"@types/react": "npm:types-react@19.0.0-rc.1",
+    "name": "next-book",
+    "description": "A full-stack social media web app built on NextJS 15 for the Next Fans",
+    "overrides": {
+        "@types/react": "npm:types-react@19.0.0-rc.1",
         "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
     },
     "tags": [
@@ -103,6 +103,6 @@
         "prisma:studio": "prisma studio",
         "start": "next start"
     },
-	"type": "module",
-	"version": "0.1.0"
+    "type": "module",
+    "version": "0.1.0"
 }
