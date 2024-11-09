@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: 'Sign Up' }
 const SignUp = () => {
 	return (
 		<div className="flex max-h-[40rem] w-full overflow-hidden bg-card shadow-2xl ring-secondary sm:h-full sm:ring-1 md:min-w-[64rem]">
-			<div className="w-full space-y-10 overflow-y-auto md:w-1/2 md:p-10">
+			<div className="w-full space-y-10 overflow-y-auto py-5 sm:p-10 md:w-1/2">
 				<div className="space-y-1 text-center">
 					<h1 className="text-3xl font-bold">Join Us Now</h1>
 					<p className="text-muted-foreground">

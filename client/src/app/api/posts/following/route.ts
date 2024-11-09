@@ -15,11 +15,7 @@ export const GET = async (req: NextRequest) => {
 		const posts = await prisma.post.findMany({
 			where: {
 				user: {
-					followers: {
-						some: {
-							followerId: user.id
-						}
-					}
+					followers: { some: { followerId: user.id } }
 				}
 			},
 			orderBy: { createdAt: 'desc' },
@@ -27,8 +23,8 @@ export const GET = async (req: NextRequest) => {
 			cursor: cursor ? { id: cursor } : undefined,
 			include: getPostDataInclude(user.id),
 			cacheStrategy: { ttl: 60 }
-        })
-        const nextCursor = posts.length > pageSize ? posts[pageSize].id : null
+		})
+		const nextCursor = posts.length > pageSize ? posts[pageSize].id : null
 		const data: PostsPage = { posts: posts.slice(0, pageSize), nextCursor }
 
 		return Response.json(data)
