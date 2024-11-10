@@ -1,5 +1,7 @@
 export { default as useSession } from './useSession'
 export { default as useFollowerInfo } from './useFollowerInfo'
 export { default as useToast } from './useToast'
+export { default as useDeletePostMutation } from './useDeletePostMutation'
+export { default as useCreatePostMutation } from './useCreatePostMutation'
 export { useUploadThing } from '@/lib/uploadthing'
 export { default as useMediaUpload } from './useMediaUpload'

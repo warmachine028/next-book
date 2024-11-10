@@ -5,10 +5,7 @@ import { prisma } from '@/lib'
 import { createPostSchema } from '@/lib/validation'
 import { getPostDataInclude } from '@/types'
 
-export const createPost = async (input: {
-	content: string
-	mediaIds: string[]
-}) => {
+export const createPost = async (input: { content: string; mediaIds: string[] }) => {
 	const { user } = await validateRequest()
 	if (!user) {
 		throw new Error('Unauthorized: You are not logged in')

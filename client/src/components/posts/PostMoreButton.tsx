@@ -4,10 +4,10 @@ import { PostData } from '@/types'
 import { useState } from 'react'
 import DeletePostDialog from './DeletePostDialog'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 import { Button } from '../ui/button'
 import { CircleCheckBig, Info, MoreHorizontal, Trash2, TriangleAlert } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 
 interface PostMoreButtonProps {
 	post: PostData

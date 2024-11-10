@@ -3,25 +3,23 @@
 import './styles.css'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { useSession, useMediaUpload } from '@/hooks'
-import { Avatar } from '@/components'
+import PlaceHolder from '@tiptap/extension-placeholder'
+import Link from 'next/link'
+import Image from 'next/image'
+import { useCreatePostMutation, useSession, useMediaUpload } from '@/hooks'
 import type { Attachment } from '@/hooks/useMediaUpload'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import LoadingButton from '@/components/LoadingButton'
-import PlaceHolder from '@tiptap/extension-placeholder'
-import Link from 'next/link'
-import { useSubmitPostMutation } from './mutations'
+import { UserTooltip } from '@/components/users'
+import { LoadingButton, Avatar } from '@/components'
 import { ClipboardEvent, useRef } from 'react'
-import Image from 'next/image'
 import { ImageIcon, Loader2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useDropzone } from '@uploadthing/react'
-import { UserTooltip } from '@/components/users'
 
 const PostEditor = () => {
 	const { user } = useSession()
-	const mutation = useSubmitPostMutation()
+	const mutation = useCreatePostMutation()
 	const {
 		attachments,
 		isUploading,
@@ -72,7 +70,7 @@ const PostEditor = () => {
 	}
 
 	return (
-		<div className="flex flex-col gap-5 bg-card p-5 shadow-sm rounded-md">
+		<div className="flex flex-col gap-5 rounded-md bg-card p-5 shadow-sm">
 			<div className="flex gap-5">
 				<UserTooltip
 					user={{

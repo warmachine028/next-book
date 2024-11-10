@@ -1,10 +1,10 @@
-import { PostData, PostsPage } from '@/types'
+import { PostsPage } from '@/types'
 import { useToast } from '@/hooks/useToast'
 import { InfiniteData, QueryFilters, useMutation, useQueryClient } from '@tanstack/react-query'
 import { usePathname, useRouter } from 'next/navigation'
-import { deletePost } from './actions'
+import { deletePost } from '@/components/posts/actions'
 
-export const useDeletePostMutation = () => {
+const useDeletePostMutation = () => {
 	const { toast } = useToast()
 	const queryClient = useQueryClient()
 
@@ -47,3 +47,5 @@ export const useDeletePostMutation = () => {
 	})
 	return mutation
 }
+
+export default useDeletePostMutation

@@ -1,7 +1,7 @@
-"use client"
+'use client'
 
 import { PostData } from '@/types'
-import { useDeletePostMutation } from './mutations'
+import { useDeletePostMutation } from '@/hooks'
 import { Dialog, DialogHeader, DialogContent, DialogTitle, DialogDescription, DialogFooter } from '../ui/dialog'
 import LoadingButton from '../LoadingButton'
 import { Button } from '../ui/button'
@@ -27,11 +27,19 @@ const DeletePostDialog = ({ post, open, onClose }: DeletePostDialogProps) => {
 					<DialogDescription>
 						Are you sure you want to delete this post? This action can't be undone.
 					</DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                    <LoadingButton variant="destructive" onClick={() => mutation.mutate(post.id, {onSuccess: onClose})} loading={mutation.isPending}>Delete</LoadingButton>
-                    <Button variant="outline" onClick={onClose} disabled={mutation.isPending}>Cancel</Button>
-                </DialogFooter>
+				</DialogHeader>
+				<DialogFooter>
+					<LoadingButton
+						variant="destructive"
+						onClick={() => mutation.mutate(post.id, { onSuccess: onClose })}
+						loading={mutation.isPending}
+					>
+						Delete
+					</LoadingButton>
+					<Button variant="outline" onClick={onClose} disabled={mutation.isPending}>
+						Cancel
+					</Button>
+				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	)
