@@ -1,3 +1,5 @@
+'use client'
+
 import { PostData } from '@/types'
 import { useState } from 'react'
 import DeletePostDialog from './DeletePostDialog'
@@ -82,4 +84,5 @@ const PostMoreButton = ({ post, className }: PostMoreButtonProps) => {
 	)
 }
 
+PostMoreButton.displayName = 'PostMoreButton'
 export default PostMoreButton

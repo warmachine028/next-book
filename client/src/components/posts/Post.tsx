@@ -1,16 +1,14 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { PostData } from '@/types'
 import { cn, formatRelativeDate } from '@/lib/utils'
 import { useSession } from '@/hooks'
-import PostMoreButton from './PostMoreButton'
 import { Avatar, Linkify } from '@/components'
 import { UserTooltip } from '../users'
 import { Media } from '@prisma/client'
-import Image from 'next/image'
-import LikeButton from './LikeButton'
-import BookmarkButton from './BookmarkButton'
+import { LikeButton, BookmarkButton, PostMoreButton } from '@/components/posts'
 
 interface PostProps {
 	post: PostData
@@ -55,7 +53,7 @@ const Post = ({ post }: PostProps) => {
 			</Linkify>
 			{!!post.attachments.length && <MediaPreviews attachments={post.attachments} />}
 			<hr />
-			<div className="flex items-center gap-3 justify-between">
+			<div className="flex items-center justify-between gap-3">
 				<LikeButton
 					postId={post.id}
 					initialState={{
