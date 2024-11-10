@@ -19,20 +19,22 @@ const FollowButton = ({ userId, initialState }: FollowButtonProps) => {
 
 	const { mutate } = useMutation({
 		mutationFn: () =>
-			data.isFollowedByUser 
-				? kyInstance.delete(`/api/users/${userId}/followers`)
-				: kyInstance.post(`/api/users/${userId}/followers`),
+			data.isFollowedByUser ?
+				kyInstance.delete(`/api/users/${userId}/followers`)
+			:	kyInstance.post(`/api/users/${userId}/followers`),
 		onMutate: async () => {
 			await queryClient.cancelQueries({ queryKey })
 
 			const previousState = queryClient.getQueryData<FollowerInfo>(queryKey)
 			queryClient.setQueryData<FollowerInfo>(queryKey, () => ({
-				followers: (previousState?.followers || 0) + (previousState?.isFollowedByUser ? -1 : +1),
+				followers:
+					(previousState?.followers || 0) + //
+					(previousState?.isFollowedByUser ? -1 : +1),
 				isFollowedByUser: !previousState?.isFollowedByUser
 			}))
 			return { previousState }
 		},
-		onError: (error, variables, context) => {
+		onError: (error, _, context) => {
 			queryClient.setQueryData(queryKey, context?.previousState)
 			console.error(error)
 			toast({

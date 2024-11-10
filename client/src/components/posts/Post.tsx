@@ -9,6 +9,7 @@ import { Avatar, Linkify } from '@/components'
 import { UserTooltip } from '../users'
 import { Media } from '@prisma/client'
 import Image from 'next/image'
+import LikeButton from './LikeButton'
 
 interface PostProps {
 	post: PostData
@@ -48,6 +49,14 @@ const Post = ({ post }: PostProps) => {
 				<div className="whitespace-pre-line break-words">{post.content}</div>
 			</Linkify>
 			{!!post.attachments.length && <MediaPreviews attachments={post.attachments} />}
+			<hr />
+			<LikeButton
+				postId={post.id}
+				initialState={{
+					likes: post._count.likes,
+					isLikedByUser: post.likes.some((like) => like.userId === currentUser.id)
+				}}
+			/>
 		</article>
 	)
 }
