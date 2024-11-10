@@ -54,12 +54,24 @@ export const getPostDataInclude = (userId: string) => {
 				userId: true
 			}
 		},
+		bookmarks: {
+			where: {
+				userId: userId
+			},
+			select: {
+				userId: true
+			}
+		},
 		_count: {
 			select: {
 				likes: true
 			}
 		}
 	} satisfies Prisma.PostInclude
+}
+
+export interface BookmarkInfo {
+	isBookmarkedByUser: boolean
 }
 
 export type PostData = Prisma.PostGetPayload<{ include: ReturnType<typeof getPostDataInclude> }>

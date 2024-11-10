@@ -10,6 +10,7 @@ import { UserTooltip } from '../users'
 import { Media } from '@prisma/client'
 import Image from 'next/image'
 import LikeButton from './LikeButton'
+import BookmarkButton from './BookmarkButton'
 
 interface PostProps {
 	post: PostData
@@ -33,7 +34,11 @@ const Post = ({ post }: PostProps) => {
 								{author.displayName}
 							</Link>
 						</UserTooltip>
-						<Link suppressHydrationWarning href={`/posts/${post.id}`} className="block text-sm text-muted-foreground hover:underline">
+						<Link
+							suppressHydrationWarning
+							href={`/posts/${post.id}`}
+							className="block text-sm text-muted-foreground hover:underline"
+						>
 							{formatRelativeDate(post.createdAt)}
 						</Link>
 					</div>
@@ -50,13 +55,21 @@ const Post = ({ post }: PostProps) => {
 			</Linkify>
 			{!!post.attachments.length && <MediaPreviews attachments={post.attachments} />}
 			<hr />
-			<LikeButton
-				postId={post.id}
-				initialState={{
-					likes: post._count.likes,
-					isLikedByUser: post.likes.some((like) => like.userId === currentUser.id)
-				}}
-			/>
+			<div className="flex items-center gap-3 justify-between">
+				<LikeButton
+					postId={post.id}
+					initialState={{
+						likes: post._count.likes,
+						isLikedByUser: post.likes.some((like) => like.userId === currentUser.id)
+					}}
+				/>
+				<BookmarkButton
+					postId={post.id}
+					initialState={{
+						isBookmarkedByUser: post.bookmarks.some((bookmark) => bookmark.userId === currentUser.id)
+					}}
+				/>
+			</div>
 		</article>
 	)
 }
