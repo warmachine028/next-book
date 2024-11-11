@@ -64,7 +64,8 @@ const Post = ({ post }: PostProps) => {
 				<BookmarkButton
 					postId={post.id}
 					initialState={{
-						isBookmarkedByUser: post.bookmarks.some((bookmark) => bookmark.userId === currentUser.id)
+						isBookmarkedByUser:
+							post.bookmarks.some((bookmark) => bookmark.userId === currentUser.id)
 					}}
 				/>
 			</div>
@@ -80,7 +81,7 @@ interface MediaPreviewsProps {
 
 const MediaPreviews = ({ attachments }: MediaPreviewsProps) => {
 	return (
-		<div className={cn('space-y-4', attachments.length < 2 ? 'columns-1' : 'md:columns-2')}>
+		<div className={cn('space-y-4', attachments.length < 2 ? 'columns-1' : 'xl:columns-2')}>
 			{attachments.map((media) => (
 				<MediaPreview media={media} key={media.id} />
 			))}

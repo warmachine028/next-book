@@ -15,8 +15,16 @@ export { default as FollowerCount } from './FollowerCount'
 export { default as PasswordInput } from './PasswordInput'
 export { default as LoadingButton } from './LoadingButton'
 export { default as TrendsSidebar } from './TrendsSidebar'
-export { LogIn as LogInForm, SignUp as SignUpForm } from './forms'
+export {
+    LogIn as LogInForm,
+    SignUp as SignUpForm
+} from './forms'
 export { default as InfiniteScrollContainer } from './InfiniteScrollContainer'
-export { ForYou as ForYouFeed, Following as FollowingFeed, UserPosts as UserPostsFeed } from './feeds'
+export {
+	ForYou as ForYouFeed,
+	Following as FollowingFeed,
+	UserPosts as UserPostsFeed,
+	Bookmarks as BookmarksFeed
+} from './feeds'
 export { default as EditProfileDialog } from './EditProfileDialog'
 export { default as CropImageDialog } from './CropImageDialog'
