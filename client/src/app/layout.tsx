@@ -31,9 +31,6 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 	return (
 		//? FIX: https://github.com/shadcn-ui/ui/issues/1906#issuecomment-1807426212
 		<html lang="en" suppressHydrationWarning>
-			<head>
-				<link rel="icon" href="/favicon.svg" sizes='any' />
-			</head>
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
 				<NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)} />
 				<ReactQueryprovider>

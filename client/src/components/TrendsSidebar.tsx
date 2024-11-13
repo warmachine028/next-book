@@ -28,9 +28,7 @@ const getTrendingTopics = unstable_cache(
 		}))
 	},
 	['trending_topics'],
-	{
-		revalidate: 3 * 60 * 60 // 3 hrs
-	}
+	{ revalidate: 60 * 60 * 3 } // 3 hrs
 )
 
 const TrendingTopics = async () => {

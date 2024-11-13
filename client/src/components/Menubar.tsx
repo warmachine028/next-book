@@ -12,7 +12,6 @@ interface MenubarProps {
 
 const Menubar = ({ className }: MenubarProps) => {
 	const pathname = usePathname()
-	const notificationCount = 100
 	return (
 		<aside className={cn('text-primary', className)}>
 			<Button
@@ -30,15 +29,17 @@ const Menubar = ({ className }: MenubarProps) => {
 				</Link>
 			</Button>
 			<Button
-				className="relative flex items-center justify-start gap-3 ring-primary"
+				className="flex items-center justify-start gap-3 ring-primary"
 				variant="ghost"
 				title="Notifications"
 				asChild
 			>
 				<Link href="/notifications">
-					<BellRing />
+					<div className="relative">
+						<BellRing />
+						<div className="absolute -right-1 -top-1 flex h-2.5 w-2.5 items-center justify-center rounded-full bg-destructive text-xs" />
+					</div>
 					<span className="hidden lg:inline">Notifications</span>
-					<div className="absolute right-2.5 top-1 flex h-2.5 w-2.5 items-center justify-center rounded-full bg-destructive text-xs" />
 				</Link>
 			</Button>
 			<Button
