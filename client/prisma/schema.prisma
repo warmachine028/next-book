@@ -33,6 +33,7 @@ model User {
     updatedAt    DateTime   @updatedAt
     likes        Like[]
     bookmarks    Bookmark[]
+    comments     Comment[]
 
     @@map("users")
 }
@@ -41,7 +42,8 @@ model Session {
     id        String   @id
     userId    String
     expiresAt DateTime
-    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@map("sessions")
 }
@@ -49,8 +51,9 @@ model Session {
 model Follow {
     followerId  String
     followingId String
-    follower    User   @relation("Following", fields: [followerId], references: [id], onDelete: Cascade)
-    following   User   @relation("Followers", fields: [followingId], references: [id], onDelete: Cascade)
+
+    follower  User @relation("Following", fields: [followerId], references: [id], onDelete: Cascade)
+    following User @relation("Followers", fields: [followingId], references: [id], onDelete: Cascade)
 
     @@id(name: "followId", [followerId, followingId])
     @@unique([followerId, followingId])
@@ -61,10 +64,12 @@ model Post {
     id          String     @id @default(cuid())
     content     String
     authorId    String
-    author      User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
     attachments Media[]
     likes       Like[]
     bookmarks   Bookmark[]
+    comments    Comment[]
+
+    author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -73,12 +78,14 @@ model Post {
 }
 
 model Media {
-    id        String    @id @default(cuid())
-    postId    String?
-    url       String
-    post      Post?     @relation(fields: [postId], references: [id], onDelete: SetNull)
-    type      MediaType
-    createdAt DateTime  @default(now())
+    id     String    @id @default(cuid())
+    postId String?
+    url    String
+    type   MediaType
+
+    post Post? @relation(fields: [postId], references: [id], onDelete: SetNull)
+
+    createdAt DateTime @default(now())
 
     @@map("post_media")
 }
@@ -86,6 +93,20 @@ model Media {
 enum MediaType {
     IMAGE
     VIDEO
+}
+
+model Comment {
+    id       String @id @default(cuid())
+    content  String
+    authorId String
+    postId   String
+
+    author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+
+    @@map("comments")
 }
 
 model Like {
@@ -101,8 +122,7 @@ model Like {
 }
 
 model Bookmark {
-    id String @id @default(cuid())
-
+    id     String @id @default(cuid())
     userId String
     postId String
 

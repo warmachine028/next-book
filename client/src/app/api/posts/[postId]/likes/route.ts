@@ -3,7 +3,7 @@ import { prisma } from '@/lib'
 import { LikeInfo } from '@/types'
 import { NextRequest } from 'next/server'
 
-export const GET = async (req: NextRequest, { params }: { params: Promise<{ postId: string }> }) => {
+export const GET = async (_: NextRequest, { params }: { params: Promise<{ postId: string }> }) => {
 	try {
 		const { postId } = await params
 		const { user: currentUser } = await validateRequest()
@@ -45,7 +45,7 @@ export const GET = async (req: NextRequest, { params }: { params: Promise<{ post
 	}
 }
 
-export const POST = async (req: NextRequest, { params }: { params: Promise<{ postId: string }> }) => {
+export const POST = async (_: NextRequest, { params }: { params: Promise<{ postId: string }> }) => {
 	try {
 		const { postId } = await params
 		const { user: currentUser } = await validateRequest()
@@ -74,7 +74,7 @@ export const POST = async (req: NextRequest, { params }: { params: Promise<{ pos
 	}
 }
 
-export const DELETE = async (req: NextRequest, { params }: { params: Promise<{ postId: string }> }) => {
+export const DELETE = async (_: NextRequest, { params }: { params: Promise<{ postId: string }> }) => {
 	try {
 		const { postId } = await params
 		const { user: currentUser } = await validateRequest()

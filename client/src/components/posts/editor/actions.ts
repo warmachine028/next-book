@@ -11,7 +11,7 @@ export const createPost = async (input: { content: string; mediaIds: string[] })
 		throw new Error('Unauthorized: You are not logged in')
 	}
 	const { content, mediaIds } = createPostSchema.parse(input)
-	const post = await prisma.post.create({
+	return prisma.post.create({
 		data: {
 			content,
 			authorId: user.id,
@@ -21,5 +21,4 @@ export const createPost = async (input: { content: string; mediaIds: string[] })
 		},
 		include: getPostDataInclude(user.id)
 	})
-	return post
 }
