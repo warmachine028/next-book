@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useUploadThing, useToast } from '@/hooks'
+import { useUploadThing, useToast } from '.'
 
 export interface Attachment {
 	file: File
@@ -9,7 +9,6 @@ export interface Attachment {
 
 const useMediaUpload = () => {
 	const { toast } = useToast()
-
 	const [attachments, setAttachments] = useState<Attachment[]>([])
 	const [uploadProgress, setUploadProgress] = useState<number>()
 

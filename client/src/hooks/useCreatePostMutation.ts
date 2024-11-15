@@ -1,15 +1,14 @@
-import { useToast } from '@/hooks/useToast'
-import { InfiniteData, QueryFilters, useMutation, useQueryClient } from '@tanstack/react-query'
+import { type InfiniteData, type QueryFilters, useMutation, useQueryClient } from '@tanstack/react-query'
 import { createPost } from '@/components/posts/editor/actions'
-import { PostsPage } from '@/types'
-import { useSession } from '@/hooks'
+import type { PostsPage } from '@/types'
+import { useSession, useToast } from '.'
 
 const useCreatePostMutation = () => {
 	const { toast } = useToast()
-
 	const queryClient = useQueryClient()
 	const { user } = useSession()
-	const mutation = useMutation({
+
+	return useMutation({
 		mutationFn: createPost,
 		onSuccess: async (newPost) => {
 			const queryFilter = {
@@ -56,8 +55,6 @@ const useCreatePostMutation = () => {
 			})
 		}
 	})
-
-	return mutation
 }
 
 export default useCreatePostMutation

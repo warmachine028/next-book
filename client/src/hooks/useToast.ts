@@ -1,5 +1,3 @@
-'use client'
-
 import type { ToastActionElement, ToastProps } from '@/components/ui/toast'
 import { useEffect, useState } from 'react'
 
@@ -186,3 +184,4 @@ function useToast() {
 
 export { useToast, toast }
 export default useToast
+
