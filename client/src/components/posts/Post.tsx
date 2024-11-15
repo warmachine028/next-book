@@ -7,8 +7,10 @@ import { cn, formatRelativeDate } from '@/lib/utils'
 import { useSession } from '@/hooks'
 import { Avatar, Linkify } from '@/components'
 import { UserTooltip } from '../users'
+import { Comments } from '../comments'
 import { Media } from '@prisma/client'
-import { LikeButton, BookmarkButton, PostMoreButton } from '@/components/posts'
+import { LikeButton, BookmarkButton, PostMoreButton, CommentButton } from '.'
+import { useState } from 'react'
 
 interface PostProps {
 	post: PostData
@@ -17,6 +19,8 @@ interface PostProps {
 const Post = ({ post }: PostProps) => {
 	const { author } = post
 	const { user: currentUser } = useSession()
+	const [showComments, setShowComments] = useState(false)
+
 	return (
 		<article className="group/post space-y-3 rounded-md bg-card p-5 shadow-sm">
 			<div className="flex justify-between gap-3">
@@ -54,21 +58,24 @@ const Post = ({ post }: PostProps) => {
 			{!!post.attachments.length && <MediaPreviews attachments={post.attachments} />}
 			<hr />
 			<div className="flex items-center justify-between gap-3">
-				<LikeButton
-					postId={post.id}
-					initialState={{
-						likes: post._count.likes,
-						isLikedByUser: post.likes.some((like) => like.userId === currentUser.id)
-					}}
-				/>
+				<div className="flex items-center">
+					<LikeButton
+						postId={post.id}
+						initialState={{
+							likes: post._count.likes,
+							isLikedByUser: post.likes.some((like) => like.userId === currentUser.id)
+						}}
+					/>
+					<CommentButton post={post} onClick={() => setShowComments(!showComments)} />
+				</div>
 				<BookmarkButton
 					postId={post.id}
 					initialState={{
-						isBookmarkedByUser:
-							post.bookmarks.some((bookmark) => bookmark.userId === currentUser.id)
+						isBookmarkedByUser: post.bookmarks.some((bookmark) => bookmark.userId === currentUser.id)
 					}}
 				/>
 			</div>
+			{showComments && <Comments post={post} />}
 		</article>
 	)
 }

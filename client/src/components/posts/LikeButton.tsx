@@ -62,9 +62,9 @@ const LikeButton = ({ postId, initialState }: LikeButtonProps) => {
 			className="flex items-center gap-2 text-sm font-medium tabular-nums"
 		>
 			<Heart className={cn('size-4', data.isLikedByUser && 'fill-destructive text-destructive')} />
-			<span>
+			<p>
 				{data.likes} <span className="hidden sm:inline">likes</span>
-			</span>
+			</p>
 		</Button>
 	)
 }
