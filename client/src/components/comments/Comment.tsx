@@ -16,8 +16,11 @@ const Comment = ({ comment }: CommentProps) => {
 						<Avatar url={comment.author.avatarUrl} />
 					</Link>
 				</UserTooltip>
-				{comment.content}
+
 			</span>
+			<div className="flex items-center">
+				{comment.content}
+			</div>
 		</div>
 	)
 }
