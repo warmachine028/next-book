@@ -10,12 +10,12 @@ import { useCreatePostMutation, useSession, useMediaUpload } from '@/hooks'
 import type { Attachment } from '@/hooks/useMediaUpload'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { UserTooltip } from '@/components/users'
 import { LoadingButton, Avatar } from '@/components'
 import { ClipboardEvent, useRef } from 'react'
 import { ImageIcon, Loader2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useDropzone } from '@uploadthing/react'
+import { Textarea } from '@/components/ui/textarea'
 
 const PostEditor = () => {
 	const { user } = useSession()
@@ -44,6 +44,7 @@ const PostEditor = () => {
 				placeholder: "What's on your mind?"
 			})
 		],
+
 		immediatelyRender: false
 	})
 	const input = editor?.getText({ blockSeparator: '\n' }) || ''
@@ -71,20 +72,10 @@ const PostEditor = () => {
 
 	return (
 		<div className="flex flex-col gap-5 rounded-md bg-card p-5 shadow-sm">
-			<div className="flex gap-5">
-				<UserTooltip
-					user={{
-						...user,
-						followers: [],
-						_count: { followers: 0, posts: 0 },
-						bio: null,
-						createdAt: new Date()
-					}}
-				>
-					<Link href={`/users/${user.userName}`}>
-						<Avatar url={user.avatarUrl} />
-					</Link>
-				</UserTooltip>
+			<div className="flex items-center gap-2">
+				<Link href={`/users/${user.userName}`} className="hidden sm:inline">
+					<Avatar url={user.avatarUrl} size={38} />
+				</Link>
 				<div {...rootProps} className="flex-1">
 					<EditorContent
 						editor={editor}
