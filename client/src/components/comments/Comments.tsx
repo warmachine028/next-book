@@ -11,7 +11,7 @@ interface CommentProps {
 }
 
 const Comments = ({ post }: CommentProps) => {
-	const { data, fetchNextPage, hasNextPage, isFetching, isSuccess } = useInfiniteQuery({
+	const { data, fetchNextPage, hasNextPage, isFetching, isSuccess, isError } = useInfiniteQuery({
 		queryKey: ['comments', post.id],
 		queryFn: ({ pageParam }) =>
 			kyInstance
@@ -30,7 +30,7 @@ const Comments = ({ post }: CommentProps) => {
 			<Input post={post} />
 			<ScrollArea className="divide-y">
 				{isFetching && (
-					<div className="my-3 flex w-full items-center justify-center gap-2 text-center text-sm">
+					<div className="flex w-full items-center justify-center gap-2 py-3 text-center text-sm">
 						<Loader2 className="animate-spin text-primary" />
 						<span className="text-muted-foreground">Loading comments...</span>
 					</div>
@@ -45,8 +45,14 @@ const Comments = ({ post }: CommentProps) => {
 						Load previous comments
 					</Button>
 				)}
-				{isSuccess && comments.length === 0 && (
-					<p className="text-center text-muted-foreground">No comments yet.</p>
+				{isSuccess &&
+					!comments.length && ( //
+						<p className="my-3 text-center text-muted-foreground">No comments yet.</p>
+					)}
+				{isError && (
+					<p className="text-center font-semibold text-destructive">
+						An error occurred while loading comments.
+					</p>
 				)}
 				{comments.map((comment) => (
 					<Comment key={comment.id} comment={comment} />

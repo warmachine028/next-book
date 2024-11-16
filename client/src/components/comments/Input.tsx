@@ -4,8 +4,7 @@ import { type ChangeEvent, type FormEvent, useState } from 'react'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { Loader2, SendHorizonal } from 'lucide-react'
-import Avatar from '../Avatar'
-import UserTooltip from '../users/Tooltip'
+import { Avatar } from '@/components'
 import Link from 'next/link'
 
 interface InputProps {
@@ -34,7 +33,7 @@ const CommentInput = ({ post }: InputProps) => {
 			<Button type="submit" variant="ghost" size="icon" disabled={!input.trim() || isPending}>
 				{isPending ?
 					<Loader2 className="animate-spin" />
-				:	<SendHorizonal />}
+				:	<SendHorizonal className="text-primary" />}
 			</Button>
 		</form>
 	)

@@ -54,6 +54,7 @@
         "uploadthing": "7.3.0",
         "zod": "3.24.0-canary.20241107T043915"
     },
+    "description": "A full-stack social media web app built on NextJS 15 for the Next Fans",
     "devDependencies": {
         "@eslint/js": "^9.14.0",
         "@prisma/extension-accelerate": "^1.2.1",
@@ -79,17 +80,10 @@
     },
     "license": "MIT",
     "name": "next-book",
-    "description": "A full-stack social media web app built on NextJS 15 for the Next Fans",
     "overrides": {
         "@types/react": "npm:types-react@19.0.0-rc.1",
         "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
     },
-    "tags": [
-        "nextjs",
-        "nextjs15",
-        "socialmedia",
-        "fullstack"
-    ],
     "private": true,
     "scripts": {
         "build": "next build",
@@ -103,6 +97,12 @@
         "prisma:studio": "prisma studio",
         "start": "next start"
     },
+    "tags": [
+        "nextjs",
+        "nextjs15",
+        "socialmedia",
+        "fullstack"
+    ],
     "type": "module",
     "version": "0.1.0"
 }
