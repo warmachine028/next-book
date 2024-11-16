@@ -56,13 +56,12 @@ const BookmarkButton = ({ postId, initialState }: BookmarkButtonProps) => {
 	return (
 		<Button
 			variant="ghost"
-			aria-label={data.isBookmarkedByUser ? 'Unbookmark' : 'Bookmark'}
-			aria-pressed={data.isBookmarkedByUser}
-			aria-atomic
 			onClick={() => mutate()}
 			className="flex items-center gap-2 text-sm font-medium tabular-nums"
 		>
-			<Bookmark className={cn('size-4', data.isBookmarkedByUser && 'fill-primary text-primary')} />
+			{data.isBookmarkedByUser ?
+				<Bookmark fill="currentColor" className="size-4 text-success" />
+			:	<Bookmark className="size-4" />}
 		</Button>
 	)
 }

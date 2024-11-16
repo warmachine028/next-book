@@ -1,21 +1,26 @@
 import { Button } from '@/components/ui/button'
-import { MessageSquare } from 'lucide-react'
+import { MessageSquare, MessageSquareOff } from 'lucide-react'
 import { PostData } from '@/types'
-
+import { cn } from '@/lib/utils'
 interface CommentButtonProps {
 	post: PostData
+	active: boolean
 	onClick: () => void
 }
 
-const CommentButton = ({ post, onClick: handleClick }: CommentButtonProps) => {
+const CommentButton = ({ post, onClick: handleClick, active }: CommentButtonProps) => {
 	return (
 		<Button
 			variant="ghost"
 			aria-label="View comments"
 			onClick={handleClick}
-			className="flex items-center gap-2 text-sm font-medium tabular-nums"
+			className={cn('flex items-center gap-2 text-sm font-medium tabular-nums')}
 		>
-			<MessageSquare className="size-4" />
+			<div className="text-primary">
+				{active ?
+					<MessageSquare fill="currentColor" className="size-4" />
+				:	<MessageSquare className="size-4" />}
+			</div>
 			<p>
 				{post._count.comments} <span className="hidden sm:inline">comments</span>
 			</p>

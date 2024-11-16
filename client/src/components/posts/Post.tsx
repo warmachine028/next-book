@@ -66,7 +66,7 @@ const Post = ({ post }: PostProps) => {
 							isLikedByUser: post.likes.some((like) => like.userId === currentUser.id)
 						}}
 					/>
-					<CommentButton post={post} onClick={() => setShowComments(!showComments)} />
+					<CommentButton post={post} onClick={() => setShowComments(!showComments)} active={showComments} />
 				</div>
 				<BookmarkButton
 					postId={post.id}
