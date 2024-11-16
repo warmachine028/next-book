@@ -39,4 +39,5 @@ const CommentInput = ({ post }: InputProps) => {
 	)
 }
 
+CommentInput.displayName = 'CommentInput'
 export default CommentInput

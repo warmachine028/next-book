@@ -62,4 +62,6 @@ const Comments = ({ post }: CommentProps) => {
 	)
 }
 
+Comments.displayName = 'Comments'
+
 export default Comments

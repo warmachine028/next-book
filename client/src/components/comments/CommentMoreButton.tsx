@@ -1,20 +1,18 @@
-'use client'
-
-import { PostData } from '@/types'
+import { CommentData } from '@/types'
 import { useState } from 'react'
-import { DeletePostDialog } from '.'
+import { DeleteCommentDialog } from '.'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 import { Button } from '../ui/button'
 import { CircleCheckBig, Info, MoreHorizontal, Trash2, TriangleAlert } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-interface PostMoreButtonProps {
-	post: PostData
+interface CommentMoreButtonProps {
+	comment: CommentData
 	className?: string
 }
 
-const PostMoreButton = ({ post, className }: PostMoreButtonProps) => {
+const CommentMoreButton = ({ comment, className }: CommentMoreButtonProps) => {
 	const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 	return (
 		<TooltipProvider>
@@ -79,10 +77,15 @@ const PostMoreButton = ({ post, className }: PostMoreButtonProps) => {
 					</Tooltip>
 				</DropdownMenuContent>
 			</DropdownMenu>
-			<DeletePostDialog post={post} open={showDeleteDialog} onClose={() => setShowDeleteDialog(false)} />
+			<DeleteCommentDialog 
+				comment={comment}
+				open={showDeleteDialog}
+				onClose={() => setShowDeleteDialog(false)}
+			/>
 		</TooltipProvider>
 	)
 }
 
-PostMoreButton.displayName = 'PostMoreButton'
-export default PostMoreButton
+CommentMoreButton.displayName = 'CommentMoreButton'
+
+export default CommentMoreButton
