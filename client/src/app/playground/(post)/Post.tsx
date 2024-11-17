@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
@@ -8,7 +9,6 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { useSession, useToast } from '@/hooks'
 import { Bookmark, Plus, X } from 'lucide-react'
-import Link from 'next/link'
 import { cn, formatRelativeDate } from '@/lib/utils'
 
 import { UserTooltip } from '@/components/users'
@@ -20,7 +20,7 @@ interface Media {
 	url: string
 }
 
-interface PostProps {
+type PostData = {
 	id: string
 	title: string
 	content: string
@@ -30,10 +30,14 @@ interface PostProps {
 	isBookmarked: boolean
 }
 
-const Post = ({ post }: { post: PostProps }) => {
+interface PostProps {
+	post: PostData
+}
+
+const Post = ({ post }: PostProps) => {
+	const { user } = useSession()
 	const [editedPost, setEditedPost] = useState(post)
 	const [isEditing, setIsEditing] = useState(false)
-	const { user } = useSession()
 	const { toast } = useToast()
 
 	const handleEdit = () => {
@@ -68,9 +72,11 @@ const Post = ({ post }: { post: PostProps }) => {
 			})
 		}
 	}
+
 	const handleBookmark = () => {
 		setEditedPost({ ...editedPost, isBookmarked: !editedPost.isBookmarked })
 	}
+
 	const handleLike = () => {
 		setEditedPost({ ...editedPost, isLiked: !editedPost.isLiked })
 	}
@@ -90,7 +96,7 @@ const Post = ({ post }: { post: PostProps }) => {
 
 	return (
 		<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-			<Card className="w-full max-w-md flex-none overflow-hidden rounded-md">
+			<Card className="group/post w-full max-w-md flex-none overflow-hidden rounded-md">
 				<CardHeader className="flex flex-row items-center gap-4">
 					<div className="flex flex-wrap gap-3">
 						<UserTooltip user={author}>
@@ -106,7 +112,7 @@ const Post = ({ post }: { post: PostProps }) => {
 							</UserTooltip>
 							<Link
 								suppressHydrationWarning
-								href={`/posts/${post.id}`}
+								href="/"
 								className="block text-sm text-muted-foreground hover:underline"
 							>
 								{formatRelativeDate(post.createdAt)}
@@ -122,6 +128,7 @@ const Post = ({ post }: { post: PostProps }) => {
 							isEditing={isEditing}
 							handleBookmark={handleBookmark}
 							isBookmarked={editedPost.isBookmarked}
+							className="opacity-0 transition-opacity group-hover/post:opacity-100"
 						/>
 					</div>
 				</CardHeader>
@@ -140,8 +147,6 @@ const Post = ({ post }: { post: PostProps }) => {
 								{item.type === 'image' ?
 									<img
 										src={item.url}
-										width={800}
-										height={400}
 										alt={`Media ${index + 1}`}
 										className={`w-full ${editedPost.media.length === 1 ? 'h-64' : 'h-32'} rounded-md object-cover`}
 									/>

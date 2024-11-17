@@ -6,22 +6,24 @@ import { MoreVertical, Edit2, Save, Trash2, Bookmark } from 'lucide-react'
 import { DeleteDialog } from './DeleteDialog'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
+
 interface MoreButtonProps {
 	handleEdit: () => void
 	handleBookmark: () => void
 	isEditing: boolean
 	isBookmarked: boolean
+	className?: string
 }
 
-export const MoreButton = ({ handleEdit, handleBookmark, isEditing, isBookmarked }: MoreButtonProps) => {
+export const MoreButton = ({ handleEdit, handleBookmark, isEditing, isBookmarked, className }: MoreButtonProps) => {
 	const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 
 	return (
 		<TooltipProvider>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<Button variant="ghost" size="icon">
-						<MoreVertical />
+					<Button variant="ghost" size="icon" className={cn(className, 'data-[state=open]:opacity-100')}>
+						<MoreVertical size={20} className="text-muted-foreground" />
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="end">
