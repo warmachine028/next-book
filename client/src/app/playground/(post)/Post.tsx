@@ -10,7 +10,6 @@ import { Textarea } from '@/components/ui/textarea'
 import { useSession, useToast } from '@/hooks'
 import { Bookmark, Plus, X } from 'lucide-react'
 import { cn, formatRelativeDate } from '@/lib/utils'
-
 import { UserTooltip } from '@/components/users'
 import { Avatar } from '@/components'
 import { LikeButton, ShareDialog, MoreButton } from '.'

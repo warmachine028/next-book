@@ -29,6 +29,14 @@ export interface PostsPage {
 	posts: PostData[]
 	nextCursor: string | null
 }
+export interface CommentsPage {
+	comments: CommentData[]
+	previousCursor: string | null
+}
+export interface NotificationsPage {
+	notifications: NotificationData[]
+	nextCursor: string | null
+}
 
 export const getCommentDataInclude = (userId: string) => {
 	return {
@@ -42,11 +50,6 @@ export type CommentData = Prisma.CommentGetPayload<{
 	include: ReturnType<typeof getCommentDataInclude>
 }>
 
-export interface CommentsPage { 
-	comments: CommentData[]
-	previousCursor: string | null
-}
-
 export interface FollowerInfo {
 	followers: number
 	isFollowedByUser: boolean
@@ -55,6 +58,23 @@ export interface FollowerInfo {
 export interface LikeInfo {
 	likes: number
 	isLikedByUser: boolean
+}
+
+export const getNotificationDataInclude = () => {
+	return {
+		issuer: {
+			select: {
+				userName: true,
+				displayName: true,
+				avatarUrl: true
+			}
+		},
+		post: {
+			select: {
+				content: true
+			}
+		}
+	} satisfies Prisma.NotificationInclude
 }
 
 export const getPostDataInclude = (userId: string) => {
@@ -91,6 +111,10 @@ export const getPostDataInclude = (userId: string) => {
 export interface BookmarkInfo {
 	isBookmarkedByUser: boolean
 }
+
+export type NotificationData = Prisma.NotificationGetPayload<{
+	include: ReturnType<typeof getNotificationDataInclude>
+}>
 
 export type PostData = Prisma.PostGetPayload<{ include: ReturnType<typeof getPostDataInclude> }>
 

@@ -2,16 +2,13 @@ import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { formatDate, formatDistanceToNowStrict } from 'date-fns'
 
-export const cn = (...inputs: ClassValue[]) => {
-	return twMerge(clsx(inputs))
-}
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs))
 
-export const formatNumber = (n: number): string => {
-	return Intl.NumberFormat('en-US', {
+export const formatNumber = (n: number): string =>
+	Intl.NumberFormat('en-US', {
 		notation: 'compact',
 		maximumFractionDigits: 1
 	}).format(n)
-}
 
 export const formatRelativeDate = (from: Date) => {
 	const currentDate = new Date()
@@ -23,3 +20,4 @@ export const formatRelativeDate = (from: Date) => {
 	}
 	return formatDate(from, 'MMM d, yyyy')
 }
+

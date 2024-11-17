@@ -1,9 +1,10 @@
 import { validateRequest } from '@/auth'
 import { prisma } from '@/lib'
 import { FollowerInfo } from '@/types'
+import { NotificationType } from '@prisma/client'
 import { NextRequest } from 'next/server'
 
-export const GET = async (req: NextRequest, { params }: { params: Promise<{ userId: string }> }) => {
+export const GET = async (_: NextRequest, { params }: { params: Promise<{ userId: string }> }) => {
 	try {
 		const { userId } = await params
 		const { user: currentUser } = await validateRequest()
@@ -51,20 +52,29 @@ export const POST = async (_: NextRequest, { params }: { params: Promise<{ userI
 		if (!currentUser) {
 			return Response.json({ error: 'Unauthorized' }, { status: 401 })
 		}
-
-		await prisma.follow.upsert({
-			where: {
-				followerId_followingId: {
+		await prisma.$transaction([
+			prisma.follow.upsert({
+				where: {
+					followerId_followingId: {
+						followerId: currentUser.id,
+						followingId: userId
+					}
+				},
+				create: {
 					followerId: currentUser.id,
 					followingId: userId
+				},
+				update: {}
+			}),
+			prisma.notification.create({
+				data: {
+					isssuerId: currentUser.id,
+					recipientId: userId,
+					type: NotificationType.FOLLOW
 				}
-			},
-			create: {
-				followerId: currentUser.id,
-				followingId: userId
-			},
-			update: {}
-		})
+			})
+		])
+
 
 		return new Response()
 	} catch (error) {
@@ -73,7 +83,7 @@ export const POST = async (_: NextRequest, { params }: { params: Promise<{ userI
 	}
 }
 
-export const DELETE = async (req: NextRequest, { params }: { params: Promise<{ userId: string }> }) => {
+export const DELETE = async (_: NextRequest, { params }: { params: Promise<{ userId: string }> }) => {
 	try {
 		const { userId } = await params
 		const { user: currentUser } = await validateRequest()
@@ -81,12 +91,22 @@ export const DELETE = async (req: NextRequest, { params }: { params: Promise<{ u
 		if (!currentUser) {
 			return Response.json({ error: 'Unauthorized' }, { status: 401 })
 		}
-		await prisma.follow.deleteMany({
-			where: {
-				followerId: currentUser.id,
-				followingId: userId
-			}
-		})
+
+		await prisma.$transaction([
+			prisma.follow.deleteMany({
+				where: {
+					followerId: currentUser.id,
+					followingId: userId
+				}
+			}),
+			prisma.notification.deleteMany({
+				where: {
+					isssuerId: currentUser.id,
+					recipientId: userId,
+					type: NotificationType.FOLLOW
+				}
+			})
+		])
 
 		return new Response()
 	} catch (error) {

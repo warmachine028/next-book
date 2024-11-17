@@ -4,6 +4,7 @@ import { PostData, getCommentDataInclude } from '@/types'
 import { prisma } from '@/lib'
 import { validateRequest } from '@/auth'
 import { createCommentSchema } from '@/lib/validation'
+import { NotificationType } from '@prisma/client'
 
 export const createComment = async ({ post, content }: { post: PostData; content: string }) => {
 	const { user } = await validateRequest()
@@ -12,15 +13,30 @@ export const createComment = async ({ post, content }: { post: PostData; content
 	}
 
 	const { content: validatedContent } = createCommentSchema.parse({ content })
+	const [comment] = await prisma.$transaction([
+		prisma.comment.create({
+			data: {
+				content: validatedContent,
+				authorId: user.id,
+				postId: post.id
+			},
+			include: getCommentDataInclude(user.id)
+		}),
+		...(post.authorId !== user.id ?
+			[
+				prisma.notification.create({
+					data: {
+						isssuerId: user.id,
+						recipientId: post.authorId,
+						postId: post.id,
+						type: NotificationType.COMMENT
+					}
+				})
+			]
+		:	[])
+	])
 
-	return prisma.comment.create({
-		data: {
-			content: validatedContent,
-			authorId: user.id,
-			postId: post.id
-		},
-		include: getCommentDataInclude(user.id)
-	})
+	return comment
 }
 
 export const deleteComment = async (id: string) => {

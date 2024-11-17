@@ -1,6 +1,7 @@
 import { validateRequest } from '@/auth'
 import { prisma } from '@/lib'
 import { LikeInfo } from '@/types'
+import { NotificationType } from '@prisma/client'
 import { NextRequest } from 'next/server'
 
 export const GET = async (_: NextRequest, { params }: { params: Promise<{ postId: string }> }) => {
@@ -54,19 +55,43 @@ export const POST = async (_: NextRequest, { params }: { params: Promise<{ postI
 			return Response.json({ error: 'Unauthorized' }, { status: 401 })
 		}
 
-		await prisma.like.upsert({
-			where: {
-				userId_postId: {
+		const post = await prisma.post.findUnique({
+			where: { id: postId },
+			select: {
+				authorId: true
+			}
+		})
+		if (!post) {
+			return Response.json({ error: 'Post not found' }, { status: 404 })
+		}
+		await prisma.$transaction([
+			prisma.like.upsert({
+				where: {
+					userId_postId: {
+						userId: currentUser.id,
+						postId
+					}
+				},
+				create: {
 					userId: currentUser.id,
 					postId
-				}
-			},
-			create: {
-				userId: currentUser.id,
-				postId
-			},
-			update: {}
-		})
+				},
+				update: {}
+			}),
+			...(post.authorId !== currentUser.id ?
+				[
+					prisma.notification.create({
+						data: {
+							isssuerId: currentUser.id,
+							recipientId: post.authorId,
+							postId,
+							type: NotificationType.LIKE
+						}
+					})
+				]
+			:	[])
+		])
+
 		return new Response()
 	} catch (error) {
 		console.error(error)
@@ -82,13 +107,32 @@ export const DELETE = async (_: NextRequest, { params }: { params: Promise<{ pos
 		if (!currentUser) {
 			return Response.json({ error: 'Unauthorized' }, { status: 401 })
 		}
-
-		await prisma.like.deleteMany({
-			where: {
-				userId: currentUser.id,
-				postId
+		const post = await prisma.post.findUnique({
+			where: { id: postId },
+			select: {
+				authorId: true
 			}
 		})
+		if (!post) {
+			return Response.json({ error: 'Post not found' }, { status: 404 })
+		}
+		await prisma.$transaction([
+			prisma.like.deleteMany({
+				where: {
+					userId: currentUser.id,
+					postId
+				}
+			}),
+			prisma.notification.deleteMany({
+				where: {
+					isssuerId: currentUser.id,
+					recipientId: post.authorId,
+					postId,
+					type: NotificationType.LIKE
+				}
+			})
+		])
+
 		return new Response()
 	} catch (error) {
 		console.error(error)
