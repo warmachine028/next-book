@@ -91,16 +91,12 @@ const UserProfile = async ({ user, currentUserId }: UserProfileProps) => {
 	)
 }
 
-const Profile = async ({ params }: PageProps) => {
+const Page = async ({ params }: PageProps) => {
 	const { username } = await params
 	const { user: currentUser } = await validateRequest()
 
 	if (!currentUser) {
-		return (
-			<p className="text-destructive">
-				You&apos;re not authorized to view this page.
-			</p>
-		)
+		return <p className="text-destructive">You&apos;re not authorized to view this page.</p>
 	}
 
 	const user = await getUser(username, currentUser.id)
@@ -121,4 +117,5 @@ const Profile = async ({ params }: PageProps) => {
 		</main>
 	)
 }
-export default Profile
+
+export default Page

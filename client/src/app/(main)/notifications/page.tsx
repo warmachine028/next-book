@@ -1,9 +1,9 @@
-import { BookmarksFeed, Menubar, TrendsSidebar } from '@/components'
+import { NotificationsFeed, Menubar, TrendsSidebar } from '@/components'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-	title: 'Bookmarks'
+	title: 'Notifications'
 }
 
 const Page = () => {
@@ -13,10 +13,10 @@ const Page = () => {
 			<div className="flex w-full min-w-0 gap-5">
 				<div className="w-full min-w-0 space-y-5">
 					<div className="rounded-md bg-card p-5 shadow-sm">
-						<h1 className="text-center text-xl font-bold">Bookmarks</h1>
+						<h1 className="text-center text-xl font-bold">Notifications</h1>
 					</div>
 					<ScrollArea className="h-[calc(100vh-300px)] min-h-96 min-w-full rounded-md">
-						<BookmarksFeed />
+						<NotificationsFeed />
 					</ScrollArea>
 				</div>
 			</div>

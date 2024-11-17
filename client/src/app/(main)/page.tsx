@@ -2,7 +2,7 @@ import { ForYouFeed, Menubar, TrendsSidebar, PostEditor, FollowingFeed } from '@
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
-const Home = () => {
+const Page = () => {
 	return (
 		<main className="container mx-auto flex min-h-[calc(100vh-125px)] w-full grow gap-5 p-5">
 			<Menubar className="hidden h-fit flex-none space-y-3 rounded-md bg-card px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
@@ -40,4 +40,4 @@ const Home = () => {
 	)
 }
 
-export default Home
+export default Page

@@ -42,30 +42,6 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
 	}
 }
 
-const PostPage = async ({ params }: PageProps) => {
-	const { postId } = await params
-	const { user } = await validateRequest()
-
-	if (!user) {
-		return <p className="text-destructive">You&apos;re not authorized to view this page.</p>
-	}
-	const post = await getPost(postId, user.id)
-
-	return (
-		<main className="container mx-auto flex min-h-[calc(100vh-125px)] w-full grow gap-5 p-5">
-			<Menubar className="sticky top-[5.25rem] hidden h-fit flex-none space-y-3 bg-card px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
-			<div className="w-full min-w-0 space-y-5">
-				<Post post={post} />
-			</div>
-			<div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
-				<Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
-					<AuthorInfoSidebar user={post.author} />
-				</Suspense>
-			</div>
-		</main>
-	)
-}
-
 interface AuthorInfoSidebarProps {
 	user: UserData
 }
@@ -105,4 +81,28 @@ const AuthorInfoSidebar = async ({ user }: AuthorInfoSidebarProps) => {
 	)
 }
 
-export default PostPage
+const Page = async ({ params }: PageProps) => {
+	const { postId } = await params
+	const { user } = await validateRequest()
+
+	if (!user) {
+		return <p className="text-destructive">You&apos;re not authorized to view this page.</p>
+	}
+	const post = await getPost(postId, user.id)
+
+	return (
+		<main className="container mx-auto flex min-h-[calc(100vh-125px)] w-full grow gap-5 p-5">
+			<Menubar className="sticky top-[5.25rem] hidden h-fit flex-none space-y-3 bg-card px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
+			<div className="w-full min-w-0 space-y-5">
+				<Post post={post} />
+			</div>
+			<div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
+				<Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
+					<AuthorInfoSidebar user={post.author} />
+				</Suspense>
+			</div>
+		</main>
+	)
+}
+
+export default Page
