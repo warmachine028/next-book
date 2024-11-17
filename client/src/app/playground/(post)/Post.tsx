@@ -14,7 +14,6 @@ import { cn, formatRelativeDate } from '@/lib/utils'
 import { UserTooltip } from '@/components/users'
 import { Avatar } from '@/components'
 import { LikeButton, ShareDialog, MoreButton } from '.'
-import Image from 'next/image'
 
 interface Media {
 	type: 'image' | 'video'

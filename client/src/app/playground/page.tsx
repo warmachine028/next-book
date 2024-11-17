@@ -1,5 +1,3 @@
-'use client'
-
 import { Post } from './(post)'
 
 const Page = () => {
