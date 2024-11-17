@@ -107,7 +107,7 @@ const MediaPreview = ({ media }: MediaPreviewProps) => {
 		),
 		VIDEO: (
 			<div className="aspect-video w-full rounded-md bg-muted">
-				<video src={media.url} controls className="mx-auto size-fit max-w-[30rem] rounded-xl" />
+				<video src={media.url} controls className="mx-auto size-fit max-w-[30rem] rounded-md" />
 			</div>
 		)
 	}

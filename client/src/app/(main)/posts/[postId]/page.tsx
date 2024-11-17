@@ -54,7 +54,7 @@ const AuthorInfoSidebar = async ({ user }: AuthorInfoSidebarProps) => {
 	}
 
 	return (
-		<div className="space-y-5 rounded-xl bg-card p-5 shadow-sm">
+		<div className="space-y-5 rounded-md bg-card p-5 shadow-sm">
 			<div className="text-xl font-bold">About the author</div>
 			<UserTooltip user={user}>
 				<Link href={`/users/${user.userName}`} className="flex items-center gap-3">

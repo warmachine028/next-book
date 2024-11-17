@@ -20,18 +20,18 @@ export const Notification = ({ notification }: NotificationProps) => {
 		}
 	> = {
 		[NotificationType.FOLLOW]: {
-			message: `${notification.issuer.displayName} followed you`,
+			message: 'followed you',
 			icon: <User2 className="size-7 text-primary" />,
 			href: `/users/${notification.issuer.userName}`
 		},
 		[NotificationType.COMMENT]: {
-			message: `${notification.issuer.displayName} commented on your post`,
-			icon: <MessageCircle className="size-7 text-success fill-success" />,
+			message: 'commented on your post',
+			icon: <MessageCircle className="size-7 fill-success text-success" />,
 			href: `/posts/${notification.postId}`
 		},
 		[NotificationType.LIKE]: {
-			message: `${notification.issuer.displayName} liked your post`,
-			icon: <Heart className="size-7 text-destructive fill-destructive" />,
+			message: 'liked your post',
+			icon: <Heart className="size-7 fill-destructive text-destructive" />,
 			href: `/posts/${notification.postId}`
 		}
 	}
@@ -42,7 +42,7 @@ export const Notification = ({ notification }: NotificationProps) => {
 		<Link href={href} className="block">
 			<article
 				className={cn(
-					'flex items-center gap-3 rounded-2xl shadow-sm transition-colors hover:bg-card/70',
+					'flex gap-3 rounded-md bg-card p-3 shadow-sm transition-colors hover:bg-card/70',
 					!notification.read && 'bg-primary/10'
 				)}
 			>
