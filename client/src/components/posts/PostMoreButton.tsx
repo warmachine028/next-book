@@ -6,7 +6,7 @@ import { DeletePostDialog } from '.'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 import { Button } from '../ui/button'
-import { CircleCheckBig, Info, MoreHorizontal, Trash2, TriangleAlert } from 'lucide-react'
+import {  Edit, Info, MoreHorizontal, Trash2, TriangleAlert } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface PostMoreButtonProps {
@@ -42,8 +42,8 @@ const PostMoreButton = ({ post, className }: PostMoreButtonProps) => {
 						<TooltipTrigger asChild>
 							<DropdownMenuItem>
 								<span className="flex items-center gap-3 text-success">
-									<CircleCheckBig className="size-4" />
-									Success
+									<Edit className="size-4" />
+									Edit
 								</span>
 							</DropdownMenuItem>
 						</TooltipTrigger>
