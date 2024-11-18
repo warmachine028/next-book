@@ -12,7 +12,7 @@ const PlaygroundLayout = async ({ children }: Readonly<{ children: React.ReactNo
 		<SessionProvider value={session}>
 			<Navbar />
 			{children}
-			<Menubar className="sticky bottom-0 flex w-full justify-center gap-5 border-t bg-card p-3 sm:hidden" />
+			<Menubar className="bottom-0 flex w-full justify-center gap-5 border-t bg-card p-3 sm:hidden" />
 			<Footer />
 		</SessionProvider>
 	)
