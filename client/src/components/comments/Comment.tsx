@@ -15,7 +15,7 @@ const Comment = ({ comment }: CommentProps) => {
 
 	return (
 		<div className="group/comment flex gap-3 py-3">
-			<span className="hidden sm:inline">
+			<span>
 				<UserTooltip user={comment.author}>
 					<Link href={`/users/${comment.author.userName}`}>
 						<Avatar url={comment.author.avatarUrl} size={38} />

@@ -1,24 +1,31 @@
-'use client'
-
+'use server'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
+import { cn, prisma } from '@/lib'
 import { Button } from '@/components/ui/button'
-import { BellRing, Bookmark, Home, MessageCircle } from 'lucide-react'
-import { usePathname } from 'next/navigation'
+import { Bookmark, Home, MessageCircle } from 'lucide-react'
+import { NotificationsButton } from '.'
+import { validateRequest } from '@/auth'
+;('')
 
 interface MenubarProps {
 	className?: string
 }
 
-const Menubar = ({ className }: MenubarProps) => {
-	const pathname = usePathname()
+const Menubar = async ({ className }: MenubarProps) => {
+	const { user } = await validateRequest()
+	if (!user) {
+		return null
+	}
+	const unreadCount = await prisma.notification.count({
+		where: {
+			recipientId: user.id,
+			read: false
+		}
+	})
 	return (
 		<aside className={cn('text-primary', className)}>
 			<Button
-				className={cn(
-					'relative flex items-center justify-start gap-3 ring-primary',
-					pathname === '/' && 'ring-1'
-				)}
+				className="relative flex items-center justify-start gap-3 ring-primary"
 				variant="ghost"
 				title="Home"
 				asChild
@@ -28,25 +35,9 @@ const Menubar = ({ className }: MenubarProps) => {
 					<span className="hidden lg:inline">Home</span>
 				</Link>
 			</Button>
+			<NotificationsButton initialState={{ unreadCount }} />
 			<Button
 				className="flex items-center justify-start gap-3 ring-primary"
-				variant="ghost"
-				title="Notifications"
-				asChild
-			>
-				<Link href="/notifications">
-					<div className="relative">
-						<BellRing />
-						<div className="absolute -right-1 -top-1 flex h-2.5 w-2.5 items-center justify-center rounded-full bg-destructive text-xs" />
-					</div>
-					<span className="hidden lg:inline">Notifications</span>
-				</Link>
-			</Button>
-			<Button
-				className={cn(
-					'flex items-center justify-start gap-3 ring-primary',
-					pathname === '/messages' && 'ring-1'
-				)}
 				variant="ghost"
 				title="Messages"
 				asChild
@@ -57,10 +48,7 @@ const Menubar = ({ className }: MenubarProps) => {
 				</Link>
 			</Button>
 			<Button
-				className={cn(
-					'flex items-center justify-start gap-3 ring-primary',
-					pathname === '/bookmarks' && 'ring-1'
-				)}
+				className="flex items-center justify-start gap-3 ring-primary"
 				variant="ghost"
 				title="Bookmarks"
 				asChild

@@ -112,6 +112,10 @@ export interface BookmarkInfo {
 	isBookmarkedByUser: boolean
 }
 
+export interface NotificationUnreadCountInfo {
+	unreadCount: number
+}
+
 export type NotificationData = Prisma.NotificationGetPayload<{
 	include: ReturnType<typeof getNotificationDataInclude>
 }>

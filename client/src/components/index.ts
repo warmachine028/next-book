@@ -30,3 +30,4 @@ export {
 export { default as EditProfileDialog } from './EditProfileDialog'
 export { default as CropImageDialog } from './CropImageDialog'
 export { default as Notification } from './Notification'
+export { default as NotificationsButton } from './NotificationsButton'

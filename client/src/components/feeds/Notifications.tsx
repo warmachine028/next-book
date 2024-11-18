@@ -2,8 +2,8 @@
 
 import { NotificationsPage } from '@/types'
 import { kyInstance } from '@/lib/ky'
-import { useInfiniteQuery } from '@tanstack/react-query'
-import { Loader2 } from 'lucide-react'
+import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { Check, Loader2 } from 'lucide-react'
 import { InfiniteScrollContainer, LoadingSkeletonGroup, Notification } from '@/components'
 import { Button } from '@/components/ui/button'
 
@@ -16,6 +16,16 @@ const Notifications = () => {
 				.json<NotificationsPage>(),
 		initialPageParam: null as string | null,
 		getNextPageParam: (lastPage) => lastPage.nextCursor
+	})
+
+	const queryClient = useQueryClient()
+	const { mutate } = useMutation({
+		mutationFn: () => kyInstance.patch('/api/notifications/mark-as-read'),
+		onSuccess: () =>
+			queryClient.setQueryData(['unread-notification-count'], {
+				unreadCount: 0
+			}),
+		onError: (error) => console.error('Failed to mark notification as read', error)
 	})
 
 	const notifications = data?.pages.flatMap((page) => page.notifications) || []
@@ -35,6 +45,10 @@ const Notifications = () => {
 			onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}
 			className="space-y-5"
 		>
+			<Button onClick={mutate as () => void} className="flex items-center gap-2">
+				<Check size={16} />
+				Mark all as read
+			</Button>
 			{notifications.map((notification) => (
 				<Notification key={notification.id} notification={notification} />
 			))}
