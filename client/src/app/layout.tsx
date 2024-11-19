@@ -7,6 +7,7 @@ import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin'
 import { extractRouterConfig } from 'uploadthing/server'
 import { fileRouter } from './api/uploadthing/core'
 import './globals.css'
+import 'stream-chat-react/dist/css/v2/index.css'
 
 const geistSans = localFont({
 	src: '../assets/fonts/GeistVF.woff',
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
 		template: '%s | Next Book',
 		default: 'Next Book'
 	},
-	description: 'A full-stack social media web app built on NextJS 15 for the Next Fans',
+	description: 'A full-stack social media web app built on NextJS 15 for the Next Fans'
 }
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
