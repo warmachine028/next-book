@@ -3,7 +3,7 @@
 import { useInitializeChatClient } from '@/hooks'
 import { Loader2 } from 'lucide-react'
 import { Chat as StreamChat } from 'stream-chat-react'
-import { Sidebar, Channel } from '.'
+// import { Sidebar, Channel } from '.'
 const Chat = () => {
 	const chatClient = useInitializeChatClient()
 
@@ -14,8 +14,8 @@ const Chat = () => {
 	return (
 		<div className="absolute bottom-0 top-0 flex w-full">
 			<StreamChat client={chatClient}>
-				<Sidebar />
-				<Channel />
+				{/* <Sidebar />
+				<Channel /> */}
 			</StreamChat>
 		</div>
 	)
