@@ -1,4 +1,4 @@
-import { Menubar, Chat } from '@/components'
+import { Menubar } from '@/components'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Metadata } from 'next'
 
