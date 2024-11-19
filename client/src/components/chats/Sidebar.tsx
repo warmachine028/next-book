@@ -1,14 +1,14 @@
 'use client'
 
 import { useSession } from '@/hooks'
-import { ChannelList } from 'stream-chat-react'
+// import { ChannelList } from 'stream-chat-react'
 
 const ChatSidebar = () => {
 	const { user } = useSession()
 
 	return (
-		<div className="flex size-full flex-col border-e md:w-72 ring">
-			<ChannelList filters={{ type: 'messaging', members: { $in: [user?.id] } }} showChannelSearch />
+		<div className="flex size-full flex-col border-e md:w-72 ring-1">
+			{/* <ChannelList filters={{ type: 'messaging', members: { $in: [user?.id] } }} showChannelSearch /> */}
 		</div>
 	)
 }
