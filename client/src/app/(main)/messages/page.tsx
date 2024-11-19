@@ -1,4 +1,4 @@
-import { NotificationsFeed, Menubar, TrendsSidebar, Chat } from '@/components'
+import { Menubar, Chat } from '@/components'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Metadata } from 'next'
 
@@ -13,7 +13,7 @@ const Page = () => {
 			<div className="flex w-full min-w-0 gap-5">
 				<div className="w-full min-w-0 space-y-5">
 					<ScrollArea className="h-[calc(100vh-300px)] min-h-96 min-w-full rounded-md">
-						<Chat />
+						{/* <Chat /> */}
 					</ScrollArea>
 				</div>
 			</div>
