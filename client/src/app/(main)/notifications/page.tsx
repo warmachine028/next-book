@@ -1,6 +1,6 @@
 import { NotificationsFeed, Menubar, TrendsSidebar } from '@/components'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import type { Metadata } from 'next'
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
 	title: 'Notifications'

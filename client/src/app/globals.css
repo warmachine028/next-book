@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
 	:root {
 		--background: 210 40% 96.1%;

@@ -1,5 +1,4 @@
 export * from './posts'
-export * from './chats'
 export { default as Avatar } from './Avatar'
 export { default as Navbar } from './Navbar'
 export { default as Footer } from './Footer'

@@ -40,6 +40,4 @@ const NotificationsButton = ({ initialState }: NotificationsButtonProps) => {
 	)
 }
 
-NotificationsButton.displayName = 'NotificationsButton'
-
 export default NotificationsButton

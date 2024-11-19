@@ -21,8 +21,7 @@
 			}
 		],
 		"paths": {
-			"@/*": ["./src/*"],
-			"~/*": ["./node_modules/*"]
+			"@/*": ["./src/*"]
 		}
 	},
 	"include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", "next.config.ts", ".next/types/**/*.ts", "prettier.config.mjs"],
