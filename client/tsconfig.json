@@ -26,5 +26,5 @@
 		}
 	},
 	"include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", "next.config.ts", ".next/types/**/*.ts", "prettier.config.mjs"],
-	"exclude": ["node_modules"]
+	"exclude": ["node_modules", "future"]
 }
