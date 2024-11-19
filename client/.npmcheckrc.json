@@ -6,7 +6,7 @@
             "prettier",
             "prettier-plugin-packagejson",
             "prettier-plugin-tailwindcss",
-            "stream-chat-react"
+            "postcss-load-config"
         ]
     }
 }
