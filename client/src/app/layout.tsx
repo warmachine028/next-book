@@ -7,7 +7,7 @@ import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin'
 import { extractRouterConfig } from 'uploadthing/server'
 import { fileRouter } from './api/uploadthing/core'
 import './globals.css'
-// import 'stream-chat-react/dist/css/v2/index.css'
+import 'stream-chat-react/dist/css/v2/index.css'
 
 const geistSans = localFont({
 	src: '../assets/fonts/GeistVF.woff',
