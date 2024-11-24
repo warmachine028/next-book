@@ -1,6 +1,6 @@
 'use client'
 
-// import { ChannelHeader, MessageInput, MessageList, Channel as StreamChannel, Window } from 'stream-chat-react'
+import { ChannelHeader, MessageInput, MessageList, Channel as StreamChannel, Window } from 'stream-chat-react'
 
 const Channel = () => {
 	return (
