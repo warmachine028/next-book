@@ -2,9 +2,9 @@
 
 <div align="center">
     <picture>
-        <source media="(prefers-color-scheme: light)" srcset="client/public/next.svg" width="200">
-        <source media="(prefers-color-scheme: dark)" srcset="client/public/next-dark.svg" width="200">
-        <img src="client/public/next-light.svg" width="200" alt="logo">
+        <source media="(prefers-color-scheme: light)" srcset="client/src/app/favicon.ico" width="200">
+        <source media="(prefers-color-scheme: dark)" srcset="client/src/app/favicon.ico" width="200">
+        <img src="client/src/app/favicon.ico" width="200" alt="logo">
     </picture>
     <br/>
     <p style="font-family: roboto, calibri; font-size:12pt; font-style:italic">A sleek next JS web app</p>
