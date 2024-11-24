@@ -1,7 +1,7 @@
 'use server'
 
 import { lucia } from '@/auth'
-import { prisma } from '@/lib'
+import { prisma, streamServerClient } from '@/lib'
 import { signUpSchema, SignUpValues } from '@/lib/validation'
 import { hash } from '@node-rs/argon2'
 import { generateIdFromEntropySize } from 'lucia'
@@ -44,14 +44,22 @@ export const signUp = async (credentials: SignUpValues): Promise<{ error: string
 			outputLen: 32,
 			parallelism: 1
 		})
-		await prisma.user.create({
-			data: {
+
+		await prisma.$transaction(async (tx) => {
+			await tx.user.create({
+				data: {
+					id: userId,
+					userName,
+					displayName: userName,
+					email,
+					passwordHash
+				}
+			})
+			await streamServerClient.upsertUser({
 				id: userId,
 				userName,
-				displayName: userName,
-				email,
-				passwordHash
-			}
+				name: userName
+			})
 		})
 
 		const { id } = await lucia.createSession(userId, {})

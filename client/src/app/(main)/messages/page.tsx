@@ -12,7 +12,7 @@ const Page = () => {
 			<Menubar className="hidden h-fit flex-none space-y-3 rounded-md bg-card px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
 			<div className="flex w-full min-w-0 gap-5">
 				<div className="w-full min-w-0 space-y-5">
-					<ScrollArea className="h-[calc(100vh-300px)] min-h-96 min-w-full rounded-md">
+					<ScrollArea className="h-full min-h-96 min-w-full rounded-md">
 						<Chat />
 					</ScrollArea>
 				</div>
