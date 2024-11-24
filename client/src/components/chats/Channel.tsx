@@ -5,13 +5,13 @@ import { ChannelHeader, MessageInput, MessageList, Channel as StreamChannel, Win
 const Channel = () => {
 	return (
 		<div className="w-full">
-			{/* <StreamChannel>
+			<StreamChannel>
 				<Window>
 					<ChannelHeader />
 					<MessageList />
 					<MessageInput />
 				</Window>
-			</StreamChannel> */}
+			</StreamChannel>
 		</div>
 	)
 }

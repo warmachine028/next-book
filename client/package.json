@@ -90,7 +90,7 @@
     "scripts": {
         "build": "next build",
         "dev": "next dev --turbopack",
-        "lint": ".",
+        "lint": "next lint",
         "postinstall": "prisma generate",
         "prisma:deploy": "prisma migrate deploy",
         "prisma:generate": "prisma generate",
