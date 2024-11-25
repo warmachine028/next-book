@@ -126,6 +126,7 @@ const AddAttachmentButton = ({ onFilesSelected, disabled }: AddAttachmentButtonP
 				className="text-primary hover:text-primary"
 				disabled={disabled}
 				onClick={() => fileInputRef.current?.click()}
+				title='attachment'
 			>
 				<ImageIcon size={20} />
 			</Button>
