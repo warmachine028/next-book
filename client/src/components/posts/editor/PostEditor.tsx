@@ -15,7 +15,6 @@ import { ClipboardEvent, useRef } from 'react'
 import { ImageIcon, Loader2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useDropzone } from '@uploadthing/react'
-import { Textarea } from '@/components/ui/textarea'
 
 const PostEditor = () => {
 	const { user } = useSession()

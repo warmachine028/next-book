@@ -11,6 +11,11 @@ import { Comments } from '../comments'
 import { Media } from '@prisma/client'
 import { LikeButton, BookmarkButton, PostMoreButton, CommentButton } from '.'
 import { useState } from 'react'
+import { EditorContent, useEditor } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import Placeholder from '@tiptap/extension-placeholder'
+import useUpdatePostMutation from '@/hooks/useUpdatePostMutation'
+import { Button } from '../ui/button'
 
 interface PostProps {
 	post: PostData
@@ -20,6 +25,7 @@ const Post = ({ post }: PostProps) => {
 	const { author } = post
 	const { user: currentUser } = useSession()
 	const [showComments, setShowComments] = useState(false)
+	const [editing, setEditing] = useState(false)
 
 	return (
 		<article className="group/post space-y-3 rounded-md bg-card p-5 shadow-sm">
@@ -48,13 +54,17 @@ const Post = ({ post }: PostProps) => {
 				{author.id === currentUser.id && (
 					<PostMoreButton
 						post={post}
+						setEditing={setEditing}
 						className={'opacity-0 transition-opacity group-hover/post:opacity-100'}
 					/>
 				)}
 			</div>
-			<Linkify>
-				<div className="whitespace-pre-line break-words">{post.content}</div>
-			</Linkify>
+			{editing ?
+				<UpdatePostForm post={post} setEditing={setEditing} />
+			:	<Linkify>
+					<div className="whitespace-pre-line break-words">{post.content}</div>
+				</Linkify>
+			}
 			{!!post.attachments.length && <MediaPreviews attachments={post.attachments} />}
 			<hr />
 			<div className="flex items-center justify-between gap-3">
@@ -81,6 +91,42 @@ const Post = ({ post }: PostProps) => {
 }
 
 Post.displayName = 'Post'
+
+interface UpdatePostFormProps extends PostProps {
+	setEditing: (editing: boolean) => void
+}
+const UpdatePostForm = ({ post, setEditing }: UpdatePostFormProps) => {
+	const { mutate: updatePost } = useUpdatePostMutation()
+	const editor = useEditor({
+		extensions: [
+			StarterKit.configure({
+				bold: false,
+				italic: false
+			}),
+			Placeholder.configure({
+				placeholder: "What's on your mind?"
+			})
+		],
+		immediatelyRender: true,
+		content: post.content
+	})
+	const content = editor?.getText({ blockSeparator: '\n' }) || ''
+	const handleSubmit = () => {
+		updatePost({ id: post.id, data: { ...post, content } })
+		setEditing(false)
+	}
+	return (
+		<div className="flex-1 flex-col gap-2">
+			<EditorContent editor={editor} className="max-h-80 w-full overflow-y-auto rounded-md bg-accent px-5 py-3" />
+			<div className="my-2 space-x-2">
+				<Button onClick={handleSubmit}>Update</Button>
+				<Button variant="destructive" onClick={() => setEditing(false)}>
+					Cancel
+				</Button>
+			</div>
+		</div>
+	)
+}
 
 interface MediaPreviewsProps {
 	attachments: Media[]

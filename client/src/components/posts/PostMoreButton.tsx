@@ -6,15 +6,16 @@ import { DeletePostDialog } from '.'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
 import { Button } from '../ui/button'
-import {  Edit, Info, MoreHorizontal, Trash2, TriangleAlert } from 'lucide-react'
+import { Edit, Info, MoreHorizontal, Trash2, TriangleAlert } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface PostMoreButtonProps {
 	post: PostData
 	className?: string
+	setEditing: (editing: boolean) => void
 }
 
-const PostMoreButton = ({ post, className }: PostMoreButtonProps) => {
+const PostMoreButton = ({ post, className, setEditing }: PostMoreButtonProps) => {
 	const [showDeleteDialog, setShowDeleteDialog] = useState(false)
 	return (
 		<TooltipProvider>
@@ -40,7 +41,7 @@ const PostMoreButton = ({ post, className }: PostMoreButtonProps) => {
 					</Tooltip>
 					<Tooltip>
 						<TooltipTrigger asChild>
-							<DropdownMenuItem>
+							<DropdownMenuItem onClick={() => setEditing(true)}>
 								<span className="flex items-center gap-3 text-success">
 									<Edit className="size-4" />
 									Edit
