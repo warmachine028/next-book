@@ -149,10 +149,9 @@ interface MediaPreviewProps {
 const MediaPreview = ({ media }: MediaPreviewProps) => {
 	const mediaObject = {
 		IMAGE: (
-			<div className="relative aspect-[16/9] w-full">
-				<Image
+			<div className="relative">
+				<img
 					src={media.url}
-					fill
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 					className="size-fit h-auto w-full rounded-md object-cover"
 					alt="attachment"
