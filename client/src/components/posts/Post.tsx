@@ -100,10 +100,7 @@ const UpdatePostForm = ({ post, setEditing }: UpdatePostFormProps) => {
 	const editor = useEditor({
 		content: post.content,
 		extensions: [
-			StarterKit.configure({
-				bold: false,
-				italic: false
-			}),
+			StarterKit.configure({ bold: false, italic: false }),
 			Placeholder.configure({
 				placeholder: "What's on your mind?"
 			})
@@ -157,15 +154,13 @@ const MediaPreview = ({ media }: MediaPreviewProps) => {
 
 	const mediaObject = {
 		IMAGE: (
-			<div className="relative aspect-square w-full overflow-hidden rounded-md">
-				<Image
+			<div className="relative w-full overflow-hidden rounded-md">
+				<img
 					src={media.url}
 					alt="Post attachment"
-					fill
 					className="object-cover"
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 					onError={handleMediaError}
-					priority={false}
 				/>
 			</div>
 		),
