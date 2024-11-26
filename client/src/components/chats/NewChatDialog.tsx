@@ -1,8 +1,8 @@
 'use client'
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useSession, useToast, useDebounce } from '@/hooks'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { Check, Loader2, Search, X } from 'lucide-react'
 import { useState } from 'react'
 import type { UserResponse } from 'stream-chat'
@@ -10,6 +10,7 @@ import { type DefaultStreamChatGenerics, useChatContext } from 'stream-chat-reac
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import Avatar from '../Avatar'
+import LoadingButton from '../LoadingButton'
 
 interface NewChatDialogProps {
 	onOpenChange: (open: boolean) => void
@@ -43,6 +44,33 @@ const NewChatDialog = ({ onOpenChange, onChatCreated }: NewChatDialogProps) => {
 				{ limit: 15 }
 			)
 	})
+
+	const mutation = useMutation({
+		mutationFn: async () => {
+			const channel = client.channel('messaging', {
+				members: [user?.id, ...selectedUsers.map((u) => u.id)],
+				name:
+					selectedUsers.length > 1 ?
+						`${user.displayName}, ${selectedUsers.map((u) => u.name).join(', ')}`
+					:	undefined
+			})
+			await channel.create()
+			return channel
+		},
+		onSuccess: (channel) => {
+			setActiveChannel(channel)
+			onChatCreated()
+		},
+		onError: (error) => {
+			console.error('Error starting chat', error)
+			toast({
+				title: 'Error starting chat. Please try again.',
+				description: error.message,
+				variant: 'destructive'
+			})
+		}
+	})
+
 	return (
 		<Dialog open onOpenChange={onOpenChange}>
 			<DialogContent className="bg-card p-0">
@@ -100,6 +128,15 @@ const NewChatDialog = ({ onOpenChange, onChatCreated }: NewChatDialogProps) => {
 						)}
 					</div>
 				</div>
+				<DialogFooter className="px-6 pb-6">
+					<LoadingButton
+						disabled={!selectedUsers.length}
+						loading={mutation.isPending}
+						onClick={() => mutation.mutate()}
+					>
+						Start Chat
+					</LoadingButton>
+				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	)
