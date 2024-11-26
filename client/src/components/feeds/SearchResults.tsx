@@ -7,15 +7,32 @@ import { Loader2 } from 'lucide-react'
 import { Post, InfiniteScrollContainer, LoadingSkeletonGroup } from '@/components'
 import { Button } from '@/components/ui/button'
 
-const Bookmarks = () => {
-	const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery({
-		queryKey: ['post-feed', 'bookmarks'],
+interface SearchResultsProps {
+	query: string
+}
+
+const SearchResults = ({ query }: SearchResultsProps) => {
+	const {
+		data, //
+		fetchNextPage,
+		hasNextPage,
+		isFetching,
+		isFetchingNextPage,
+		status
+	} = useInfiniteQuery({
+		queryKey: ['post-feed', 'search', query],
 		queryFn: ({ pageParam }) =>
 			kyInstance
-				.get('/api/posts/bookmarked', pageParam ? { searchParams: { cursor: pageParam } } : {})
+				.get('/api/search', {
+					searchParams: {
+						q: query,
+						...(pageParam ? { cursor: pageParam } : {})
+					}
+				})
 				.json<PostsPage>(),
 		initialPageParam: null as string | null,
-		getNextPageParam: (lastPage) => lastPage.nextCursor
+		getNextPageParam: (lastPage) => lastPage.nextCursor,
+		gcTime: 0
 	})
 
 	const posts = data?.pages.flatMap((page) => page.posts) || []
@@ -24,10 +41,14 @@ const Bookmarks = () => {
 		return <LoadingSkeletonGroup />
 	}
 	if (status === 'success' && !posts.length && !hasNextPage) {
-		return <p className="text-muted-foreground text-center">You haven&apos;t have any bookmarked posts yet.</p>
+		return (
+			<p className="line-clamp-2 break-all text-center text-muted-foreground">
+				No results found for &quot;{query}&quot;.
+			</p>
+		)
 	}
 	if (status === 'error') {
-		return <p className="text-center text-destructive">An error occurred while loading bookmarks.</p>
+		return <p className="text-center text-destructive">An error occurred while loading SearchResults.</p>
 	}
 
 	return (
@@ -44,6 +65,6 @@ const Bookmarks = () => {
 	)
 }
 
-Bookmarks.displayName = 'BookmarksFeed'
+SearchResults.displayName = 'SearchResultsFeed'
 
-export default Bookmarks
+export default SearchResults

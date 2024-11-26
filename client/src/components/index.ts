@@ -26,7 +26,8 @@ export {
 	Following as FollowingFeed,
 	UserPosts as UserPostsFeed,
 	Bookmarks as BookmarksFeed,
-	Notifications as NotificationsFeed
+	Notifications as NotificationsFeed,
+	SearchResults as SearchResultsFeed
 } from './feeds'
 export { default as EditProfileDialog } from './EditProfileDialog'
 export { default as CropImageDialog } from './CropImageDialog'
