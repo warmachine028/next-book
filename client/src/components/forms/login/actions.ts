@@ -4,7 +4,6 @@ import { lucia } from '@/auth'
 import { prisma } from '@/lib'
 import { logInSchema, LogInValues } from '@/lib/validation'
 import { verify } from '@node-rs/argon2'
-import { isRedirectError } from 'next/dist/client/components/redirect'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
@@ -39,11 +38,13 @@ export const logIn = async (credentials: LogInValues): Promise<{ error: string }
 		const { id } = await lucia.createSession(userId, {})
 		const { name, value, attributes } = lucia.createSessionCookie(id)
 		cookieStore.set(name, value, attributes)
-		return redirect('/')
-	} catch (error) {
-		if (isRedirectError(error)) {
-			throw error
+		try {
+			return redirect('/')
+		} catch (redirectError) {
+			console.error('Redirect error:', redirectError)
+			return { error: '' }
 		}
+	} catch (error) {
 		console.error(error)
 		return { error: 'Something went wrong. Please try again later homes.' }
 	}

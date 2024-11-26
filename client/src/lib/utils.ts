@@ -21,3 +21,8 @@ export const formatRelativeDate = (from: Date) => {
 	return formatDate(from, 'MMM d, yyyy')
 }
 
+export const slugify = (input: string): string =>
+	input
+		.toLowerCase()
+		.replace(/ /g, '-')
+		.replace(/[^a-z0-9-]/g, '')
