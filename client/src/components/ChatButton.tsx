@@ -1,8 +1,7 @@
 'use client'
 
 import type { ChatCountInfo } from '@/types'
-import type { NotificationUnreadCountInfo } from '@/types'
-import { BellRing, MessageCircle } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import { useQuery } from '@tanstack/react-query'

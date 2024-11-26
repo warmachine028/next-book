@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { cn, prisma, streamServerClient } from '@/lib'
 import { Button } from '@/components/ui/button'
-import { Bookmark, Home, MessageCircle } from 'lucide-react'
+import { Bookmark, Home } from 'lucide-react'
 import { ChatButton, NotificationsButton } from '.'
 import { validateRequest } from '@/auth'
 ;('')
