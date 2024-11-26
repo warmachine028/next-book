@@ -1,16 +1,15 @@
 'use client'
 
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { useSession, useToast, useDebounce } from '@/hooks'
-import { useMutation, useQuery } from '@tanstack/react-query'
-import { Check, Loader2, Search, X } from 'lucide-react'
-import { useState } from 'react'
-import type { UserResponse } from 'stream-chat'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '../ui/dialog'
 import { type DefaultStreamChatGenerics, useChatContext } from 'stream-chat-react'
-import { Input } from '../ui/input'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { useSession, useToast, useDebounce } from '@/hooks'
+import { Check, Loader2, Search, X } from 'lucide-react'
+import { Avatar, LoadingButton } from '@/components'
+import type { UserResponse } from 'stream-chat'
 import { Button } from '../ui/button'
-import Avatar from '../Avatar'
-import LoadingButton from '../LoadingButton'
+import { Input } from '../ui/input'
+import { useState } from 'react'
 
 interface NewChatDialogProps {
 	onOpenChange: (open: boolean) => void

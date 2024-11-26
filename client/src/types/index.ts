@@ -116,6 +116,10 @@ export interface NotificationUnreadCountInfo {
 	unreadCount: number
 }
 
+export interface ChatCountInfo {
+	unreadCount: number
+}
+
 export type NotificationData = Prisma.NotificationGetPayload<{
 	include: ReturnType<typeof getNotificationDataInclude>
 }>

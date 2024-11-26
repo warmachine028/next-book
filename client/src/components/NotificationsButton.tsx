@@ -1,6 +1,6 @@
 'use client'
 
-import { NotificationUnreadCountInfo } from '@/types'
+import type { NotificationUnreadCountInfo } from '@/types'
 import { BellRing } from 'lucide-react'
 import { Button } from './ui/button'
 import Link from 'next/link'

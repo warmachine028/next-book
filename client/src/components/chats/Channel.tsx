@@ -1,6 +1,5 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import {
 	ChannelHeader as StreamChannelHeader,
 	type ChannelHeaderProps as StreamChannelHeaderProps,
@@ -11,6 +10,7 @@ import {
 } from 'stream-chat-react'
 import { Button } from '../ui/button'
 import { Menu } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 interface ChatChannelProps {
 	open: boolean

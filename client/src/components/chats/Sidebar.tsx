@@ -1,16 +1,12 @@
 'use client'
 
-import { useSession } from '@/hooks'
-import {
-	ChannelList, //
-	ChannelPreviewMessenger,
-	ChannelPreviewUIComponentProps
-} from 'stream-chat-react'
-import { Button } from '../ui/button'
-import { MailPlus, X } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { ChannelList, ChannelPreviewMessenger, ChannelPreviewUIComponentProps } from 'stream-chat-react'
 import { useCallback, useState } from 'react'
+import { MailPlus, X } from 'lucide-react'
+import { Button } from '../ui/button'
+import { useSession } from '@/hooks'
 import { NewChatDialog } from '.'
+import { cn } from '@/lib/utils'
 
 interface ChatSidebarProps {
 	open: boolean
