@@ -1,13 +1,10 @@
 {
     "depcheck": {
         "ignoreMatches": [
-            "@tiptap/pm",
-            "arctic",
             "prettier",
             "postcss-load-config",
             "prettier-plugin-packagejson",
-            "prettier-plugin-tailwindcss",
-            "stream-chat-react"
+            "prettier-plugin-tailwindcss"
         ]
     }
 }
