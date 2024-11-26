@@ -14,7 +14,7 @@ import { useState } from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
-import useUpdatePostMutation from '@/hooks/useUpdatePostMutation'
+import { useUpdatePostMutation } from '@/hooks'
 import { Button } from '../ui/button'
 
 interface PostProps {
@@ -98,6 +98,7 @@ interface UpdatePostFormProps extends PostProps {
 const UpdatePostForm = ({ post, setEditing }: UpdatePostFormProps) => {
 	const { mutate: updatePost } = useUpdatePostMutation()
 	const editor = useEditor({
+		content: post.content,
 		extensions: [
 			StarterKit.configure({
 				bold: false,
@@ -107,8 +108,7 @@ const UpdatePostForm = ({ post, setEditing }: UpdatePostFormProps) => {
 				placeholder: "What's on your mind?"
 			})
 		],
-		immediatelyRender: true,
-		content: post.content
+		immediatelyRender: true
 	})
 	const content = editor?.getText({ blockSeparator: '\n' }) || ''
 	const handleSubmit = () => {
@@ -147,24 +147,41 @@ interface MediaPreviewProps {
 }
 
 const MediaPreview = ({ media }: MediaPreviewProps) => {
+	const handleMediaError = (e: React.SyntheticEvent<HTMLImageElement | HTMLVideoElement>) => {
+		e.currentTarget.classList.add('hidden')
+		const fallbackDiv = document.createElement('div')
+		fallbackDiv.className = 'flex items-center justify-center h-48 bg-muted rounded-md'
+		fallbackDiv.innerText = 'Media failed to load'
+		e.currentTarget.parentNode?.appendChild(fallbackDiv)
+	}
+
 	const mediaObject = {
 		IMAGE: (
-			<div className="relative">
-				<img
+			<div className="relative aspect-square w-full overflow-hidden rounded-md">
+				<Image
 					src={media.url}
+					alt="Post attachment"
+					fill
+					className="object-cover"
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-					className="size-fit h-auto w-full rounded-md object-cover"
-					alt="attachment"
+					onError={handleMediaError}
+					priority={false}
 				/>
 			</div>
 		),
 		VIDEO: (
-			<div className="aspect-video w-full rounded-md bg-muted">
-				<video src={media.url} controls className="mx-auto size-fit rounded-md" />
+			<div className="relative aspect-video w-full overflow-hidden rounded-md bg-muted">
+				<video src={media.url} controls className="h-full w-full" onError={handleMediaError} />
 			</div>
 		)
 	}
-	return mediaObject[media.type] || <p className="text-destructive">Unsupported media type</p>
+	return (
+		mediaObject[media.type] || (
+			<p className="flex h-48 items-center justify-center rounded-md bg-muted text-destructive">
+				Unsupported media type
+			</p>
+		)
+	)
 }
 
 export default Post
