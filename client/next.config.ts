@@ -26,6 +26,14 @@ export default {
 			}
 		]
 	},
+	rewrites: async () => {
+		return [
+			{
+				source: '/hashtag/:tag',
+				destination: '/search?q=%23:tag'
+			}
+		]
+	},
 	typescript: {
 		// !! WARN !!
 		// Dangerously allow production builds to successfully complete even if
