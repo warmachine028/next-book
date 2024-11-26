@@ -2,7 +2,8 @@ import { Metadata } from 'next'
 import hero from '@/assets/login-image.jpg'
 import Image from 'next/image'
 import Link from 'next/link'
-import { LogInForm } from '@/components'
+import { GoogleSignInButton, LogInForm } from '@/components'
+import { Separator } from '@/components/ui/separator'
 
 export const metadata: Metadata = { title: 'Log In' }
 
@@ -15,6 +16,13 @@ const LogIn = () => {
 					<h1 className="text-3xl font-bold">Welcome Back!</h1>
 				</div>
 				<div className="space-y-5 px-5">
+					<GoogleSignInButton />
+					<div className="relative">
+						<Separator />
+						<div className="absolute inset-0 flex items-center justify-center">
+							<span className="bg-card px-2 text-xs text-muted-foreground">OR</span>
+						</div>
+					</div>
 					<LogInForm />
 					<h6 className="block text-center">
 						Don&apos;t have an account?{' '}
