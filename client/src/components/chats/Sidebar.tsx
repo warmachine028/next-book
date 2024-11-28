@@ -1,10 +1,10 @@
 'use client'
 
 import { ChannelList, ChannelPreviewMessenger, ChannelPreviewUIComponentProps } from 'stream-chat-react'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { MailPlus, X } from 'lucide-react'
 import { Button } from '../ui/button'
-import { useSession } from '@/hooks'
+import { useInitializeChatClient, useSession } from '@/hooks'
 import { NewChatDialog } from '.'
 import { cn } from '@/lib/utils'
 
@@ -54,12 +54,26 @@ interface MenuHeaderProps {
 
 const MenuHeader = ({ onClose }: MenuHeaderProps) => {
 	const [showNewChatDialog, setShowNewChatDialog] = useState(false)
+	const chatClient = useInitializeChatClient()
+	const { user } = useSession()
+	const [channels, setChannels] = useState(0)
+
+	useEffect(() => {
+		if (chatClient) {
+			const checkChannels = async () => {
+				const filter = { type: 'messaging', members: { $in: [user?.id] } }
+				const channels = await chatClient.queryChannels(filter, {}, { limit: 1 })
+				setChannels(channels.length)
+			}
+			checkChannels()
+		}
+	}, [chatClient])
 
 	return (
 		<>
 			<div className="flex items-center gap-3 bg-card p-2">
 				<div className="h-full md:hidden">
-					<Button size="icon" variant="ghost" onClick={onClose}>
+					<Button size="icon" variant="ghost" onClick={onClose} disabled={!channels}>
 						<X className="size-5" />
 					</Button>
 				</div>

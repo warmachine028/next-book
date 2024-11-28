@@ -159,6 +159,7 @@ const MediaPreview = ({ media }: MediaPreviewProps) => {
 					src={media.url}
 					alt="Post attachment"
 					className="object-cover"
+					width="100%"
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 					onError={handleMediaError}
 				/>

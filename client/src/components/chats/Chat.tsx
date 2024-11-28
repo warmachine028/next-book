@@ -1,16 +1,29 @@
 'use client'
 
 import { Chat as StreamChat } from 'stream-chat-react'
-import { useInitializeChatClient } from '@/hooks'
+import { useInitializeChatClient, useSession } from '@/hooks'
 import { useTheme } from 'next-themes'
 import { Loader2 } from 'lucide-react'
 import { Sidebar, Channel } from '.'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Chat = () => {
 	const chatClient = useInitializeChatClient()
 	const [sidebarOpen, setSidebarOpen] = useState(false)
 	const { resolvedTheme } = useTheme()
+	const { user } = useSession()
+
+	useEffect(() => {
+		if (chatClient) {
+			const checkChannels = async () => {
+				const filter = { type: 'messaging', members: { $in: [user?.id] } }
+				const channels = await chatClient.queryChannels(filter, {}, { limit: 1 })
+				setSidebarOpen(channels.length === 0)
+			}
+			checkChannels()
+		}
+	}, [chatClient])
+
 	if (!chatClient) {
 		return <Loader2 className="animate-spin" />
 	}

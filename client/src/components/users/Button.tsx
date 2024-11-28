@@ -61,7 +61,7 @@ const UserButton = ({ className }: UserButtonProps) => {
 						<span>Theme</span>
 					</DropdownMenuSubTrigger>
 					<DropdownMenuPortal>
-						<DropdownMenuSubContent >
+						<DropdownMenuSubContent>
 							<DropdownMenuItem onClick={() => setTheme('light')} className="cursor-pointer">
 								<Sun className="mr-2 size-4" />
 								<span>Light</span>
@@ -84,7 +84,8 @@ const UserButton = ({ className }: UserButtonProps) => {
 				</DropdownMenuSub>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem className="cursor-pointer hover:bg-destructive" onClick={handleLogOut}>
-					<LogOutIcon className="size-ring-1 mr-2" /> <span>Logout</span>
+					<LogOutIcon className="size-ring-1 mr-2" size={16} />
+					<span>Logout</span>
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

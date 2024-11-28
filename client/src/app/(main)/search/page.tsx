@@ -3,18 +3,18 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import type { Metadata } from 'next'
 
 interface PageProps {
-	searchParams: {
-		q: string
-	}
+	searchParams: Promise<{ q: string }>
 }
 
-export const generateMetadata = ({ searchParams: { q } }: PageProps): Metadata => {
+export const generateMetadata = async ({ searchParams }: PageProps): Promise<Metadata> => {
+	const { q } = await searchParams
 	return {
 		title: `Search results for "${q}"`
 	}
 }
 
-const Page = ({ searchParams: { q } }: PageProps) => {
+const Page = async ({ searchParams }: PageProps) => {
+	const { q } = await searchParams
 	return (
 		<main className="container mx-auto flex min-h-[calc(100vh-125px)] w-full grow gap-5 p-5">
 			<Menubar className="hidden h-fit flex-none space-y-3 rounded-md bg-card px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
