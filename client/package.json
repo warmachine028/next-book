@@ -91,7 +91,7 @@
     "private": true,
     "scripts": {
         "build": "next build",
-        "dev": "next dev --turbopack",
+        "dev": "next dev",
         "lint": "next lint",
         "postinstall": "prisma generate",
         "prisma:deploy": "prisma migrate deploy",
