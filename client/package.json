@@ -5,7 +5,7 @@
         "url": "https://github.com/warmachine028"
     },
     "dependencies": {
-        "@hookform/resolvers": "^4.0.0",
+        "@hookform/resolvers": "^5.0.0",
         "@lucia-auth/adapter-prisma": "^4.0.1",
         "@neondatabase/serverless": "^1.0.0",
         "@node-rs/argon2": "^2.0.2",
