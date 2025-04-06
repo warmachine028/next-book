@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "ES2017",
+		"target": "ESNext",
 		"lib": [
 			"dom",
 			"dom.iterable",
@@ -33,7 +33,7 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts"
-	],
+, "../eslint-config-next.d.ts"	],
 	"exclude": [
 		"node_modules"
 	]

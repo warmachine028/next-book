@@ -33,12 +33,5 @@ export default {
 				destination: '/search?q=%23:tag'
 			}
 		]
-	},
-	typescript: {
-		// !! WARN !!
-		// Dangerously allow production builds to successfully complete even if
-		// your project has type errors.
-		// !! WARN !!
-		ignoreBuildErrors: true
 	}
 } satisfies Config
