@@ -28,7 +28,7 @@ const Post = ({ post }: PostProps) => {
 	const [editing, setEditing] = useState(false)
 
 	return (
-		<article className="group/post space-y-3 rounded-md bg-card p-5 shadow-sm">
+		<article className="group/post bg-card space-y-3 rounded-md p-5 shadow-xs">
 			<div className="flex justify-between gap-3">
 				<div className="flex flex-wrap gap-3">
 					<UserTooltip user={author}>
@@ -45,7 +45,7 @@ const Post = ({ post }: PostProps) => {
 						<Link
 							suppressHydrationWarning
 							href={`/posts/${post.id}`}
-							className="block text-sm text-muted-foreground hover:underline"
+							className="text-muted-foreground block text-sm hover:underline"
 						>
 							{formatRelativeDate(post.createdAt)}
 						</Link>
@@ -62,7 +62,7 @@ const Post = ({ post }: PostProps) => {
 			{editing ?
 				<UpdatePostForm post={post} setEditing={setEditing} />
 			:	<Linkify>
-					<div className="whitespace-pre-line break-words">{post.content}</div>
+					<div className="break-words whitespace-pre-line">{post.content}</div>
 				</Linkify>
 			}
 			{!!post.attachments.length && <MediaPreviews attachments={post.attachments} />}
@@ -114,7 +114,7 @@ const UpdatePostForm = ({ post, setEditing }: UpdatePostFormProps) => {
 	}
 	return (
 		<div className="flex-1 flex-col gap-2">
-			<EditorContent editor={editor} className="max-h-80 w-full overflow-y-auto rounded-md bg-accent px-5 py-3" />
+			<EditorContent editor={editor} className="bg-accent max-h-80 w-full overflow-y-auto rounded-md px-5 py-3" />
 			<div className="my-2 space-x-2">
 				<Button onClick={handleSubmit}>Update</Button>
 				<Button variant="destructive" onClick={() => setEditing(false)}>
@@ -166,14 +166,14 @@ const MediaPreview = ({ media }: MediaPreviewProps) => {
 			</div>
 		),
 		VIDEO: (
-			<div className="relative aspect-video w-full overflow-hidden rounded-md bg-muted">
+			<div className="bg-muted relative aspect-video w-full overflow-hidden rounded-md">
 				<video src={media.url} controls className="h-full w-full" onError={handleMediaError} />
 			</div>
 		)
 	}
 	return (
 		mediaObject[media.type] || (
-			<p className="flex h-48 items-center justify-center rounded-md bg-muted text-destructive">
+			<p className="bg-muted text-destructive flex h-48 items-center justify-center rounded-md">
 				Unsupported media type
 			</p>
 		)

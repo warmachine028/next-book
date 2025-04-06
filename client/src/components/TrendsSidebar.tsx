@@ -34,16 +34,16 @@ const getTrendingTopics = unstable_cache(
 const TrendingTopics = async () => {
 	const trendingTopics = await getTrendingTopics()
 	return (
-		<div className="space-y-5 rounded-md bg-card p-5 shadow-sm">
+		<div className="bg-card space-y-5 rounded-md p-5 shadow-xs">
 			<div className="text-xl font-bold">Trending Topics</div>
 			{trendingTopics.map(({ hashtag, count }) => {
 				const title = hashtag.split('#')[1]
 				return (
 					<Link href={`/hashtag/${title}`} className="block" key={title}>
-						<p className="line-clamp-1 break-all font-semibold hover:underline" title={hashtag}>
+						<p className="line-clamp-1 font-semibold break-all hover:underline" title={hashtag}>
 							{hashtag}
 						</p>
-						<p className="line-clamp-1 break-all text-sm text-muted-foreground">
+						<p className="text-muted-foreground line-clamp-1 text-sm break-all">
 							{formatNumber(count)} {count === 1 ? 'post' : 'posts'}
 						</p>
 						<div className="flex items-center justify-between gap-3" key={hashtag} />
@@ -70,7 +70,7 @@ const WhoToFollow = async () => {
 		take: 5
 	})
 	return (
-		<div className="space-y-5 rounded-md bg-card p-5 shadow-sm">
+		<div className="bg-card space-y-5 rounded-md p-5 shadow-xs">
 			<div className="text-xl font-bold">Who to Follow</div>
 			{usersToFollow.map((user) => (
 				<div className="flex items-center justify-between gap-3" key={user.id}>
@@ -78,10 +78,10 @@ const WhoToFollow = async () => {
 						<Link href={`/users/${user.userName}`} className="flex items-center justify-between gap-3">
 							<Avatar url={user.avatarUrl} className="flex-none" />
 							<div>
-								<p className="line-clamp-1 break-all font-semibold hover:underline">
+								<p className="line-clamp-1 font-semibold break-all hover:underline">
 									{user.displayName}
 								</p>
-								<p className="line-clamp-1 break-all text-muted-foreground">@{user.userName}</p>
+								<p className="text-muted-foreground line-clamp-1 break-all">@{user.userName}</p>
 							</div>
 						</Link>
 					</UserTooltip>

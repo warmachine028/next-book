@@ -70,7 +70,7 @@ const PostEditor = () => {
 	}
 
 	return (
-		<div className="flex flex-col gap-5 rounded-md bg-card p-5 shadow-sm">
+		<div className="bg-card flex flex-col gap-5 rounded-md p-5 shadow-xs">
 			<div className="flex items-center gap-2">
 				<Link href={`/users/${user.userName}`} className="hidden sm:inline">
 					<Avatar url={user.avatarUrl} size={38} />
@@ -79,8 +79,8 @@ const PostEditor = () => {
 					<EditorContent
 						editor={editor}
 						className={cn(
-							'max-h-80 w-full overflow-y-auto rounded-md bg-accent px-5 py-3',
-							isDragActive && 'outline-dashed outline-1 outline-primary'
+							'bg-accent max-h-80 w-full overflow-y-auto rounded-md px-5 py-3',
+							isDragActive && 'outline-primary outline-1 outline-dashed'
 						)}
 						onPaste={handlePaste}
 					/>
@@ -93,8 +93,8 @@ const PostEditor = () => {
 			<div className="flex items-center justify-end gap-3">
 				{isUploading && (
 					<>
-						<span className="text-sm text-muted-foreground">{uploadProgress ?? 0}%</span>
-						<Loader2 className="size-5 animate-spin text-primary" />
+						<span className="text-muted-foreground text-sm">{uploadProgress ?? 0}%</span>
+						<Loader2 className="text-primary size-5 animate-spin" />
 					</>
 				)}
 				<AddAttachmentButton onFilesSelected={startUpload} disabled={isUploading || attachments.length >= 5} />
@@ -126,7 +126,7 @@ const AddAttachmentButton = ({ onFilesSelected, disabled }: AddAttachmentButtonP
 				className="text-primary hover:text-primary"
 				disabled={disabled}
 				onClick={() => fileInputRef.current?.click()}
-				title='attachment'
+				title="attachment"
 			>
 				<ImageIcon size={20} />
 			</Button>
@@ -195,7 +195,7 @@ const AttachmentPreview = ({ attachment: { file, isUploading }, onRemove }: Atta
 					onClick={onRemove}
 					variant="ghost"
 					size="icon"
-					className="absolute right-3 top-3 rounded-full bg-foreground p-1.5 text-background transition-colors hover:bg-muted"
+					className="bg-foreground text-background hover:bg-muted absolute top-3 right-3 rounded-full p-1.5 transition-colors"
 				>
 					<X size={20} />
 				</Button>

@@ -79,7 +79,7 @@ const Notification = ({ notification }: NotificationProps) => {
 			>
 				<CardContent className="p-4">
 					<div className="flex items-start space-x-4">
-						<div className={cn('rounded-full p-2', color, 'bg-opacity-10')}>{icon}</div>
+						<div className={cn('rounded-full p-2', color, 'bg-black/10')}>{icon}</div>
 						<div className="flex-1 space-y-1">
 							<div className="flex items-center justify-between">
 								<div className="flex items-center space-x-2">

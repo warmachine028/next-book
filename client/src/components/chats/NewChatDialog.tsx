@@ -78,10 +78,10 @@ const NewChatDialog = ({ onOpenChange, onChatCreated }: NewChatDialogProps) => {
 				</DialogHeader>
 				<div className="flex flex-col gap-4 px-6 pb-6">
 					<div className="group relative">
-						<Search className="absolute left-5 top-1/2 size-5 -translate-y-1/2 transform text-muted-foreground group-focus-within:text-primary" />
+						<Search className="text-muted-foreground group-focus-within:text-primary absolute top-1/2 left-5 size-5 -translate-y-1/2 transform" />
 						<Input
 							placeholder="Search users..."
-							className="h-12 w-full px-14 pe-4 focus:outline-none"
+							className="h-12 w-full px-14 pe-4 focus:outline-hidden"
 							value={searchInput}
 							onChange={(e) => setSearchInput(e.target.value)}
 						/>
@@ -115,13 +115,13 @@ const NewChatDialog = ({ onOpenChange, onChatCreated }: NewChatDialogProps) => {
 								/>
 							))}
 						{isSuccess && !data.users.length && (
-							<p className="my-3 text-center text-muted-foreground">
+							<p className="text-muted-foreground my-3 text-center">
 								No users found. Try a different name.
 							</p>
 						)}
 						{isFetching && <Loader2 className="mx-auto my-3 animate-spin" />}
 						{isError && (
-							<p className="my-3 text-center text-destructive">
+							<p className="text-destructive my-3 text-center">
 								An error ocurred while loading users. {error.message}
 							</p>
 						)}
@@ -150,7 +150,7 @@ interface UserResultProps {
 const UserResult = ({ user, selected, onClick }: UserResultProps) => {
 	return (
 		<Button
-			className="flex min-h-16 w-full items-center justify-between px-4 py-2.5 transition-colors hover:bg-muted/50"
+			className="hover:bg-muted/50 flex min-h-16 w-full items-center justify-between px-4 py-2.5 transition-colors"
 			onClick={onClick}
 			variant="ghost"
 		>
@@ -161,7 +161,7 @@ const UserResult = ({ user, selected, onClick }: UserResultProps) => {
 					<p className="text-muted-foreground">@{user.username}</p>
 				</div>
 			</div>
-			{selected && <Check className="size-5 text-success" />}
+			{selected && <Check className="text-success size-5" />}
 		</Button>
 	)
 }
@@ -174,13 +174,13 @@ interface SelectedUserTagProps {
 const SelectedUserTag = ({ user, onRemove }: SelectedUserTagProps) => {
 	return (
 		<Button
-			className="flex items-center gap-2 rounded-full border p-1 hover:bg-muted/50"
+			className="hover:bg-muted/50 flex items-center gap-2 rounded-full border p-1"
 			onClick={onRemove}
 			variant="ghost"
 		>
 			<Avatar url={user.image} size={24} />
 			<p className="font-bold">{user.name}</p>
-			<X className="mx-2 size-5 text-muted-foreground" />
+			<X className="text-muted-foreground mx-2 size-5" />
 		</Button>
 	)
 }

@@ -14,7 +14,7 @@ LoadingSkeletonGroup.displayName = 'LoadingSkeletonGroup'
 
 const LoadingSkeleton = () => {
 	return (
-		<div className="w-full animate-pulse space-y-3 bg-card p-5 shadow-sm ring-1 ring-muted">
+		<div className="bg-card ring-muted w-full animate-pulse space-y-3 p-5 shadow-xs ring-1">
 			<div className="flex flex-wrap gap-3">
 				<Skeleton className="size-12 rounded-full" />
 				<div className="space-y-1.5">

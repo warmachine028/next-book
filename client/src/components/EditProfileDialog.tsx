@@ -156,7 +156,7 @@ const AvatarInput = ({ src, onImageCropped }: AvatarInputProps) => {
 						width={150}
 						height={150}
 					/>
-					<span className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100">
+					<span className="absolute inset-0 flex items-center justify-center bg-black bg-black/50 opacity-0 transition-opacity duration-300 hover:opacity-100">
 						<Camera className="h-6 w-6 text-white" />
 					</span>
 				</Button>

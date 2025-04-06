@@ -10,12 +10,12 @@ const neon = new Pool({ connectionString: process.env.DATABASE_PRISMA_URL }) // 
 const adapter = new PrismaNeon(neon)
 const prismaClientSingleton = () =>
 	new PrismaClient({ adapter })
+		// .$extends(
+		// 	withOptimize({
+		// 		apiKey: process.env.OPTIMIZE_API_KEY as string
+		// 	})
+		// )
 		.$extends(withAccelerate())
-		.$extends(
-			withOptimize({
-				apiKey: process.env.OPTIMIZE_API_KEY as string
-			})
-		)
 		.$extends(
 			withPulse({
 				apiKey: process.env.PULSE_API_KEY as string

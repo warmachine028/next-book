@@ -23,13 +23,13 @@ const Vercel = () => {
 				<ol className="list-inside list-decimal text-left font-mono text-sm">
 					<li className="mb-2">
 						Get started by editing{' '}
-						<code className="rounded bg-black/[.05] px-1 py-0.5 font-semibold">src/app/page.tsx</code>
+						<code className="rounded-sm bg-black/[.05] px-1 py-0.5 font-semibold">src/app/page.tsx</code>
 					</li>
 					<li>Save and see your changes instantly.</li>
 				</ol>
 				<div className="grid w-full grid-cols-1 flex-col gap-4 sm:grid-cols-2 sm:flex-row sm:items-center">
 					<Link
-						className="col-span-2 flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent bg-foreground px-4 text-sm font-medium text-background transition-colors hover:opacity-70 sm:col-span-1 sm:h-12 sm:px-5 sm:text-base"
+						className="bg-foreground text-background col-span-2 flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent px-4 text-sm font-medium transition-colors hover:opacity-70 sm:col-span-1 sm:h-12 sm:px-5 sm:text-base"
 						href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -45,7 +45,7 @@ const Vercel = () => {
 						Deploy now
 					</Link>
 					<Link
-						className="col-span-2 flex h-10 items-center justify-center rounded-full border border-solid border-primary px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-primary hover:text-foreground sm:col-span-1 sm:h-12 sm:min-w-44 sm:px-5 sm:text-base"
+						className="border-primary hover:bg-primary hover:text-foreground col-span-2 flex h-10 items-center justify-center rounded-full border border-solid px-4 text-sm font-medium transition-colors hover:border-transparent sm:col-span-1 sm:h-12 sm:min-w-44 sm:px-5 sm:text-base"
 						href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -57,7 +57,7 @@ const Vercel = () => {
 						Open toast
 					</ToastButton>
 					<Link
-						className="col-span-2 flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-primary px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-primary hover:text-foreground sm:col-span-1 sm:h-12 sm:min-w-44 sm:px-5 sm:text-base"
+						className="border-primary hover:bg-primary hover:text-foreground col-span-2 flex h-10 items-center justify-center gap-2 rounded-full border border-solid px-4 text-sm font-medium transition-colors hover:border-transparent sm:col-span-1 sm:h-12 sm:min-w-44 sm:px-5 sm:text-base"
 						href="/"
 						rel="noopener noreferrer"
 					>
@@ -65,7 +65,7 @@ const Vercel = () => {
 						<Home className="size-5" />
 					</Link>
 					<Link
-						className="col-span-2 flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent bg-foreground px-4 text-sm font-medium text-background transition-colors hover:opacity-70 sm:col-span-1 sm:h-12 sm:px-5 sm:text-base"
+						className="bg-foreground text-background col-span-2 flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent px-4 text-sm font-medium transition-colors hover:opacity-70 sm:col-span-1 sm:h-12 sm:px-5 sm:text-base"
 						href="https://github.com/warmachine028/next-book"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -109,4 +109,3 @@ const Vercel = () => {
 }
 
 export default Vercel
-

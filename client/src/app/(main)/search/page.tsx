@@ -17,11 +17,11 @@ const Page = async ({ searchParams }: PageProps) => {
 	const { q } = await searchParams
 	return (
 		<main className="container mx-auto flex min-h-[calc(100vh-125px)] w-full grow gap-5 p-5">
-			<Menubar className="hidden h-fit flex-none space-y-3 rounded-md bg-card px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
+			<Menubar className="bg-card hidden h-fit flex-none space-y-3 rounded-md px-3 py-5 shadow-xs sm:block lg:px-5 xl:w-80" />
 			<div className="flex w-full min-w-0 gap-5">
 				<div className="w-full min-w-0 space-y-5">
-					<div className="rounded-md bg-card p-5 shadow-sm">
-						<h1 className="line-clamp-2 break-all text-center text-xl font-bold">
+					<div className="bg-card rounded-md p-5 shadow-xs">
+						<h1 className="line-clamp-2 text-center text-xl font-bold break-all">
 							Search results for &quot;{q}&quot;
 						</h1>
 					</div>

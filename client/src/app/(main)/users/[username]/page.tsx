@@ -65,7 +65,7 @@ const UserProfile = async ({ user, currentUserId }: UserProfileProps) => {
 	}
 
 	return (
-		<section className="h-fit w-full space-y-5 bg-card p-5 shadow-sm">
+		<section className="bg-card h-fit w-full space-y-5 p-5 shadow-xs">
 			<Avatar url={user.avatarUrl} size={250} className="mx-auto size-full max-h-60 max-w-60 rounded-full" />
 			<div className="flex flex-wrap gap-3 sm:flex-nowrap">
 				<div className="me-auto space-y-3">
@@ -103,11 +103,11 @@ const Page = async ({ params }: PageProps) => {
 
 	return (
 		<main className="container mx-auto flex min-h-[calc(100vh-125px)] w-full grow gap-5 p-5">
-			<Menubar className="top-[5.25rem] hidden h-fit flex-none space-y-3 bg-card px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
+			<Menubar className="bg-card top-[5.25rem] hidden h-fit flex-none space-y-3 px-3 py-5 shadow-xs sm:block lg:px-5 xl:w-80" />
 			<div className="flex w-full min-w-0 gap-5">
 				<div className="w-full min-w-0 space-y-5">
 					<UserProfile user={user} currentUserId={currentUser.id} />
-					<div className="bg-card p-5 shadow-sm">
+					<div className="bg-card p-5 shadow-xs">
 						<h2 className="text-center text-2xl font-bold">{user.displayName}&apos;s posts</h2>
 					</div>
 					<UserPostsFeed userId={user.id} />

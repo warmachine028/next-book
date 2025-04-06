@@ -54,19 +54,19 @@ const AuthorInfoSidebar = async ({ user }: AuthorInfoSidebarProps) => {
 	}
 
 	return (
-		<div className="space-y-5 rounded-md bg-card p-5 shadow-sm">
+		<div className="bg-card space-y-5 rounded-md p-5 shadow-xs">
 			<div className="text-xl font-bold">About the author</div>
 			<UserTooltip user={user}>
 				<Link href={`/users/${user.userName}`} className="flex items-center gap-3">
 					<Avatar url={user.avatarUrl} className="flex-none" />
 					<div className="">
-						<p className="line-clamp-1 break-all font-semibold hover:underline">{user.displayName}</p>
-						<p className="line-clamp-1 break-all text-muted-foreground">@{user.userName}</p>
+						<p className="line-clamp-1 font-semibold break-all hover:underline">{user.displayName}</p>
+						<p className="text-muted-foreground line-clamp-1 break-all">@{user.userName}</p>
 					</div>
 				</Link>
 			</UserTooltip>
 			<Linkify>
-				<div className="line-clamp-6 whitespace-pre-line break-words text-muted-foreground">{user.bio}</div>
+				<div className="text-muted-foreground line-clamp-6 break-words whitespace-pre-line">{user.bio}</div>
 			</Linkify>
 			{user.id !== currentUser.id && (
 				<FollowButton
@@ -92,7 +92,7 @@ const Page = async ({ params }: PageProps) => {
 
 	return (
 		<main className="container mx-auto flex min-h-[calc(100vh-125px)] w-full grow gap-5 p-5">
-			<Menubar className="top-[5.25rem] hidden h-fit flex-none space-y-3 bg-card px-3 py-5 shadow-sm sm:block lg:px-5 xl:w-80" />
+			<Menubar className="bg-card top-[5.25rem] hidden h-fit flex-none space-y-3 px-3 py-5 shadow-xs sm:block lg:px-5 xl:w-80" />
 			<div className="w-full min-w-0 space-y-5">
 				<Post post={post} />
 			</div>
