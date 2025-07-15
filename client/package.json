@@ -30,7 +30,7 @@
         "@tiptap/extension-placeholder": "^3.0.1",
         "@tiptap/pm": "^2.11.7",
         "@tiptap/react": "^3.0.1",
-        "@tiptap/starter-kit": "^2.11.7",
+        "@tiptap/starter-kit": "^3.0.3",
         "@uploadthing/react": "^7.3.0",
         "arctic": "^3.1.0",
         "babel-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
