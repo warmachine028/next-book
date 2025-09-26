@@ -1,4 +1,4 @@
-    updated on: 10th September 2025, Wednesday
+    updated on: 26th September 2025, Friday
 
 <div align="center">
     <picture>
@@ -101,4 +101,4 @@ $> bun dev
 [line]: https://user-images.githubusercontent.com/75939390/137615281-3a875960-92cc-407f-97fe-fd2319bdb252.png
 [License]: https://github.com/warmachine028/next-book/blob/main/LICENSE
 
-<!-- 10/09/25 -->
+<!-- 26/09/25 -->
