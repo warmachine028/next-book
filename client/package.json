@@ -9,7 +9,7 @@
         "@lucia-auth/adapter-prisma": "^4.0.1",
         "@neondatabase/serverless": "^1.0.0",
         "@node-rs/argon2": "^2.0.2",
-        "@prisma/adapter-neon": "^6.5.0",
+        "@prisma/adapter-neon": "^7.0.0",
         "@prisma/client": "^7.0.0",
         "@radix-ui/react-alert-dialog": "^1.1.6",
         "@radix-ui/react-avatar": "^1.1.3",
