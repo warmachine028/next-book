@@ -78,7 +78,7 @@
         "postcss": "^8.5.3",
         "postcss-load-config": "^6.0.1",
         "prettier": "^3.5.3",
-        "prettier-plugin-packagejson": "^2.5.10",
+        "prettier-plugin-packagejson": "^3.0.0",
         "prettier-plugin-tailwindcss": "^0.7.1",
         "prisma": "^7.0.0",
         "tailwindcss": "^4.1.3",
